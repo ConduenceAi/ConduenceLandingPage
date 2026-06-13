@@ -6,47 +6,6 @@ import { useRef } from "react";
 import { logoWhiteSrc } from "@/lib/assets";
 
 /* ============================================================
-   PROBLEM
-   ============================================================ */
-export function Problem() {
-  return (
-    <section className="relative py-32 px-6 bg-black text-white">
-      <div className="mx-auto max-w-6xl">
-        <p className="text-[10px] font-semibold tracking-[0.4em] text-white/50 mb-6">
-          [ THE PROBLEM ]
-        </p>
-        <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-balance max-w-3xl">
-          Today, traders pick between two bad options.
-        </h2>
-        <div className="mt-16 grid gap-px bg-white/10 md:grid-cols-2 border border-white/10">
-          {[
-            {
-              t: "Build your own multi-agent system",
-              d: "Technical. Expensive. Out of reach for everyone except funded quant teams.",
-            },
-            {
-              t: "Copy someone else's trades",
-              d: "Blind. Late. You're trading on someone else's edge, after the price has already moved.",
-            },
-          ].map((c) => (
-            <div key={c.t} className="bg-black p-10">
-              <div className="h-10 w-10 rounded-full border border-white/40 grid place-items-center text-white/70 text-xl mb-6">
-                ✕
-              </div>
-              <h3 className="text-2xl font-bold mb-3">{c.t}</h3>
-              <p className="text-white/60">{c.d}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-12 text-2xl font-semibold text-white/40">
-          Neither puts <span className="text-white">you</span> in control.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
    SOLUTION
    ============================================================ */
 export function Solution() {
@@ -184,57 +143,6 @@ export function Reasoning() {
             <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" strokeWidth="1" />
           </svg>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   DATA
-   ============================================================ */
-export function Data() {
-  return (
-    <section id="data" className="relative py-32 px-6 bg-black text-white">
-      <div className="mx-auto max-w-6xl">
-        <p
-          className="text-[10px] tracking-[0.4em] text-white/50 mb-6"
-          style={{ fontFamily: '"Michroma", sans-serif' }}
-        >
-          [ WHY NOW ]
-        </p>
-        <h2
-          className="text-3xl sm:text-5xl tracking-[0.02em] text-balance max-w-4xl leading-[1.15]"
-          style={{ fontFamily: '"Michroma", sans-serif' }}
-        >
-          Whales see it first. You see it after.
-        </h2>
-        <p className="mt-6 max-w-2xl text-lg text-white/60">
-          Prices, news, social chatter, on-chain signals — bots ingest it before you finish reading
-          the headline. By the time you click buy, the edge is already gone.
-        </p>
-        <div className="mt-16 grid gap-px border border-white/10 bg-white/10 md:grid-cols-3">
-          {[
-            "Most retail traders were directionally right, but entered too late.",
-            "Automation captured pricing inefficiencies before humans could react.",
-            "Execution quality mattered more than raw prediction accuracy.",
-          ].map((line) => (
-            <div
-              key={line}
-              className="bg-black px-8 py-10 text-lg font-medium leading-relaxed text-white/72"
-            >
-              {line}
-            </div>
-          ))}
-        </div>
-        <blockquote className="mt-20 max-w-3xl text-2xl sm:text-3xl font-semibold leading-snug text-balance">
-          "The execution edge is an underrated aspect of trading."
-          <footer className="mt-4 text-sm font-normal text-white/50">
-            — Japan Times, on Polymarket bot research
-          </footer>
-        </blockquote>
-        <p className="mt-12 text-3xl sm:text-4xl font-black tracking-tight">
-          Speed can make you stand alongside whales.
-        </p>
       </div>
     </section>
   );

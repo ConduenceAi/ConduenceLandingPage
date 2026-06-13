@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 /** Light-background sections where the nav uses the black logo. */
 const BLACK_LOGO_SECTION_IDS = new Set(["core-insight", "workflow", "solution"]);
 
-export function useLogoOnDarkBackground(defaultOnDark = true) {
+function useLogoOnDarkBackground(defaultOnDark = true) {
   const [onDarkBackground, setOnDarkBackground] = useState(defaultOnDark);
 
   useEffect(() => {

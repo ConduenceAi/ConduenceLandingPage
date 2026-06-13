@@ -47,8 +47,6 @@ export function Hero() {
 
       {/* Content — centered */}
       <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-8 text-center">
-
-
         <motion.h1
           initial={false}
           animate={{ opacity: 1, y: 0 }}
