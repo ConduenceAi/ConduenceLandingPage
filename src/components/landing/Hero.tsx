@@ -64,7 +64,7 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
           className="mt-8 max-w-xl text-base leading-relaxed text-white/78 md:text-lg"
         >
-          Prediction-market orchestration at whale speed — with you in control.
+          Prediction market orchestration at agentic speed with you in control.
         </motion.p>
 
         <motion.div

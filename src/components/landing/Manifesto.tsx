@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
    ============================================================ */
 export function Manifesto() {
   return (
-    <section className="relative overflow-hidden bg-black text-white py-40 px-6">
+    <section className="relative overflow-hidden bg-black text-white py-30 px-6">
       {/* Ambient grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.06]"
@@ -19,7 +19,7 @@ export function Manifesto() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl mt-20">
         {/* Leader not follower */}
         
 
@@ -29,11 +29,12 @@ export function Manifesto() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           className="text-balance font-display uppercase leading-[0.9] tracking-[-0.03em]"
-          style={{ fontSize: "clamp(2.5rem, 8vw, 8rem)" }}
+          style={{ fontSize: "clamp(2rem, 5.5vw, 5.5rem)" }}
         >
-          Don't be a follower.
-          <br />
-          <span className="font-normal italic">Be the signal</span> others copy.
+          Don't be a follower.{" "}
+          <span className="whitespace-nowrap">
+            <span className="font-normal italic">Be the signal</span> others copy.
+          </span>
         </motion.h2>
 
         <motion.p

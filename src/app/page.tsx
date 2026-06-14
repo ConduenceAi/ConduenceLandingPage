@@ -2,14 +2,8 @@ import type { Metadata } from "next";
 
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
-import {
-  Solution,
-  Reasoning,
-  AgentsScroll,
-  Workflow,
-  CTA,
-  Footer,
-} from "@/components/landing/Sections";
+import { Pillars } from "@/components/landing/Pillars";
+import { Reasoning, AgentsScroll, Workflow, CTA, Footer } from "@/components/landing/Sections";
 import { Manifesto } from "@/components/landing/Manifesto";
 import { MatrixMantras } from "@/components/landing/MatrixMantras";
 
@@ -33,7 +27,7 @@ export default function HomePage() {
       <MatrixMantras />
       <AgentsScroll />
       <Workflow />
-      <Solution />
+      <Pillars />
       <CTA />
       <Footer />
     </main>

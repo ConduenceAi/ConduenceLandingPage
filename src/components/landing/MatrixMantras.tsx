@@ -123,12 +123,6 @@ export function MatrixMantras() {
             />
           </h2>
 
-          <p className="mt-10 max-w-xl text-base text-white/55">
-            Not a script. Not a rule. A reasoning loop for the
-            <br className="hidden sm:block" />
-            agents that perceive, weigh, and move.
-          </p>
-
           {/* progress dots */}
           <div className="absolute bottom-12 left-0 right-0 flex justify-center gap-2">
             {MANTRAS.map((_, i) => (

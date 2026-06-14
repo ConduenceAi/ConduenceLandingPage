@@ -6,108 +6,12 @@ import { useRef } from "react";
 import { logoWhiteSrc } from "@/lib/assets";
 
 /* ============================================================
-   SOLUTION
-   ============================================================ */
-export function Solution() {
-  const nodes = [
-    { t: "Price Data", d: "Fetch real-time and historical price data for any ticker." },
-    { t: "Chart Image", d: "Generate TradingView-style chart images." },
-    { t: "Polymarket Data", d: "Fetch prediction market data from Polymarket." },
-    { t: "Portfolio Data", d: "Positions, balances, and live P&L." },
-    { t: "Coinglass", d: "Open interest, funding, and liquidations." },
-  ];
-  return (
-    <section id="solution" className="relative py-32 px-6 bg-white text-black">
-      <div className="mx-auto max-w-6xl">
-        
-        <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-balance max-w-3xl">
-          Orchestrate agents. Keep the human gate.
-        </h2>
-        <p className="mt-6 max-w-2xl text-lg text-black/60">
-          A drag-and-drop builder where you define which agents exist, which tools they use, how
-          they talk, where you approve, and how capital flows.
-        </p>
-
-        <div className="mt-20 grid gap-12 md:grid-cols-2 items-center">
-          {/* Add Node mockup panel */}
-          <div className="relative rounded-2xl border border-black/15 bg-black p-6 shadow-2xl">
-            <div
-              className="absolute inset-0 rounded-2xl opacity-[0.08] pointer-events-none"
-              style={{
-                backgroundImage: "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
-                backgroundSize: "14px 14px",
-              }}
-            />
-            <div className="relative">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-                <span className="text-white text-lg font-semibold">Add Node</span>
-                <span className="text-white/60 text-xl leading-none">×</span>
-              </div>
-              <p className="text-[10px] font-mono tracking-[0.3em] text-white/40 mb-4">
-                DATA SOURCES
-              </p>
-              <ul className="space-y-2">
-                {nodes.map((n, i) => (
-                  <li
-                    key={n.t}
-                    className={`flex items-start gap-4 rounded-lg border border-white/10 p-4 transition ${
-                      i === 3 ? "bg-white/[0.06]" : "bg-white/[0.02] hover:bg-white/[0.05]"
-                    }`}
-                  >
-                    <div className="h-9 w-9 shrink-0 rounded-md border border-white/15 bg-white/5 grid place-items-center text-white/70 text-xs">
-                      ◆
-                    </div>
-                    <div>
-                      <p className="text-white font-semibold text-sm">{n.t}</p>
-                      <p className="text-white/55 text-xs mt-0.5">{n.d}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Right copy */}
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.4em] text-black/40 mb-4">
-              [ VISUAL BUILDER ]
-            </p>
-            <h3 className="text-4xl sm:text-5xl font-display leading-[1.05] tracking-tight">
-              Design it.
-            </h3>
-            <p className="mt-6 text-lg text-black/60 max-w-md">
-              Drag-and-drop strategy builder with pre-built logic blocks. Wire data sources, mind
-              agents, and execution into a single canvas — then keep the human gate before capital
-              moves.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {["Data", "Agents", "Tools", "Human Gate", "Execution"].map((c) => (
-                <span
-                  key={c}
-                  className="rounded-full border border-black/20 px-3 py-1.5 text-xs font-mono tracking-wider"
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <p className="mt-20 text-3xl font-display tracking-tight text-balance max-w-2xl">
-          You stay in control. <span className="text-black/40">The agents handle the scale.</span>
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
    REASONING  — bold typographic statement (per ref image)
    ============================================================ */
 export function Reasoning() {
   return (
     <section id="core-insight" className="relative py-40 px-6 bg-white text-black overflow-hidden">
-      <div className="mx-auto max-w-7xl text-center">
+      <div className="mx-auto max-w-7xl text-center mb-16">
         <p className="text-[10px] font-semibold tracking-[0.4em] text-black/50 mb-10">
           [ CORE INSIGHT ]
         </p>
@@ -118,11 +22,13 @@ export function Reasoning() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           className="text-balance font-display uppercase leading-[0.95] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
+          style={{ fontSize: "clamp(2rem, 5.5vw, 5.5rem)" }}
         >
           The edge isn't the position.
           <br />
-          It's the <span className="font-normal italic">reasoning.</span>
+          <span className="whitespace-nowrap">
+            It's the timely <span className="font-normal italic">execution</span>
+          </span>
         </motion.h2>
       </div>
     </section>
@@ -249,7 +155,7 @@ export function AgentsScroll() {
             transition={{ duration: 0.9 }}
             className="mx-auto max-w-4xl text-balance font-display text-2xl sm:text-4xl uppercase tracking-tight leading-tight"
           >
-            I see, I think, I move and now, I talk.
+            I see, I think, I move and now, I Execute.
             <br />
             I'm fully autonomous. I'm alive.
           </motion.p>
@@ -283,7 +189,7 @@ export function Workflow() {
         </h2>
         <div className="mt-16 border border-black/15 p-8 sm:p-12">
           <div className="grid grid-cols-3 gap-px bg-black/10 border border-black/10">
-            {["TOOLS", "TEMPLATES", "MIND AGENT"].map((l) => (
+            {["TOOLS", "TEMPLATES", "ANALYZERS"].map((l) => (
               <div
                 key={l}
                 className="bg-white p-8 text-center font-mono text-xs sm:text-sm tracking-[0.2em]"
@@ -292,11 +198,8 @@ export function Workflow() {
               </div>
             ))}
           </div>
-          <div className="my-6 text-center text-black/40 text-xs font-mono tracking-[0.3em]">
+          <div className="bg-black text-white p-6 text-center font-mono text-xs sm:text-sm tracking-[0.2em] mt-6">
             ↓ ORCHESTRATED BY YOU ↓
-          </div>
-          <div className="bg-black text-white p-6 text-center font-mono text-xs sm:text-sm tracking-[0.2em]">
-            HUMAN GATE → CAPITAL ALLOCATION → EXECUTION
           </div>
         </div>
       </div>
@@ -317,8 +220,8 @@ export function CTA() {
           <span className="text-white/40">Not against them.</span>
         </h2>
         <p className="mt-8 text-lg text-white/60 max-w-xl mx-auto">
-          CONDUENCE is in private beta. Join the waitlist for early access to the Agora builder and
-          Mind Agent marketplace.
+          CONDUENCE is in private beta. Join the waitlist for early access to the Canvas and
+          Mind Agent.
         </p>
         <form
           className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
