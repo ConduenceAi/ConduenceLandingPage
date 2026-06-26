@@ -1,150 +1,45 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import DecryptedText from "@/components/DecryptedText";
+import { useEffect, useState } from "react";
 
 const MANTRAS = [
   "I\u2002recall",
   "I\u2002think",
   "I\u2002decide",
   "I\u2002execute",
-  "I\u2002remember",
+  "I\u2002 remember",
 ];
 
-function MatrixCanvas() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    let w = (canvas.width = canvas.offsetWidth);
-    let h = (canvas.height = canvas.offsetHeight);
-    const fontSize = 14;
-    let cols = Math.floor(w / fontSize);
-    let drops = new Array(cols).fill(1);
-    const glyphs =
-      "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEF<>/?*+";
+function getWrappedOffset(index: number, activeIndex: number, total: number) {
+  const half = Math.floor(total / 2);
+  let offset = index - activeIndex;
 
-    const onResize = () => {
-      w = canvas.width = canvas.offsetWidth;
-      h = canvas.height = canvas.offsetHeight;
-      cols = Math.floor(w / fontSize);
-      drops = new Array(cols).fill(1);
-    };
-    window.addEventListener("resize", onResize);
+  if (offset > half) offset -= total;
+  if (offset < -half) offset += total;
 
-    let raf = 0;
-    const draw = () => {
-      ctx.fillStyle = "rgba(0,0,0,0.08)";
-      ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = "rgba(180,255,210,0.85)";
-      ctx.font = `${fontSize}px monospace`;
-      for (let i = 0; i < drops.length; i++) {
-        const text = glyphs[Math.floor(Math.random() * glyphs.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > h && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
+  return offset;
+}
 
-  return <canvas ref={ref} className="absolute inset-0 h-full w-full opacity-40" aria-hidden />;
+function getHorizontalOffset(offset: number) {
+  if (offset === 0) return "0vw";
+  if (Math.abs(offset) === 1) return `${offset * 34}vw`;
+  return `${Math.sign(offset) * 58}vw`;
 }
 
 export function MatrixMantras() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const safeIndex = Math.min(activeIndex, MANTRAS.length - 1);
-  const activeMantra = MANTRAS[safeIndex] ?? MANTRAS[0];
 
   useEffect(() => {
-    const handler = () => {
-      const el = sectionRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const total = rect.height - window.innerHeight;
-      const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      const ratio = total > 0 ? scrolled / total : 0;
-      const idx = Math.min(MANTRAS.length - 1, Math.floor(ratio * MANTRAS.length));
-      setActiveIndex(idx);
-    };
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
-    window.addEventListener("resize", handler);
-    return () => {
-      window.removeEventListener("scroll", handler);
-      window.removeEventListener("resize", handler);
-    };
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % MANTRAS.length);
+    }, 1800);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative bg-black text-white"
-      style={{ height: `${MANTRAS.length * 80}vh` }}
-    >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <MatrixCanvas />
-        {/* vignette */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,1) 100%)",
-          }}
-        />
-
-        <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-          <h2
-            className="font-display uppercase tracking-[-0.03em] leading-none"
-            style={{ fontSize: "clamp(2.5rem, 12vw, 14rem)" }}
-          >
-            <DecryptedText
-              key={safeIndex}
-              text={activeMantra}
-              animateOn="view"
-              sequential
-              revealDirection="start"
-              speed={45}
-              maxIterations={20}
-              useOriginalCharsOnly={false}
-              characters="アイウエオカキクケコ01<>/?*+ABCDEF"
-              className="text-white"
-              encryptedClassName="text-emerald-300/70"
-              parentClassName="inline-flex"
-            />
-          </h2>
-
-          {/* progress dots */}
-          <div className="absolute bottom-12 left-0 right-0 flex justify-center gap-2">
-            {MANTRAS.map((_, i) => (
-              <span
-                key={i}
-                className={`h-1.5 w-6 rounded-full transition-all ${
-                  i === safeIndex ? "bg-emerald-300" : "bg-white/15"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   AGENT VOICE — coda after agents scroll
-   ============================================================ */
-export function AgentVoice() {
-  return (
-    <section className="relative overflow-hidden bg-black px-section py-section text-white">
+    <section className="relative min-h-[72vh] overflow-hidden bg-black px-section pt-6 pb-12 text-white sm:min-h-[76vh] sm:pt-0 sm:pb-8">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
@@ -155,38 +50,72 @@ export function AgentVoice() {
         }}
       />
 
-      <div className="relative mx-auto max-w-4xl text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-display-medium font-display tracking-tight leading-[1.12]"
-        >
-          <span className="block">I am your reasoning and your attention,</span>
-          <span className="block">
+      <div className="relative mx-auto flex min-h-[72vh] max-w-6xl flex-col justify-center sm:min-h-[76vh]">
+        <div className="mt-8 flex flex-col items-center sm:mt-30">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="flex flex-col items-center text-center text-display-medium font-display tracking-tight leading-[1.12]"
+          >
+            <span className="whitespace-nowrap">I am your reasoning and your perception,</span>
             <span className="font-normal italic text-white/55">scaled past every limit.</span>
-          </span>
-          <span className="mt-3 block sm:mt-4">We move as one.</span>
-        </motion.h2>
+            <span className="mt-3 sm:mt-4">We move as one.</span>
+          </motion.h2>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-12 flex justify-center gap-2 sm:mt-16"
-        >
-          {["24", "7"].map((n) => (
-            <div
-              key={n}
-              className="grid h-14 w-14 place-items-center rounded-full border border-white font-mono text-sm font-bold"
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-8 flex justify-center gap-2 sm:mt-10"
+          >
+            {["24", "7"].map((n) => (
+              <div
+                key={n}
+                className="grid h-14 w-14 place-items-center rounded-full border border-white font-mono text-sm font-bold"
+              >
+                {n}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        <div className="relative mx-auto mt-8 h-[18rem] w-full max-w-6xl sm:mt-10 sm:h-[22rem]">
+          {MANTRAS.map((mantra, index) => (
+            <motion.div
+              key={mantra}
+              initial={false}
+              animate={{
+                x: getHorizontalOffset(getWrappedOffset(index, activeIndex, MANTRAS.length)),
+                scale: index === activeIndex ? 1 : 0.84,
+                opacity: index === activeIndex ? 1 : 0.14,
+                filter: index === activeIndex ? "blur(0px)" : "blur(2px)",
+              }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute left-1/2 top-1/2 w-max max-w-none -translate-x-1/2 -translate-y-1/2 px-4"
             >
-              {n}
-            </div>
+              <div className="flex items-center justify-center text-center">
+                <h2
+                  className={`whitespace-nowrap font-display text-[clamp(2.5rem,7vw,7rem)] font-normal leading-[0.95] text-white ${
+                    mantra === "Now, I remember" ? "tracking-[-0.035em]" : "tracking-[-0.05em]"
+                  }`}
+                >
+                  {mantra}
+                </h2>
+              </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
+}
+
+/* ============================================================
+   AGENT VOICE — coda after agents scroll
+   ============================================================ */
+export function AgentVoice() {
+  return null;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   featCanvasSrc,
@@ -65,13 +65,42 @@ const DURATION = 7000;
 export function Pillars() {
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
+  const isPausedRef = useRef(false);
+  const isActiveRowHoveredRef = useRef(false);
+
+  const syncPause = () => {
+    isPausedRef.current = isActiveRowHoveredRef.current;
+  };
+
+  useEffect(() => {
+    isActiveRowHoveredRef.current = false;
+    syncPause();
+  }, [active]);
 
   useEffect(() => {
     setProgress(0);
+    let accumulatedPause = 0;
+    let pauseStarted = 0;
+    let wasPaused = false;
     const start = performance.now();
     let raf = 0;
+
     const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / DURATION);
+      const paused = isPausedRef.current;
+      if (paused) {
+        if (!wasPaused) {
+          pauseStarted = now;
+          wasPaused = true;
+        }
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+      if (wasPaused) {
+        accumulatedPause += now - pauseStarted;
+        wasPaused = false;
+      }
+      const elapsed = now - start - accumulatedPause;
+      const p = Math.min(1, elapsed / DURATION);
       setProgress(p);
       if (p < 1) raf = requestAnimationFrame(tick);
       else setActive((a) => (a + 1) % pillars.length);
@@ -98,18 +127,33 @@ export function Pillars() {
           <h2 className="text-display-pillar font-display leading-[1.05] tracking-tight">
             Everything you need to
             <br />
-            <span className="font-normal italic text-black/45">ship agents that trade.</span>
+            <span className="font-normal italic text-black/45">ship agents that trade</span>
           </h2>
 
           <ul className="mt-12 flex flex-col sm:mt-14">
             {pillars.map((p, i) => {
               const isActive = i === active;
               return (
-                <li key={p.title} className="relative">
+                <li
+                  key={p.title}
+                  className="relative"
+                  onPointerEnter={() => {
+                    if (isActive) {
+                      isActiveRowHoveredRef.current = true;
+                      syncPause();
+                    }
+                  }}
+                  onPointerLeave={() => {
+                    if (isActive) {
+                      isActiveRowHoveredRef.current = false;
+                      syncPause();
+                    }
+                  }}
+                >
                   <button
                     type="button"
                     onClick={() => setActive(i)}
-                    className="grid w-full grid-cols-[48px_1fr] items-center gap-4 border-t border-black/10 py-4 text-left"
+                    className="grid w-full grid-cols-[48px_1fr_12px] items-center gap-4 border-t border-black/10 py-4 text-left"
                   >
                     <span
                       className={`font-mono text-xs tracking-[0.2em] transition-colors ${
@@ -125,6 +169,12 @@ export function Pillars() {
                     >
                       {p.title}
                     </span>
+                    <span
+                      aria-hidden
+                      className={`h-2 w-2 justify-self-end transition-colors ${
+                        isActive ? "bg-black" : "bg-transparent"
+                      }`}
+                    />
                   </button>
                   <div className="absolute -bottom-px left-0 right-0 h-px overflow-hidden bg-transparent">
                     {isActive && (
@@ -138,7 +188,7 @@ export function Pillars() {
           </ul>
         </div>
 
-        <div className="col-span-12 md:col-span-7 md:-mt-2 lg:-mt-3">
+        <div className="col-span-12 flex min-h-full flex-col md:col-span-7 md:-mt-2 lg:-mt-3">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.title}
@@ -146,7 +196,7 @@ export function Pillars() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col md:pl-6 lg:pl-10"
+              className="flex h-full flex-col md:pl-6 lg:pl-10"
             >
               <div className="relative aspect-[16/7] w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl overflow-hidden rounded-sm border border-black/10 bg-white">
                 <div

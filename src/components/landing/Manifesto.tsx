@@ -27,11 +27,11 @@ export function Manifesto() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-display-large text-balance font-display uppercase leading-[0.9] tracking-[-0.03em]"
+          className="text-balance font-display font-normal text-[clamp(1.8rem,4.5vw+0.45rem,4.95rem)] uppercase leading-[0.9] tracking-[-0.03em]"
         >
           Don't be a follower,{" "}
-          <span className="[word-spacing:0.18em] sm:whitespace-nowrap">
-            <span className="font-normal italic">Be the signal</span> others copy
+          <span className="text-[0.8em] [word-spacing:0.18em] sm:whitespace-nowrap">
+            <span className="font-bold italic">Be the signal</span> others copy.
           </span>
         </motion.h2>
 

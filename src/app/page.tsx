@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { Pillars } from "@/components/landing/Pillars";
-import { Reasoning, AgentsScroll, CTA, Footer } from "@/components/landing/Sections";
+import { Reasoning, AgentsScroll, FAQ, CTA, Footer } from "@/components/landing/Sections";
 import { Manifesto } from "@/components/landing/Manifesto";
-import { MatrixMantras, AgentVoice } from "@/components/landing/MatrixMantras";
+import { MatrixMantras } from "@/components/landing/MatrixMantras";
 
 export const metadata: Metadata = {
   title: "CONDUENCE. AI agents that think with you",
@@ -23,11 +23,11 @@ export default function HomePage() {
       <Nav />
       <Hero />
       <Reasoning />
-      <MatrixMantras />
-      <AgentVoice />
-      <Manifesto />
-      <AgentsScroll />
       <Pillars />
+      <AgentsScroll />
+      <MatrixMantras />
+      <Manifesto />
+      <FAQ />
       <CTA />
       <Footer />
     </main>

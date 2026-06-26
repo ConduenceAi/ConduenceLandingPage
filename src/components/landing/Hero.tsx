@@ -2,46 +2,17 @@
 
 import { motion } from "framer-motion";
 
-import { heroCloudsSrc } from "@/lib/assets";
-
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-screen w-full overflow-hidden bg-black text-white">
-      <img
-        src={heroCloudsSrc.src}
-        alt="Night landscape with agent orchestration flow from news and data to execution"
-        width={1920}
-        height={1080}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ zIndex: 0 }}
-      />
-
-      {/* Light overlay for headline readability */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 1,
-          background:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.75) 100%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 1,
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 62%, rgba(0,0,0,0.7) 100%)",
-        }}
-      />
-
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl translate-y-6 flex-col items-center justify-center px-section text-center sm:translate-y-10 md:translate-y-16 lg:translate-y-20">
+    <section id="top" className="relative min-h-[58vh] w-full overflow-hidden bg-white text-black">
+      <div className="relative z-10 mx-auto flex min-h-[58vh] max-w-5xl -translate-y-6 flex-col items-center justify-center px-section pt-20 text-center sm:-translate-y-8 md:-translate-y-10">
         <motion.h1
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.05, ease: "easeOut" }}
-          className="text-display-hero max-w-4xl text-balance font-display leading-[0.95] tracking-[-0.02em] text-white"
+          className="text-display-hero max-w-4xl text-balance font-display font-normal leading-[0.95] tracking-[-0.02em] text-black"
         >
-          AI Agents
+          Agents
           <br />
           <em className="font-display font-normal italic">that trade like you</em>
         </motion.h1>
@@ -50,29 +21,11 @@ export function Hero() {
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
-          className="text-body-fluid mt-6 max-w-xl leading-relaxed text-white/78 sm:mt-8"
+          className="text-body-fluid mt-6 max-w-xl leading-relaxed text-black/70 sm:mt-8"
         >
-          Orchestrate AI agents that learn your perspective, mirror your reasoning, on your
-          terms.
+          Orchestrate AI agents that learn your perspective, mirror your reasoning, from your voice.
         </motion.p>
-
-        <motion.div
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.18, ease: "easeOut" }}
-          className="mt-10 relative inline-block"
-        >
-          <a
-            href="#cta"
-            className="group relative inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-medium tracking-wide text-white backdrop-blur-md transition hover:bg-white hover:text-black sm:gap-3 sm:px-7 sm:py-3.5"
-          >
-            Join Waitlist
-            <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-        </motion.div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-black z-[3] pointer-events-none" />
     </section>
   );
 }
