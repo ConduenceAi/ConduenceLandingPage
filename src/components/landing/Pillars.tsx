@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -109,8 +109,6 @@ export function Pillars() {
     return () => cancelAnimationFrame(raf);
   }, [active]);
 
-  const current = pillars[active];
-
   return (
     <section id="pillars" className="relative bg-white text-black">
       <div className="border-b border-black/10">
@@ -189,53 +187,63 @@ export function Pillars() {
         </div>
 
         <div className="col-span-12 flex min-h-full flex-col md:col-span-7 md:-mt-2 lg:-mt-3">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.title}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="flex h-full flex-col md:pl-6 lg:pl-10"
-            >
-              <div className="relative aspect-[16/7] w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl overflow-hidden rounded-sm border border-black/10 bg-white">
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-[0.4]"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
-                    backgroundSize: "32px 32px",
+          <div className="grid md:pl-6 lg:pl-10">
+            {pillars.map((pillar, i) => {
+              const isActive = i === active;
+              return (
+                <motion.div
+                  key={pillar.title}
+                  initial={false}
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    y: isActive ? 0 : 12,
                   }}
-                />
-                <img
-                  src={current.image}
-                  alt={current.title}
-                  loading="lazy"
-                  width={1280}
-                  height={720}
-                  className="absolute inset-0 h-full w-full object-contain p-4"
-                />
-                {[
-                  "top-2.5 left-2.5",
-                  "top-2.5 right-2.5",
-                  "bottom-2.5 left-2.5",
-                  "bottom-2.5 right-2.5",
-                ].map((pos) => (
-                  <span key={pos} className={`absolute ${pos} h-1 w-1 bg-black/40`} />
-                ))}
-              </div>
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden={!isActive}
+                  className={`col-start-1 row-start-1 flex flex-col ${
+                    isActive ? "z-10" : "pointer-events-none"
+                  }`}
+                >
+                  <div className="relative aspect-[16/7] w-full max-w-sm overflow-hidden rounded-sm border border-black/10 bg-white sm:max-w-md md:max-w-xl lg:max-w-2xl">
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.4]"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
+                        backgroundSize: "32px 32px",
+                      }}
+                    />
+                    <img
+                      src={pillar.image}
+                      alt={pillar.title}
+                      loading="lazy"
+                      width={1280}
+                      height={720}
+                      className="absolute inset-0 h-full w-full object-contain p-4"
+                    />
+                    {[
+                      "top-2.5 left-2.5",
+                      "top-2.5 right-2.5",
+                      "bottom-2.5 left-2.5",
+                      "bottom-2.5 right-2.5",
+                    ].map((pos) => (
+                      <span key={pos} className={`absolute ${pos} h-1 w-1 bg-black/40`} />
+                    ))}
+                  </div>
 
-              <div className="mt-6">
-                <p className="mb-3 font-mono text-[10px] tracking-[0.34em] text-black/50">
-                  {String(active + 1).padStart(2, "0")} &middot; {current.kicker}
-                </p>
-                <h3 className="text-display-pillar font-display tracking-tight">{current.title}</h3>
-                <p className="text-body-fluid mt-4 max-w-[60ch] leading-relaxed text-black/60">
-                  {current.body}
-                </p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                  <div className="mt-6">
+                    <p className="mb-3 font-mono text-[10px] tracking-[0.34em] text-black/50">
+                      {String(i + 1).padStart(2, "0")} &middot; {pillar.kicker}
+                    </p>
+                    <h3 className="text-display-pillar font-display tracking-tight">{pillar.title}</h3>
+                    <p className="text-body-fluid mt-4 max-w-[60ch] leading-relaxed text-black/60">
+                      {pillar.body}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

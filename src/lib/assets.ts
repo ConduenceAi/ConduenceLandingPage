@@ -15,3 +15,4 @@ export const featCanvasSrc = "/images/feat-canvas.jpg";
 export const featMindSrc = "/images/feat-mind.jpg";
 export const featConnectorsSrc = "/images/feat-connectors.jpg";
 export const featByosSrc = "/images/feat-byos.jpg";
+export const agentsOrbSrc = "/images/agents-orb.png";

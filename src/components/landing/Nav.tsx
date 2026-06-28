@@ -14,10 +14,14 @@ export function Nav() {
       <a
         href="#top"
         onClick={scrollToTop}
-        className="block h-9 sm:h-11 md:h-12 pointer-events-auto"
+        className="pointer-events-auto relative flex h-11 items-center justify-center px-3 py-1 sm:h-12 sm:px-4 sm:py-1 md:h-14"
         aria-label="Scroll to top"
       >
-        <ConduenceLogo className="h-full" variant="auto" />
+        <span
+          aria-hidden
+          className="absolute inset-0 rounded-full bg-white/8 backdrop-blur-md supports-[backdrop-filter]:bg-white/6"
+        />
+        <ConduenceLogo className="relative z-10 h-full scale-110" variant="auto" />
       </a>
     </header>
   );

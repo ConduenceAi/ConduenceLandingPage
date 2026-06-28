@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export function Hero() {
   return (
     <section id="top" className="relative min-h-[58vh] w-full overflow-hidden bg-white text-black">
-      <div className="relative z-10 mx-auto flex min-h-[58vh] max-w-5xl -translate-y-6 flex-col items-center justify-center px-section pt-20 text-center sm:-translate-y-8 md:-translate-y-10">
+      <div className="relative z-10 mx-auto flex min-h-[58vh] max-w-5xl -translate-y-2 flex-col items-center justify-center px-section pt-28 text-center sm:-translate-y-4 sm:pt-32 md:-translate-y-6">
         <motion.h1
           initial={false}
           animate={{ opacity: 1, y: 0 }}

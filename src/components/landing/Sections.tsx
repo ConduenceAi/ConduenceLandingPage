@@ -1,6 +1,7 @@
 "use client";
 
 import { logoWhiteSrc } from "@/lib/assets";
+import { FlowingOrb } from "@/components/landing/FlowingOrb";
 
 /* ============================================================
    REASONING  — platform overview
@@ -28,8 +29,8 @@ export function Reasoning() {
     <section id="core-insight" className="relative overflow-hidden bg-white px-section py-section text-black">
       <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-16">
         <div className="lg:pl-8">
-          <h2 className="mt-5 max-w-3xl font-sans text-[clamp(2rem,3.8vw,3.95rem)] font-semibold leading-[0.96] tracking-[-0.045em]">
-            The unified platform
+          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2rem,3.8vw,3.95rem)] font-bold leading-[0.96] tracking-[-0.045em]">
+            The unif<span className="ml-[0.05em] inline-block">ied</span> platform
           </h2>
 
           <div className="mt-12">
@@ -212,40 +213,7 @@ export function AgentsScroll() {
               <div className="h-full w-full bg-[radial-gradient(circle,rgba(0,0,0,0.12)_1px,transparent_1px)] bg-[size:16px_16px]" />
             </div>
             <div className="relative flex h-full items-center justify-center p-5 sm:p-6">
-              <div className="relative aspect-square w-full max-w-[21rem]">
-                <div className="absolute inset-[10%] rounded-[2.5rem] border border-black/8" />
-                <div className="absolute inset-[18%] rounded-[2rem] border border-black/8" />
-
-                <div className="absolute left-1/2 top-1/2 h-[76%] w-px -translate-x-1/2 -translate-y-1/2 bg-black/10" />
-                <div className="absolute left-1/2 top-1/2 h-px w-[76%] -translate-x-1/2 -translate-y-1/2 bg-black/10" />
-                <div className="absolute left-1/2 top-1/2 h-px w-[88%] -translate-x-1/2 -translate-y-1/2 rotate-[42deg] bg-black/16" />
-                <div className="absolute left-1/2 top-1/2 h-px w-[88%] -translate-x-1/2 -translate-y-1/2 -rotate-[42deg] bg-black/16" />
-
-                {[
-                  "left-[12%] top-[22%]",
-                  "right-[14%] top-[18%]",
-                  "left-[20%] bottom-[18%]",
-                  "right-[18%] bottom-[24%]",
-                ].map((position) => (
-                  <div
-                    key={position}
-                    className={`absolute ${position} grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)]`}
-                  >
-                    <span className="h-2.5 w-2.5 rounded-full bg-black/70" />
-                  </div>
-                ))}
-
-                <div className="absolute inset-0 grid place-items-center">
-                  <div className="grid h-24 w-24 place-items-center rounded-[2rem] border border-black/10 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
-                    <div className="grid h-12 w-12 place-items-center rounded-[1rem] bg-black/[0.05]">
-                      <div className="h-4 w-4 rounded-full bg-black/70" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pointer-events-none absolute inset-x-[18%] top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-black/8 to-transparent" />
-                <div className="pointer-events-none absolute inset-y-[18%] left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-black/8 to-transparent" />
-              </div>
+              <FlowingOrb className="relative aspect-square w-full max-w-[21rem]" />
             </div>
           </div>
 
@@ -284,7 +252,6 @@ export function FAQ() {
     <section id="faq" className="bg-white px-section py-20 text-black sm:py-28">
       <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)] lg:gap-16">
         <div className="max-w-md">
-          <p className="text-[10px] font-semibold tracking-[0.4em] text-black/45">[ FAQ ]</p>
           <h2 className="mt-5 text-[clamp(2.2rem,4.5vw,4.8rem)] font-display font-normal leading-[0.92] tracking-[-0.04em]">
             Frequently asked questions
           </h2>
