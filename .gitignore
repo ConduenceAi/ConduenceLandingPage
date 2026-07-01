@@ -12,6 +12,9 @@ node_modules
 out
 dist
 dist-ssr
+.env
+.env.*
+!.env.example
 *.local
 
 # Wrangler / Cloudflare

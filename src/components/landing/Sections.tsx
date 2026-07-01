@@ -1,5 +1,7 @@
 "use client";
 
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { logoWhiteSrc } from "@/lib/assets";
 import { FlowingOrb } from "@/components/landing/FlowingOrb";
 
@@ -26,7 +28,10 @@ const REASONING_ITEMS = [
 
 export function Reasoning() {
   return (
-    <section id="core-insight" className="relative overflow-hidden bg-white px-section py-section text-black">
+    <section
+      id="core-insight"
+      className="relative overflow-hidden bg-white px-section py-section text-black"
+    >
       <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-16">
         <div className="lg:pl-8">
           <h2 className="mt-5 max-w-3xl font-display text-[clamp(2rem,3.8vw,3.95rem)] font-bold leading-[0.96] tracking-[-0.045em]">
@@ -60,15 +65,28 @@ export function Reasoning() {
             fill="none"
           >
             <defs>
-              <pattern id="reasoning-horizontal" width="16" height="16" patternUnits="userSpaceOnUse">
+              <pattern
+                id="reasoning-horizontal"
+                width="16"
+                height="16"
+                patternUnits="userSpaceOnUse"
+              >
                 <path d="M0 8H16" stroke="currentColor" strokeWidth="1" />
               </pattern>
               <pattern id="reasoning-vertical" width="18" height="18" patternUnits="userSpaceOnUse">
                 <path d="M9 0V18" stroke="currentColor" strokeWidth="1" />
               </pattern>
               <pattern id="reasoning-grid" width="22" height="22" patternUnits="userSpaceOnUse">
-                <path d="M0 22L22 0M-5.5 5.5L5.5 -5.5M16.5 27.5L27.5 16.5" stroke="currentColor" strokeWidth="0.9" />
-                <path d="M0 0L22 22M-5.5 16.5L5.5 27.5M16.5 -5.5L27.5 5.5" stroke="currentColor" strokeWidth="0.9" />
+                <path
+                  d="M0 22L22 0M-5.5 5.5L5.5 -5.5M16.5 27.5L27.5 16.5"
+                  stroke="currentColor"
+                  strokeWidth="0.9"
+                />
+                <path
+                  d="M0 0L22 22M-5.5 16.5L5.5 27.5M16.5 -5.5L27.5 5.5"
+                  stroke="currentColor"
+                  strokeWidth="0.9"
+                />
               </pattern>
               <pattern id="reasoning-dots" width="6" height="6" patternUnits="userSpaceOnUse">
                 <circle cx="3" cy="3" r="0.75" fill="currentColor" />
@@ -184,10 +202,7 @@ export function AgentsScroll() {
           <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-screen -translate-x-1/2 -translate-y-1/2 bg-black/8 lg:block" />
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(1, 3).map((feature) => (
-              <article
-                key={feature.title}
-                className="relative min-h-[14rem] bg-white"
-              >
+              <article key={feature.title} className="relative min-h-[14rem] bg-white">
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
@@ -219,10 +234,7 @@ export function AgentsScroll() {
 
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(3).map((feature) => (
-              <article
-                key={feature.title}
-                className="relative min-h-[14rem] bg-white"
-              >
+              <article key={feature.title} className="relative min-h-[14rem] bg-white">
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
@@ -256,8 +268,8 @@ export function FAQ() {
             Frequently asked questions
           </h2>
           <p className="mt-5 max-w-sm text-body-fluid leading-relaxed text-black/60">
-            Everything you need to know about why Conduence exists, who it is for, and how it
-            helps you trade with more leverage.
+            Everything you need to know about why Conduence exists, who it is for, and how it helps
+            you trade with more leverage.
           </p>
         </div>
 
@@ -287,6 +299,36 @@ export function FAQ() {
    CTA
    ============================================================ */
 export function CTA() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Unable to join the waitlist right now.");
+      }
+
+      setStatus("success");
+      setMessage("You're on the waitlist. Check your inbox for confirmation.");
+      setEmail("");
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof Error ? error.message : "Unable to join the waitlist right now.");
+    }
+  }
+
   return (
     <section id="cta" className="relative bg-black px-6 pt-32 pb-0 text-white">
       <div className="mx-auto max-w-4xl text-center">
@@ -301,17 +343,32 @@ export function CTA() {
         </p>
         <form
           className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <input
             type="email"
+            name="email"
             placeholder="you@strategy.io"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             className="flex-1 rounded-full border border-white/30 bg-transparent px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white"
           />
-          <button className="rounded-full bg-white text-black px-6 py-3 text-sm font-semibold hover:bg-white/90 transition">
-            Reserve seat
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="rounded-full bg-white text-black px-6 py-3 text-sm font-semibold transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {status === "loading" ? "Reserving..." : "Reserve seat"}
           </button>
         </form>
+        {message ? (
+          <p
+            className={`mt-4 text-sm ${status === "success" ? "text-emerald-300" : "text-red-300"}`}
+          >
+            {message}
+          </p>
+        ) : null}
       </div>
     </section>
   );
@@ -334,6 +391,15 @@ export function Footer() {
           />
         </div>
 
+        <div className="mt-6 text-center text-sm text-white/55">
+          Contact{" "}
+          <a
+            className="text-white/75 transition hover:text-white"
+            href="mailto:contact@conduence.xyz"
+          >
+            contact@conduence.xyz
+          </a>
+        </div>
       </div>
     </footer>
   );
