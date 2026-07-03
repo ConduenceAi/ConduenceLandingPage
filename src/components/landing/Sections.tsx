@@ -9,31 +9,34 @@ import { FlowingOrb } from "@/components/landing/FlowingOrb";
 const REASONING_ITEMS = [
   {
     id: "01",
-    title: "All your prediction market tools, ready for agents",
+    title: "MCP Server - Unified Tools",
     body: "Bring research inputs, market data, execution surfaces, and the tools you already rely on into one place, so your agents can operate with the full context at their fingertips.",
   },
   {
     id: "02",
-    title: "Voice as the control layer",
+    title: "Mind Mesh - Second Brain",
     body: "Use voice to interact with your second brain, explore opportunities, monitor workflows, and deploy AI agents through natural commands instead of manual coordination.",
   },
   {
     id: "03",
-    title: "A second brain that keeps your edge intact",
+    title: "Post-mortem",
     body: "Capture your memory, perspective, and reasoning so the system does not forget how you think. Your logic compounds over time instead of getting lost between trades.",
   },
 ];
 
 export function Reasoning() {
   return (
-    <section id="core-insight" className="relative overflow-hidden bg-white px-section py-section text-black">
+    <section
+      id="core-insight"
+      className="relative overflow-hidden bg-white px-section py-section text-black"
+    >
       <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-16">
         <div className="lg:pl-8">
-          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2rem,3.8vw,3.95rem)] font-bold leading-[0.96] tracking-[-0.045em]">
+          <h2 className="mt-5 max-w-3xl text-display-pillar font-display leading-[1.05] tracking-tight">
             The unif<span className="ml-[0.05em] inline-block">ied</span> platform
           </h2>
 
-          <div className="mt-12">
+          <div className="mt-2">
             {REASONING_ITEMS.map((item) => (
               <article key={item.id} className="border-black/10 py-6 not-last:border-b">
                 <div className="max-w-2xl">
@@ -60,15 +63,28 @@ export function Reasoning() {
             fill="none"
           >
             <defs>
-              <pattern id="reasoning-horizontal" width="16" height="16" patternUnits="userSpaceOnUse">
+              <pattern
+                id="reasoning-horizontal"
+                width="16"
+                height="16"
+                patternUnits="userSpaceOnUse"
+              >
                 <path d="M0 8H16" stroke="currentColor" strokeWidth="1" />
               </pattern>
               <pattern id="reasoning-vertical" width="18" height="18" patternUnits="userSpaceOnUse">
                 <path d="M9 0V18" stroke="currentColor" strokeWidth="1" />
               </pattern>
               <pattern id="reasoning-grid" width="22" height="22" patternUnits="userSpaceOnUse">
-                <path d="M0 22L22 0M-5.5 5.5L5.5 -5.5M16.5 27.5L27.5 16.5" stroke="currentColor" strokeWidth="0.9" />
-                <path d="M0 0L22 22M-5.5 16.5L5.5 27.5M16.5 -5.5L27.5 5.5" stroke="currentColor" strokeWidth="0.9" />
+                <path
+                  d="M0 22L22 0M-5.5 5.5L5.5 -5.5M16.5 27.5L27.5 16.5"
+                  stroke="currentColor"
+                  strokeWidth="0.9"
+                />
+                <path
+                  d="M0 0L22 22M-5.5 16.5L5.5 27.5M16.5 -5.5L27.5 5.5"
+                  stroke="currentColor"
+                  strokeWidth="0.9"
+                />
               </pattern>
               <pattern id="reasoning-dots" width="6" height="6" patternUnits="userSpaceOnUse">
                 <circle cx="3" cy="3" r="0.75" fill="currentColor" />
@@ -112,19 +128,19 @@ const AGENT_FEATURES = [
     body: "Monitor agents, explore markets, train your system, and orchestrate execution from one voice-native surface.",
   },
   {
-    title: "A trading assistant in your pocket",
+    title: "Trading in your pocket",
     body: "Conduence is a voice-first trading app that lets you monitor agents, review performance, and track open trades from anywhere.",
   },
   {
-    title: "Talk your way from idea to execution",
+    title: "Idea to execution",
     body: "Ask about markets, evaluate opportunities together, and execute trades on platforms like Polymarket or Kalshi — all through voice.",
   },
   {
-    title: "Train the system with your own thinking",
+    title: "Teach it how you think",
     body: "Use voice to teach Conduence your reasoning, preferences, and trading approach so it can better mirror how you make decisions.",
   },
   {
-    title: "Create automated agent workflows by voice",
+    title: "Workflows by voice",
     body: "Build and orchestrate powerful AI agent systems, connect tools and APIs, and automate workflows without needing anything beyond your voice.",
   },
 ];
@@ -171,9 +187,9 @@ export function AgentsScroll() {
       <div className="relative mx-auto max-w-[1480px] px-section pb-20 sm:pb-44">
         <div className="grid gap-4 pb-6">
           <div className="mx-auto text-center">
-            <h2 className="mt-3 max-w-4xl font-display text-[clamp(2.3rem,4.8vw,4.8rem)] font-normal leading-[0.94] tracking-[-0.04em]">
+            <h2 className="mt-3 max-w-4xl text-display-pillar font-display leading-[1.05] tracking-tight">
               <span className="block text-black">Make the most</span>
-              <span className="block font-normal italic text-black/35">out of Voice</span>
+              <span className="block font-display text-black/35">out of Voice</span>
             </h2>
           </div>
         </div>
@@ -184,10 +200,7 @@ export function AgentsScroll() {
           <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-screen -translate-x-1/2 -translate-y-1/2 bg-black/8 lg:block" />
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(1, 3).map((feature) => (
-              <article
-                key={feature.title}
-                className="relative min-h-[14rem] bg-white"
-              >
+              <article key={feature.title} className="relative min-h-[14rem] bg-white">
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
@@ -219,10 +232,7 @@ export function AgentsScroll() {
 
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(3).map((feature) => (
-              <article
-                key={feature.title}
-                className="relative min-h-[14rem] bg-white"
-              >
+              <article key={feature.title} className="relative min-h-[14rem] bg-white">
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
@@ -252,13 +262,9 @@ export function FAQ() {
     <section id="faq" className="bg-white px-section py-20 text-black sm:py-28">
       <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)] lg:gap-16">
         <div className="max-w-md">
-          <h2 className="mt-5 text-[clamp(2.2rem,4.5vw,4.8rem)] font-display font-normal leading-[0.92] tracking-[-0.04em]">
+          <h2 className="mt-5 text-display-pillar font-display leading-[1.05] tracking-tight mt-35">
             Frequently asked questions
           </h2>
-          <p className="mt-5 max-w-sm text-body-fluid leading-relaxed text-black/60">
-            Everything you need to know about why Conduence exists, who it is for, and how it
-            helps you trade with more leverage.
-          </p>
         </div>
 
         <div className="border-t border-black/10">
@@ -333,7 +339,6 @@ export function Footer() {
             draggable={false}
           />
         </div>
-
       </div>
     </footer>
   );

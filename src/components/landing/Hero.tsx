@@ -10,11 +10,13 @@ export function Hero() {
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.05, ease: "easeOut" }}
-          className="text-display-hero max-w-4xl text-balance font-display font-normal leading-[0.95] tracking-[-0.02em] text-black"
+          className="text-display-hero max-w-4xl text-balance font-display leading-[0.95] tracking-[-0.02em] text-black"
         >
           Agents
           <br />
-          <em className="font-display font-normal italic">that trade like you</em>
+          <span className="font-display">that trade like</span>
+          <br />
+          <span className="font-display">you</span>
         </motion.h1>
 
         <motion.p

@@ -7,7 +7,10 @@ import { motion } from "framer-motion";
    ============================================================ */
 export function Manifesto() {
   return (
-    <section id="manifesto" className="relative overflow-hidden bg-white text-black px-section py-[clamp(3rem,7vw,7.5rem)]">
+    <section
+      id="manifesto"
+      className="relative overflow-hidden bg-white text-black px-section py-[clamp(3rem,7vw,7.5rem)]"
+    >
       {/* Ambient grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.06]"
@@ -27,11 +30,11 @@ export function Manifesto() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-balance font-display font-normal text-[clamp(1.8rem,4.5vw+0.45rem,4.95rem)] uppercase leading-[0.9] tracking-[-0.03em]"
+          className="text-balance font-display text-[clamp(1.8rem,4.5vw+0.45rem,4.95rem)] uppercase leading-[0.9] tracking-[-0.03em]"
         >
           Don't be a follower,{" "}
           <span className="text-[0.8em] [word-spacing:0.18em] sm:whitespace-nowrap">
-            <span className="font-bold italic">Be the signal</span> others copy.
+            <span className="font-display">Be the signal</span> others copy.
           </span>
         </motion.h2>
 
@@ -57,7 +60,7 @@ export function Manifesto() {
           <p className="text-display-medium font-display tracking-tight leading-[1.08]">
             <span className="block sm:whitespace-nowrap">
               Turn strategies into{" "}
-              <span className="font-normal italic text-black/70">fully independent autonomous</span>
+              <span className="font-display text-black/70">fully independent autonomous</span>
             </span>
             <span className="block">
               market actors. <span className="text-black/40">No code.</span>
@@ -65,7 +68,7 @@ export function Manifesto() {
           </p>
 
           <p className="text-display-medium mt-8 border-t border-black/10 pt-8 font-display tracking-tight leading-[1.08] sm:mt-10 sm:pt-10">
-            Many strategies. <span className="font-normal italic">One mind.</span>
+            Many strategies. <span className="font-display">One mind.</span>
           </p>
         </motion.div>
         <motion.p

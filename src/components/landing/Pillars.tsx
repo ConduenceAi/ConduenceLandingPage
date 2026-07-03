@@ -21,7 +21,6 @@ type Pillar = {
 };
 
 const pillars: Pillar[] = [
-
   {
     kicker: "RELATION GRAPH",
     title: "Mind Mesh",
@@ -125,7 +124,7 @@ export function Pillars() {
           <h2 className="text-display-pillar font-display leading-[1.05] tracking-tight">
             Everything you need to
             <br />
-            <span className="font-normal italic text-black/45">ship agents that trade</span>
+            <span className="font-normal text-black/45">ship agents that trade</span>
           </h2>
 
           <ul className="mt-12 flex flex-col sm:mt-14">
@@ -235,7 +234,9 @@ export function Pillars() {
                     <p className="mb-3 font-mono text-[10px] tracking-[0.34em] text-black/50">
                       {String(i + 1).padStart(2, "0")} &middot; {pillar.kicker}
                     </p>
-                    <h3 className="text-display-pillar font-display tracking-tight">{pillar.title}</h3>
+                    <h3 className="text-display-pillar font-display tracking-tight">
+                      {pillar.title}
+                    </h3>
                     <p className="text-body-fluid mt-4 max-w-[60ch] leading-relaxed text-black/60">
                       {pillar.body}
                     </p>

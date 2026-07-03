@@ -31,7 +31,7 @@
   --color-cyan-glow: var(--cyan-glow);
   --color-ink: var(--ink);
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display), "Bodoni Moda", Georgia, serif;
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
 }
 
 :root {
@@ -98,7 +98,8 @@
 
 @utility font-display {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 900;
+  font-style: normal;
   letter-spacing: -0.02em;
 }
 

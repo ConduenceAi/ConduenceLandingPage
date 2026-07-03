@@ -3,12 +3,18 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const MANTRAS = ["I\u2002recall",
+const MANTRAS = [
+  "I\u2002recall",
   "I\u2002think",
   "I\u2002decide",
-  "I\u2002execute", "Now, I remember"];
+  "I\u2002execute",
+  "Now, I remember",
+];
 
-export function MatrixMantras() {
+/* ============================================================
+   WE MOVE AS ONE — agent reasoning identity + action mantras
+   ============================================================ */
+export function WeMoveAsOne() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -20,7 +26,10 @@ export function MatrixMantras() {
   }, []);
 
   return (
-    <section id="matrix-mantras" className="relative overflow-hidden bg-white px-section pt-4 pb-24 text-black sm:pt-6 sm:pb-16">
+    <section
+      id="we-move-as-one"
+      className="relative overflow-hidden bg-white px-section pt-4 pb-24 text-black sm:pt-6 sm:pb-16"
+    >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
@@ -41,13 +50,13 @@ export function MatrixMantras() {
             className="flex flex-col items-center text-center text-display-medium font-display tracking-tight leading-[1.12]"
           >
             <span className="whitespace-nowrap">I am your reasoning and your perception,</span>
-            <span className="font-normal italic text-black/55">scaled past every limit.</span>
+            <span className="font-display text-black/55">scaled past every limit.</span>
             <span className="mt-3 sm:mt-4">We move as one.</span>
           </motion.h2>
         </div>
 
-        <div className="mx-auto mt-16 grid w-full max-w-6xl items-center gap-10 pb-6 sm:mt-20 sm:pb-0 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-16">
-          <div className="flex justify-center lg:justify-start">
+        <div className="mx-auto mt-16 flex w-full max-w-6xl flex-col items-center gap-10 pb-6 sm:mt-20 sm:pb-0 lg:w-[66vw] lg:flex-row lg:items-center lg:justify-between lg:gap-0 xl:w-[70vw] 2xl:w-full">
+          <div className="flex w-full justify-center lg:w-auto lg:justify-start">
             <div className="flex flex-col gap-4 text-center lg:text-left">
               {MANTRAS.map((mantra, index) => {
                 const isActive = index === activeIndex;
@@ -67,7 +76,7 @@ export function MatrixMantras() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span
-                      className={`font-display text-[clamp(1.15rem,1vw+0.95rem,1.7rem)] italic leading-none tracking-[-0.03em] ${
+                      className={`font-display text-[clamp(1.15rem,1vw+0.95rem,1.7rem)] leading-none tracking-[-0.03em] ${
                         isActive ? "text-black/38" : "text-black/72"
                       }`}
                     >
@@ -79,7 +88,7 @@ export function MatrixMantras() {
             </div>
           </div>
 
-          <div className="relative grid w-full items-center justify-center lg:justify-start lg:pl-10">
+          <div className="relative grid w-full items-center justify-center lg:w-auto lg:justify-items-end">
             {MANTRAS.map((mantra, index) => {
               const isActive = index === activeIndex;
               const isRemember = mantra === "Now, I remember";
@@ -95,12 +104,12 @@ export function MatrixMantras() {
                   }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   aria-hidden={!isActive}
-                  className={`col-start-1 row-start-1 self-center font-display text-[clamp(3rem,8vw,8rem)] font-bold italic leading-[0.92] tracking-[-0.05em] text-black ${
+                  className={`col-start-1 row-start-1 self-center font-display text-[clamp(2.25rem,5.5vw,5.5rem)] leading-[0.92] tracking-[-0.05em] text-black ${
                     isActive ? "z-10" : "pointer-events-none"
                   } ${
                     isRemember
                       ? "inline-grid justify-items-center text-center"
-                      : "max-w-[8ch] text-center lg:text-left"
+                      : "max-w-[8ch] text-center lg:text-right"
                   }`}
                 >
                   {isRemember ? (
@@ -119,11 +128,4 @@ export function MatrixMantras() {
       </div>
     </section>
   );
-}
-
-/* ============================================================
-   AGENT VOICE — coda after agents scroll
-   ============================================================ */
-export function AgentVoice() {
-  return null;
 }

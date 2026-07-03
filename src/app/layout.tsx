@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda as BodoniModa, Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 
 import { Providers } from "./providers";
 import "./globals.css";
@@ -10,9 +10,9 @@ const sans = Inter({
   display: "swap",
 });
 
-/** High-contrast display serif (Avaleigh-style). Swap for self-hosted Avaleigh when licensed. */
-const display = BodoniModa({
+const display = Playfair_Display({
   subsets: ["latin"],
+  weight: "900",
   variable: "--font-display",
   display: "swap",
 });

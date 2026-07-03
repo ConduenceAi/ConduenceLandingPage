@@ -6,7 +6,15 @@ import { logoBlackSrc, logoWhiteSrc } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 
 /** Light-background sections where the nav uses the black logo. */
-const BLACK_LOGO_SECTION_IDS = new Set(["top", "core-insight", "manifesto", "pillars", "agents", "matrix-mantras", "faq"]);
+const BLACK_LOGO_SECTION_IDS = new Set([
+  "top",
+  "core-insight",
+  "manifesto",
+  "pillars",
+  "agents",
+  "we-move-as-one",
+  "faq",
+]);
 
 function useLogoOnDarkBackground(defaultOnDark = true) {
   const [onDarkBackground, setOnDarkBackground] = useState(defaultOnDark);
