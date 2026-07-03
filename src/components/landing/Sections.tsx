@@ -1,5 +1,7 @@
 "use client";
 
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { logoWhiteSrc } from "@/lib/assets";
 import { FlowingOrb } from "@/components/landing/FlowingOrb";
 
@@ -265,6 +267,10 @@ export function FAQ() {
           <h2 className="mt-5 text-display-pillar font-display leading-[1.05] tracking-tight mt-35">
             Frequently asked questions
           </h2>
+          <p className="mt-5 max-w-sm text-body-fluid leading-relaxed text-black/60">
+            Everything you need to know about why Conduence exists, who it is for, and how it helps
+            you trade with more leverage.
+          </p>
         </div>
 
         <div className="border-t border-black/10">
@@ -293,6 +299,36 @@ export function FAQ() {
    CTA
    ============================================================ */
 export function CTA() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Unable to join the waitlist right now.");
+      }
+
+      setStatus("success");
+      setMessage("You're on the waitlist. Check your inbox for confirmation.");
+      setEmail("");
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof Error ? error.message : "Unable to join the waitlist right now.");
+    }
+  }
+
   return (
     <section id="cta" className="relative bg-black px-6 pt-32 pb-0 text-white">
       <div className="mx-auto max-w-4xl text-center">
@@ -307,17 +343,32 @@ export function CTA() {
         </p>
         <form
           className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <input
             type="email"
+            name="email"
             placeholder="you@strategy.io"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             className="flex-1 rounded-full border border-white/30 bg-transparent px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white"
           />
-          <button className="rounded-full bg-white text-black px-6 py-3 text-sm font-semibold hover:bg-white/90 transition">
-            Reserve seat
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="rounded-full bg-white text-black px-6 py-3 text-sm font-semibold transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {status === "loading" ? "Reserving..." : "Reserve seat"}
           </button>
         </form>
+        {message ? (
+          <p
+            className={`mt-4 text-sm ${status === "success" ? "text-emerald-300" : "text-red-300"}`}
+          >
+            {message}
+          </p>
+        ) : null}
       </div>
     </section>
   );
@@ -338,6 +389,16 @@ export function Footer() {
             className="w-full max-w-[1400px] h-auto select-none"
             draggable={false}
           />
+        </div>
+
+        <div className="mt-6 text-center text-sm text-white/55">
+          Contact{" "}
+          <a
+            className="text-white/75 transition hover:text-white"
+            href="mailto:contact@conduence.xyz"
+          >
+            contact@conduence.xyz
+          </a>
         </div>
       </div>
     </footer>
