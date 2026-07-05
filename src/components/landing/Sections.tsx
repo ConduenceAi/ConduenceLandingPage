@@ -100,7 +100,7 @@ export function AgentsScroll() {
       id="agents"
       className="relative overflow-hidden bg-white px-[5%] pt-14 text-black sm:pt-20"
     >
-      <div className="relative mx-auto max-w-[1480px] pb-20 sm:pb-44">
+      <div className="relative mx-auto max-w-[1480px] pb-16 sm:pb-44">
         <div className="grid gap-4 pb-6">
           <div className="mx-auto text-center">
             <h2 className="mt-3 max-w-4xl text-display-pillar font-display leading-[1.05] tracking-tight">
@@ -116,7 +116,7 @@ export function AgentsScroll() {
           <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-screen -translate-x-1/2 -translate-y-1/2 bg-black/8 lg:block" />
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(1, 3).map((feature) => (
-              <article key={feature.title} className="relative min-h-[14rem] bg-white">
+              <article key={feature.title} className="relative min-h-[11rem] bg-white sm:min-h-[14rem]">
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
@@ -133,7 +133,7 @@ export function AgentsScroll() {
             ))}
           </div>
 
-          <div className="relative min-h-[28rem] overflow-hidden bg-white">
+          <div className="relative min-h-[11rem] overflow-hidden bg-white sm:min-h-[20rem] lg:min-h-[28rem]">
             <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
             <div className="pointer-events-none absolute right-0 top-0 h-2 w-2 translate-x-1/2 -translate-y-1/2 bg-black/18" />
             <div className="pointer-events-none absolute left-0 bottom-0 h-2 w-2 -translate-x-1/2 translate-y-1/2 bg-black/18" />
@@ -141,14 +141,14 @@ export function AgentsScroll() {
             <div className="absolute inset-0 opacity-[0.08]">
               <div className="h-full w-full bg-[radial-gradient(circle,rgba(0,0,0,0.12)_1px,transparent_1px)] bg-[size:16px_16px]" />
             </div>
-            <div className="relative flex h-full items-center justify-center p-5 sm:p-6">
-              <VoiceOrb demo className="relative aspect-square w-full max-w-[14rem]" />
+            <div className="relative flex h-full min-h-[11rem] items-center justify-center p-4 sm:min-h-[20rem] sm:p-6">
+              <VoiceOrb demo className="relative aspect-square w-full max-w-[7.5rem] sm:max-w-[11rem] lg:max-w-[14rem]" />
             </div>
           </div>
 
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(3).map((feature) => (
-              <article key={feature.title} className="relative min-h-[14rem] bg-white">
+              <article key={feature.title} className="relative min-h-[11rem] bg-white sm:min-h-[14rem]">
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
@@ -189,7 +189,13 @@ export function CTA() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      const data = (await response.json()) as { error?: string };
+
+      let data: { error?: string } = {};
+      const contentType = response.headers.get("content-type") ?? "";
+
+      if (contentType.includes("application/json")) {
+        data = (await response.json()) as { error?: string };
+      }
 
       if (!response.ok) {
         throw new Error(data.error ?? "Unable to join the waitlist right now.");
@@ -207,20 +213,20 @@ export function CTA() {
   return (
     <section
       id="cta"
-      className="relative flex min-h-svh flex-col bg-black px-6 pb-0 pt-24 text-white sm:pt-28 md:pt-32"
+      className="relative flex flex-col overflow-hidden bg-black px-6 pb-10 pt-20 text-white sm:min-h-svh sm:pb-0 sm:pt-28 md:pt-32"
     >
       <div className="mx-auto w-full max-w-4xl shrink-0 text-center">
-        <h2 className="text-5xl sm:text-7xl font-display tracking-tight text-balance">
+        <h2 className="text-4xl font-display tracking-tight text-balance sm:text-5xl md:text-7xl">
           Trade with the agents.
           <br />
           <span className="text-white/40">Not against them.</span>
         </h2>
-        <p className="mt-8 text-lg text-white/60 max-w-xl mx-auto">
+        <p className="mt-6 text-base text-white/60 max-w-xl mx-auto sm:mt-8 sm:text-lg">
           CONDUENCE is in private beta. Join the waitlist for early access to the Agent Studio and
           Mind Mesh.
         </p>
         <form
-          className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+          className="mt-8 flex flex-col sm:mt-10 sm:flex-row gap-3 max-w-md mx-auto"
           onSubmit={handleSubmit}
         >
           <input
@@ -249,12 +255,12 @@ export function CTA() {
         ) : null}
       </div>
 
-      <div className="mt-auto w-full px-section leading-none">
-        <div className="mx-auto max-w-[1600px] overflow-hidden">
+      <div className="mt-12 w-full leading-none sm:mt-auto sm:px-section sm:pb-0">
+        <div className="mx-auto max-w-[1600px]">
           <img
             src={logoWhiteSrc}
             alt="CONDUENCE"
-            className="mx-auto block h-auto w-full max-w-[1400px] -mb-8 select-none sm:-mb-10"
+            className="mx-auto block h-auto w-full max-w-[15rem] select-none sm:max-w-[1400px]"
             draggable={false}
           />
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
-import { useCallback, useId, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -39,117 +39,6 @@ const FAQ_ITEMS = [
       "Yes. Conduence is built around human control, not black-box automation. You can review outputs, adjust rules, intervene when needed, and decide how much authority each workflow should have.",
   },
 ] as const;
-
-const CONTOUR_PATHS = [
-  {
-    id: "c1",
-    d: [
-      "M-20 420 C 80 400, 140 440, 240 420 S 400 380, 520 400",
-      "M-20 422 C 82 401, 142 438, 242 421 S 402 382, 522 401",
-      "M-20 420 C 80 400, 140 440, 240 420 S 400 380, 520 400",
-    ],
-  },
-  {
-    id: "c2",
-    d: [
-      "M-40 460 C 60 430, 160 470, 280 450 S 420 410, 560 430",
-      "M-40 462 C 62 432, 162 468, 282 452 S 422 412, 562 431",
-      "M-40 460 C 60 430, 160 470, 280 450 S 420 410, 560 430",
-    ],
-  },
-  {
-    id: "c3",
-    d: [
-      "M-60 500 C 40 460, 180 510, 300 490 S 440 450, 600 470",
-      "M-60 502 C 42 462, 182 508, 302 492 S 442 452, 602 471",
-      "M-60 500 C 40 460, 180 510, 300 490 S 440 450, 600 470",
-    ],
-  },
-  {
-    id: "c4",
-    d: [
-      "M-80 540 C 20 490, 200 550, 320 530 S 460 490, 640 510",
-      "M-80 542 C 22 492, 202 548, 322 532 S 462 492, 642 511",
-      "M-80 540 C 20 490, 200 550, 320 530 S 460 490, 640 510",
-    ],
-  },
-  {
-    id: "c5",
-    d: [
-      "M-100 580 C 0 520, 220 590, 340 570 S 480 530, 680 550",
-      "M-100 582 C 2 522, 222 588, 342 572 S 482 532, 682 551",
-      "M-100 580 C 0 520, 220 590, 340 570 S 480 530, 680 550",
-    ],
-  },
-] as const;
-
-function ContourArt({ illumination }: { illumination: number }) {
-  const filterId = useId().replace(/:/g, "");
-  const glowOpacity = 0.35 + illumination * 0.55;
-  const strokeBase = 0.12 + illumination * 0.28;
-
-  return (
-    <div
-      className="pointer-events-none absolute bottom-0 left-0 w-[min(100%,28rem)] -translate-x-[8%] translate-y-[12%] opacity-90 sm:w-[32rem] lg:translate-x-0 lg:translate-y-[8%]"
-      aria-hidden="true"
-    >
-      <svg
-        viewBox="0 0 640 640"
-        className="h-auto w-full text-white"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <filter id={`${filterId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        {CONTOUR_PATHS.map((path, index) => (
-          <motion.path
-            key={path.id}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={index === 0 ? 1.1 : 0.85}
-            strokeLinecap="round"
-            initial={{ pathLength: 0.85, opacity: strokeBase }}
-            animate={{
-              d: [...path.d],
-              opacity: strokeBase * (0.75 + index * 0.08),
-            }}
-            transition={{
-              d: {
-                duration: 18,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: index * 0.4,
-              },
-              opacity: { duration: 0.8, ease: EASE },
-            }}
-            style={{ opacity: strokeBase * (0.75 + index * 0.08) }}
-          />
-        ))}
-
-        <motion.circle
-          cx="242"
-          cy="421"
-          r="4"
-          fill="white"
-          filter={`url(#${filterId}-glow)`}
-          animate={{
-            opacity: glowOpacity,
-            r: 3.5 + illumination * 1.5,
-          }}
-          transition={{ duration: 0.9, ease: EASE }}
-        />
-      </svg>
-    </div>
-  );
-}
 
 function FaqRow({
   question,
@@ -234,18 +123,9 @@ export function FAQ() {
   const inView = useInView(sectionRef, { once: true, amount: 0.18 });
   const reducedMotion = useReducedMotion();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const [everOpened, setEverOpened] = useState<Set<number>>(() => new Set([0]));
-
-  const illumination = everOpened.size / FAQ_ITEMS.length;
 
   const handleToggle = useCallback((index: number) => {
-    setOpenIndex((current) => {
-      const next = current === index ? null : index;
-      if (next !== null) {
-        setEverOpened((prev) => new Set(prev).add(next));
-      }
-      return next;
-    });
+    setOpenIndex((current) => (current === index ? null : index));
   }, []);
 
   return (
@@ -306,7 +186,6 @@ export function FAQ() {
               helps you trade with more leverage.
             </motion.p>
 
-            <ContourArt illumination={illumination} />
           </div>
 
           {/* Right — accordion */}

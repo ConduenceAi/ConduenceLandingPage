@@ -75,14 +75,14 @@ export function WeMoveAsOne() {
 
         <div className="grid h-full min-h-screen grid-cols-1 lg:grid-cols-2">
           {/* ───── LEFT — static white panel ───── */}
-          <div className="relative flex h-full min-h-[46vh] flex-col overflow-hidden bg-white px-section text-black lg:min-h-0">
-            {/* Heading — top half, above connector */}
+          <div className="relative flex h-full min-h-[62vh] flex-col justify-between gap-5 overflow-hidden bg-white px-section text-black lg:min-h-0 lg:justify-stretch lg:gap-0">
+            {/* Heading — top half on desktop */}
             <div
               ref={leftHeadingRef}
-              className="flex h-1/2 min-h-0 flex-col justify-start pb-4 pt-28 sm:pt-32 lg:pt-36"
+              className="flex min-h-0 shrink-0 flex-col justify-start pb-2 pt-24 sm:pt-28 lg:h-1/2 lg:pb-4 lg:pt-36"
             >
               <h2
-                className="max-w-[19.5rem] text-[clamp(2rem,3.4vw+0.55rem,3.65rem)] leading-[0.97] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
+                className="max-w-[19.5rem] text-[clamp(1.7rem,3.4vw+0.55rem,3.65rem)] leading-[0.97] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
                 aria-label="I am your reasoning and your perception, scaled past every limit."
               >
                 <motion.span
@@ -93,19 +93,19 @@ export function WeMoveAsOne() {
                 >
                   <span className="block font-medium text-black">I am your</span>
 
-                  <span className="block text-[1.5em] font-black leading-[0.95] tracking-[-0.038em] text-black">
+                  <span className="block text-[1.35em] font-black leading-[0.95] tracking-[-0.038em] text-black sm:text-[1.5em]">
                     reasoning
                   </span>
 
                   <span className="block font-normal text-black/82">— and your</span>
 
-                  <span className="block text-[1.5em] font-black leading-[0.95] tracking-[-0.038em] text-black">
+                  <span className="block text-[1.35em] font-black leading-[0.95] tracking-[-0.038em] text-black sm:text-[1.5em]">
                     perception,
                   </span>
                 </motion.span>
 
                 <motion.span
-                  className="my-3 block h-px w-10 origin-left bg-black/14 sm:my-3.5"
+                  className="my-2 block h-px w-10 origin-left bg-black/14 sm:my-3.5"
                   aria-hidden="true"
                   initial={{ opacity: 0, scaleX: 0 }}
                   animate={
@@ -115,7 +115,7 @@ export function WeMoveAsOne() {
                 />
 
                 <motion.span
-                  className="block origin-left whitespace-nowrap text-[0.84em] font-normal italic leading-[0.99] text-black/42"
+                  className="block text-[0.84em] font-normal italic leading-[1.05] text-black/42 lg:origin-left lg:whitespace-nowrap"
                   initial={{ opacity: 0, scale: 0.82 }}
                   animate={
                     leftHeadingInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.82 }
@@ -127,8 +127,8 @@ export function WeMoveAsOne() {
               </h2>
             </div>
 
-            {/* Footer — bottom half, below connector */}
-            <div className="flex h-1/2 min-h-0 flex-col justify-end pb-8 pt-5 sm:pb-10 sm:pt-6 lg:pb-12">
+            {/* Footer — bottom half on desktop */}
+            <div className="flex shrink-0 flex-col justify-end pb-6 pt-0 sm:pb-8 lg:h-1/2 lg:min-h-0 lg:pb-12 lg:pt-6">
               <div className="max-w-[17rem] space-y-1 font-mono text-[9.5px] leading-[1.7] tracking-[0.36em] text-black/42 sm:text-[10px] sm:leading-[1.75]">
                 <p>EVERY CONVERSATION.</p>
                 <p>EVERY MARKET.</p>
@@ -139,12 +139,12 @@ export function WeMoveAsOne() {
           </div>
 
           {/* ───── RIGHT — scroll-driven black panel ───── */}
-          <div className="relative flex h-full min-h-[54vh] flex-col bg-black text-white lg:min-h-0">
-            {/* Top half — empty, keeps content below the connector line */}
-            <div className="h-1/2 shrink-0" aria-hidden="true" />
+          <div className="relative flex h-full min-h-[38vh] flex-col bg-black text-white lg:min-h-0">
+            {/* Top half — empty on desktop only (connector alignment) */}
+            <div className="hidden h-1/2 shrink-0 lg:block" aria-hidden="true" />
 
             {/* Bottom half — main text only */}
-            <div className="flex h-1/2 flex-col justify-start px-section pb-12 pl-[clamp(3.5rem,10vw,6.5rem)] pt-10 lg:pb-14 lg:pt-12">
+            <div className="flex flex-1 flex-col justify-center px-section pb-8 pl-[clamp(3.5rem,10vw,6.5rem)] pt-6 lg:h-1/2 lg:justify-start lg:pb-14 lg:pt-12">
               <div className="relative grid items-start">
                 {STEPS.map((step, index) => {
                   const isActive = index === activeIndex;

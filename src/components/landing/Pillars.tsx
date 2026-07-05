@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -62,8 +62,14 @@ const pillars: Pillar[] = [
 const DURATION = 7000;
 
 export function Pillars() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { amount: 0.45 });
+  const isInViewRef = useRef(false);
+  const hasActivatedRef = useRef(false);
+
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [carouselActive, setCarouselActive] = useState(false);
   const isPausedRef = useRef(false);
   const isActiveRowHoveredRef = useRef(false);
 
@@ -72,11 +78,24 @@ export function Pillars() {
   };
 
   useEffect(() => {
+    isInViewRef.current = isInView;
+
+    if (isInView && !hasActivatedRef.current) {
+      hasActivatedRef.current = true;
+      setCarouselActive(true);
+      setActive(0);
+      setProgress(0);
+    }
+  }, [isInView]);
+
+  useEffect(() => {
     isActiveRowHoveredRef.current = false;
     syncPause();
   }, [active]);
 
   useEffect(() => {
+    if (!carouselActive || !isInView) return;
+
     setProgress(0);
     let accumulatedPause = 0;
     let pauseStarted = 0;
@@ -85,6 +104,8 @@ export function Pillars() {
     let raf = 0;
 
     const tick = (now: number) => {
+      if (!isInViewRef.current) return;
+
       const paused = isPausedRef.current;
       if (paused) {
         if (!wasPaused) {
@@ -106,17 +127,18 @@ export function Pillars() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [active]);
+  }, [active, carouselActive, isInView]);
 
   return (
     <section
+      ref={sectionRef}
       id="pillars"
-      className="relative overflow-hidden bg-white px-[5%] pb-section pt-0 text-black"
+      className="relative w-full overflow-x-hidden bg-white px-[5%] pb-section pt-0 text-black"
     >
-      <div className="relative z-10 mx-auto grid max-w-[1480px] grid-cols-12 gap-x-10 gap-y-8 sm:gap-x-16 lg:gap-x-24">
-        <div className="col-span-12 flex flex-col md:col-span-5">
+      <div className="relative z-10 mx-auto grid w-full min-w-0 max-w-[1480px] grid-cols-12 gap-x-0 gap-y-6 md:gap-x-10 md:gap-y-8 lg:gap-x-24">
+        <div className="col-span-12 flex min-w-0 flex-col md:col-span-5">
           <p className="mb-6 flex items-center gap-2.5 text-[10px] uppercase tracking-[0.34em] text-black sm:mb-8">
-            <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-black" />
+            <span aria-hidden className="h-px w-6 shrink-0 bg-black" />
             Product Catalog
           </p>
           <h2 className="text-display-pillar font-display leading-[1.05] tracking-tight">
@@ -125,7 +147,7 @@ export function Pillars() {
             <span className="font-normal text-black/45">ship agents that trade</span>
           </h2>
 
-          <ul className="mt-12 flex flex-col sm:mt-16">
+          <ul className="mt-12 hidden flex-col sm:mt-16 md:flex">
             {pillars.map((p, i) => {
               const isActive = i === active;
               return (
@@ -181,10 +203,47 @@ export function Pillars() {
             })}
             <li className="border-t border-black/10" />
           </ul>
+
+          {/* Mobile — numbered bubble nav */}
+          <div className="mt-8 md:hidden">
+            <div className="flex w-full flex-nowrap items-center justify-center gap-1.5 sm:gap-2">
+              {pillars.map((p, i) => {
+                const isActive = i === active;
+                return (
+                  <button
+                    key={p.title}
+                    type="button"
+                    onClick={() => setActive(i)}
+                    aria-label={`${String(i + 1).padStart(2, "0")} ${p.title}`}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border font-mono text-[9px] tracking-[0.12em] transition-all duration-300 sm:h-10 sm:w-10 sm:text-[10px] sm:tracking-[0.14em] ${
+                      isActive
+                        ? "border-black bg-black text-white shadow-[0_0_0_3px_rgba(0,0,0,0.06)]"
+                        : "border-black/14 bg-white text-black/38 hover:border-black/28 hover:text-black/55"
+                    }`}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-5 text-center">
+              <p className="font-mono text-[10px] tracking-[0.34em] text-black/45">
+                {String(active + 1).padStart(2, "0")} &middot; {pillars[active].kicker}
+              </p>
+              <p className="text-body-fluid mt-1.5 font-semibold tracking-[-0.02em] text-black">
+                {pillars[active].title}
+              </p>
+              <div className="mx-auto mt-3 h-px max-w-[12rem] overflow-hidden bg-black/10">
+                <div className="h-full bg-black" style={{ width: `${progress * 100}%` }} />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="col-span-12 flex min-h-full flex-col md:col-span-7 md:mt-8 lg:mt-10">
-          <div className="grid">
+        <div className="col-span-12 flex min-w-0 flex-col md:col-span-7 md:mt-8 md:min-h-full lg:mt-10">
+          <div className="relative w-full min-w-0">
             {pillars.map((pillar, i) => {
               const isActive = i === active;
               return (
@@ -197,11 +256,13 @@ export function Pillars() {
                   }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   aria-hidden={!isActive}
-                  className={`col-start-1 row-start-1 flex flex-col ${
-                    isActive ? "z-10" : "pointer-events-none"
+                  className={`w-full min-w-0 ${
+                    isActive
+                      ? "relative z-10"
+                      : "pointer-events-none absolute inset-x-0 top-0"
                   }`}
                 >
-                  <div className="relative aspect-[16/8.55] w-full max-w-sm overflow-hidden rounded-sm border border-black/10 bg-white sm:max-w-md md:max-w-xl lg:max-w-2xl">
+                  <div className="relative aspect-[16/11] w-full min-w-0 overflow-hidden rounded-sm border border-black/10 bg-white sm:aspect-[16/8.55] md:max-w-xl lg:max-w-2xl">
                     <div
                       className="pointer-events-none absolute inset-0 opacity-[0.4]"
                       style={{
@@ -216,7 +277,7 @@ export function Pillars() {
                       loading="lazy"
                       width={1280}
                       height={720}
-                      className="absolute inset-0 h-full w-full object-contain p-4"
+                      className="absolute inset-0 h-full w-full max-w-full object-contain p-3 sm:p-4"
                     />
                     {[
                       "top-2.5 left-2.5",
@@ -228,14 +289,14 @@ export function Pillars() {
                     ))}
                   </div>
 
-                  <div className="mt-6">
-                    <p className="mb-3 font-mono text-[10px] tracking-[0.34em] text-black/50">
+                  <div className="mt-5 md:mt-6">
+                    <p className="mb-3 hidden font-mono text-[10px] tracking-[0.34em] text-black/50 md:block">
                       {String(i + 1).padStart(2, "0")} &middot; {pillar.kicker}
                     </p>
-                    <h3 className="text-display-pillar font-display tracking-tight">
+                    <h3 className="hidden text-display-pillar font-display tracking-tight md:block">
                       {pillar.title}
                     </h3>
-                    <p className="text-body-fluid mt-4 max-w-[60ch] leading-relaxed text-black/60">
+                    <p className="text-body-fluid mt-0 max-w-full break-words leading-relaxed text-black/60 md:mt-4 md:max-w-[60ch]">
                       {pillar.body}
                     </p>
                   </div>
