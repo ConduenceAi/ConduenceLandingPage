@@ -116,7 +116,10 @@ export function AgentsScroll() {
           <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-px w-screen -translate-x-1/2 -translate-y-1/2 bg-black/8 lg:block" />
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(1, 3).map((feature) => (
-              <article key={feature.title} className="relative min-h-[11rem] bg-white sm:min-h-[14rem]">
+              <article
+                key={feature.title}
+                className="relative min-h-[11rem] bg-white sm:min-h-[14rem]"
+              >
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
@@ -142,13 +145,19 @@ export function AgentsScroll() {
               <div className="h-full w-full bg-[radial-gradient(circle,rgba(0,0,0,0.12)_1px,transparent_1px)] bg-[size:16px_16px]" />
             </div>
             <div className="relative flex h-full min-h-[11rem] items-center justify-center p-4 sm:min-h-[20rem] sm:p-6">
-              <VoiceOrb demo className="relative aspect-square w-full max-w-[7.5rem] sm:max-w-[11rem] lg:max-w-[14rem]" />
+              <VoiceOrb
+                demo
+                className="relative aspect-square w-full max-w-[7.5rem] sm:max-w-[11rem] lg:max-w-[14rem]"
+              />
             </div>
           </div>
 
           <div className="grid gap-px bg-black/8">
             {AGENT_FEATURES.slice(3).map((feature) => (
-              <article key={feature.title} className="relative min-h-[11rem] bg-white sm:min-h-[14rem]">
+              <article
+                key={feature.title}
+                className="relative min-h-[11rem] bg-white sm:min-h-[14rem]"
+              >
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-2 w-2 translate-x-1/2 translate-y-1/2 bg-black/18" />
                 <div className="flex h-full flex-col justify-end p-5 sm:p-6">
