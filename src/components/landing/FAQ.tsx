@@ -185,7 +185,6 @@ export function FAQ() {
               Everything you need to know about why Conduence exists, who it is for, and how it
               helps you trade with more leverage.
             </motion.p>
-
           </div>
 
           {/* Right — accordion */}

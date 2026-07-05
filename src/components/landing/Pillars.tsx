@@ -257,9 +257,7 @@ export function Pillars() {
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   aria-hidden={!isActive}
                   className={`w-full min-w-0 ${
-                    isActive
-                      ? "relative z-10"
-                      : "pointer-events-none absolute inset-x-0 top-0"
+                    isActive ? "relative z-10" : "pointer-events-none absolute inset-x-0 top-0"
                   }`}
                 >
                   <div className="relative aspect-[16/11] w-full min-w-0 overflow-hidden rounded-sm border border-black/10 bg-white sm:aspect-[16/8.55] md:max-w-xl lg:max-w-2xl">

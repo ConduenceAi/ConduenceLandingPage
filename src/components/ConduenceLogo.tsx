@@ -6,22 +6,14 @@ import { logoBlackSrc, logoWhiteSrc } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 
 /** Fallback when background color cannot be resolved from the DOM. */
-const LIGHT_SECTION_IDS = new Set([
-  "top",
-  "core-insight",
-  "pillars",
-  "agents",
-  "we-move-as-one",
-]);
+const LIGHT_SECTION_IDS = new Set(["top", "core-insight", "pillars", "agents", "we-move-as-one"]);
 
 type LogoAppearance =
   | { type: "light" }
   | { type: "dark" }
   | { type: "split"; splitPercent: number };
 
-function parseRgb(
-  color: string,
-): { r: number; g: number; b: number; a: number } | null {
+function parseRgb(color: string): { r: number; g: number; b: number; a: number } | null {
   const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
   if (!match) return null;
 
@@ -161,11 +153,7 @@ type ConduenceLogoProps = {
 export function ConduenceLogo({ className, variant = "auto" }: ConduenceLogoProps) {
   const isAuto = variant === "auto";
   const forcedAppearance: LogoAppearance | null =
-    variant === "on-dark"
-      ? { type: "dark" }
-      : variant === "on-light"
-        ? { type: "light" }
-        : null;
+    variant === "on-dark" ? { type: "dark" } : variant === "on-light" ? { type: "light" } : null;
 
   const { containerRef, appearance: detectedAppearance } = useLogoAppearance(
     isAuto,
@@ -173,8 +161,7 @@ export function ConduenceLogo({ className, variant = "auto" }: ConduenceLogoProp
   );
   const appearance = forcedAppearance ?? detectedAppearance;
 
-  const imageClass =
-    "block h-full w-auto select-none transition-[clip-path] duration-300 ease-out";
+  const imageClass = "block h-full w-auto select-none transition-[clip-path] duration-300 ease-out";
 
   return (
     <div ref={containerRef} className={cn("relative h-full w-auto", className)} aria-hidden={false}>
