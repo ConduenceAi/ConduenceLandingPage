@@ -3,24 +3,22 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 import { logoWhiteSrc } from "@/lib/assets";
-import { FlowingOrb } from "@/components/landing/FlowingOrb";
+import { CubeAssembly } from "@/components/landing/CubeAssembly";
+import { VoiceOrb } from "@/components/landing/VoiceOrb";
 
 /* ============================================================
    REASONING  — platform overview
    ============================================================ */
 const REASONING_ITEMS = [
   {
-    id: "01",
     title: "MCP Server - Unified Tools",
     body: "Bring research inputs, market data, execution surfaces, and the tools you already rely on into one place, so your agents can operate with the full context at their fingertips.",
   },
   {
-    id: "02",
     title: "Mind Mesh - Second Brain",
     body: "Use voice to interact with your second brain, explore opportunities, monitor workflows, and deploy AI agents through natural commands instead of manual coordination.",
   },
   {
-    id: "03",
     title: "Post-mortem",
     body: "Capture your memory, perspective, and reasoning so the system does not forget how you think. Your logic compounds over time instead of getting lost between trades.",
   },
@@ -30,94 +28,43 @@ export function Reasoning() {
   return (
     <section
       id="core-insight"
-      className="relative overflow-hidden bg-white px-section py-section text-black"
+      className="relative overflow-hidden bg-white px-[5%] pt-16 pb-0 text-black sm:pt-20 md:pt-24"
     >
-      <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-16">
-        <div className="lg:pl-8">
-          <h2 className="mt-5 max-w-3xl text-display-pillar font-display leading-[1.05] tracking-tight">
+      <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+        {/* Left half — title + cube */}
+        <div>
+          <h2 className="max-w-3xl text-display-pillar font-display leading-[1.05] tracking-tight">
             The unif<span className="ml-[0.05em] inline-block">ied</span> platform
           </h2>
 
-          <div className="mt-2">
-            {REASONING_ITEMS.map((item) => (
-              <article key={item.id} className="border-black/10 py-6 not-last:border-b">
-                <div className="max-w-2xl">
-                  <span className="mb-3 block font-mono text-xs font-semibold tracking-[0.28em] text-black/45">
-                    {item.id}
-                  </span>
-                  <h3 className="max-w-2xl text-[1.35rem] font-medium leading-tight tracking-[-0.035em] text-black sm:text-[1.75rem]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-black/60 sm:text-[1rem]">
-                    {item.body}
-                  </p>
-                </div>
-              </article>
-            ))}
+          <div className="relative mx-auto mt-8 w-full max-w-[34rem] lg:mx-0">
+            <CubeAssembly className="aspect-[13/16] w-full min-h-[22rem] sm:min-h-[28rem]" />
           </div>
         </div>
 
-        <div className="relative mx-auto hidden w-full max-w-[34rem] lg:block">
-          <svg
-            viewBox="0 0 520 640"
-            className="h-auto w-full text-black/28"
-            aria-hidden="true"
-            fill="none"
-          >
-            <defs>
-              <pattern
-                id="reasoning-horizontal"
-                width="16"
-                height="16"
-                patternUnits="userSpaceOnUse"
+        {/* Right half — feature texts */}
+        <div className="lg:pt-5">
+          {REASONING_ITEMS.map((item, index) => (
+            <article
+              key={item.title}
+              className="relative border-black/10 py-6 not-last:border-b"
+            >
+              <span
+                className="pointer-events-none absolute -left-1 top-3 select-none font-display text-[clamp(3.5rem,7vw,5.5rem)] font-medium leading-none tracking-[-0.06em] text-black/[0.055] sm:-left-2 sm:top-2"
+                aria-hidden="true"
               >
-                <path d="M0 8H16" stroke="currentColor" strokeWidth="1" />
-              </pattern>
-              <pattern id="reasoning-vertical" width="18" height="18" patternUnits="userSpaceOnUse">
-                <path d="M9 0V18" stroke="currentColor" strokeWidth="1" />
-              </pattern>
-              <pattern id="reasoning-grid" width="22" height="22" patternUnits="userSpaceOnUse">
-                <path
-                  d="M0 22L22 0M-5.5 5.5L5.5 -5.5M16.5 27.5L27.5 16.5"
-                  stroke="currentColor"
-                  strokeWidth="0.9"
-                />
-                <path
-                  d="M0 0L22 22M-5.5 16.5L5.5 27.5M16.5 -5.5L27.5 5.5"
-                  stroke="currentColor"
-                  strokeWidth="0.9"
-                />
-              </pattern>
-              <pattern id="reasoning-dots" width="6" height="6" patternUnits="userSpaceOnUse">
-                <circle cx="3" cy="3" r="0.75" fill="currentColor" />
-              </pattern>
-            </defs>
-
-            <g stroke="currentColor" strokeWidth="1.6">
-              <polygon points="120,520 290,420 460,520 290,620" fill="white" />
-              <polyline points="120,520 120,565 290,665 290,620" />
-              <polyline points="460,520 460,565 290,665 290,620" />
-              <path d="M154 540V585M188 560V605M222 580V625M256 600V645M324 600V645M358 580V625M392 560V605M426 540V585" />
-
-              <polygon points="120,420 290,320 460,420 290,520" fill="url(#reasoning-dots)" />
-
-              <polygon points="120,420 290,320 460,420 290,520" fill="url(#reasoning-grid)" />
-
-              <polygon points="150,350 320,250 490,350 320,450" fill="white" />
-              <polyline points="320,250 320,450 490,350" />
-              <polygon points="150,350 320,250 490,350 320,450" fill="url(#reasoning-grid)" />
-
-              <polygon points="250,270 420,170 420,295 250,395" fill="white" />
-              <polygon points="250,270 420,170 420,295 250,395" fill="url(#reasoning-vertical)" />
-              <polyline points="250,270 250,395 80,495" opacity="0.25" />
-
-              <polygon points="90,240 260,140 430,240 260,340" fill="white" opacity="0.7" />
-              <polyline points="260,140 260,340 430,240" opacity="0.32" />
-              <polygon points="90,240 260,140 430,240 260,340" fill="url(#reasoning-horizontal)" />
-
-              <path d="M90 240V420M260 140V320M430 240V420" opacity="0.18" />
-            </g>
-          </svg>
+                {index + 1}
+              </span>
+              <div className="relative max-w-2xl pl-[clamp(2.75rem,5.5vw,4.25rem)]">
+                <h3 className="max-w-2xl text-[1.35rem] font-medium leading-tight tracking-[-0.035em] text-black sm:text-[1.75rem]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-black/60 sm:text-[1rem]">
+                  {item.body}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -147,46 +94,13 @@ const AGENT_FEATURES = [
   },
 ];
 
-const FAQ_ITEMS = [
-  {
-    question: "What is Conduence?",
-    answer:
-      "Conduence is a voice-first platform for building, training, and orchestrating AI trading agents. It helps you move from market understanding to action without stitching together disconnected tools.",
-  },
-  {
-    question: "Why not just use a chatbot or copy-trading tool?",
-    answer:
-      "Chatbots can answer questions, but they do not hold your market framework, manage workflows, or stay accountable to a decision process. Copy trading is even further removed. Conduence is built to preserve your reasoning and turn it into repeatable execution.",
-  },
-  {
-    question: "Who is Conduence designed for?",
-    answer:
-      "It is designed for traders, researchers, and operators who already have judgment but need leverage. If you think in frameworks, track signals across platforms, and want agents that work like extensions of your own mind, Conduence is for you.",
-  },
-  {
-    question: "What makes Conduence different?",
-    answer:
-      "Instead of giving you a single assistant, Conduence lets you orchestrate systems of agents. You can train them on your reasoning, connect them to tools, monitor their decision path, and stay in control of execution.",
-  },
-  {
-    question: "Do I need to know how to code?",
-    answer:
-      "No. Conduence is being designed so you can build workflows, train agents, and coordinate execution through voice and visual interfaces rather than writing code from scratch.",
-  },
-  {
-    question: "Can I stay in control of trades?",
-    answer:
-      "Yes. Conduence is built around human control, not black-box automation. You can review outputs, adjust rules, intervene when needed, and decide how much authority each workflow should have.",
-  },
-];
-
 /* ============================================================
    AGENTS FEATURES
    ============================================================ */
 export function AgentsScroll() {
   return (
-    <section id="agents" className="relative overflow-hidden bg-white pt-14 text-black sm:pt-20">
-      <div className="relative mx-auto max-w-[1480px] px-section pb-20 sm:pb-44">
+    <section id="agents" className="relative overflow-hidden bg-white px-[5%] pt-14 text-black sm:pt-20">
+      <div className="relative mx-auto max-w-[1480px] pb-20 sm:pb-44">
         <div className="grid gap-4 pb-6">
           <div className="mx-auto text-center">
             <h2 className="mt-3 max-w-4xl text-display-pillar font-display leading-[1.05] tracking-tight">
@@ -228,7 +142,7 @@ export function AgentsScroll() {
               <div className="h-full w-full bg-[radial-gradient(circle,rgba(0,0,0,0.12)_1px,transparent_1px)] bg-[size:16px_16px]" />
             </div>
             <div className="relative flex h-full items-center justify-center p-5 sm:p-6">
-              <FlowingOrb className="relative aspect-square w-full max-w-[21rem]" />
+              <VoiceOrb demo className="relative aspect-square w-full max-w-[14rem]" />
             </div>
           </div>
 
@@ -250,45 +164,6 @@ export function AgentsScroll() {
               </article>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
-   FAQ
-   ============================================================ */
-export function FAQ() {
-  return (
-    <section id="faq" className="bg-white px-section py-20 text-black sm:py-28">
-      <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)] lg:gap-16">
-        <div className="max-w-md">
-          <h2 className="mt-5 text-display-pillar font-display leading-[1.05] tracking-tight mt-35">
-            Frequently asked questions
-          </h2>
-          <p className="mt-5 max-w-sm text-body-fluid leading-relaxed text-black/60">
-            Everything you need to know about why Conduence exists, who it is for, and how it helps
-            you trade with more leverage.
-          </p>
-        </div>
-
-        <div className="border-t border-black/10">
-          {FAQ_ITEMS.map((item) => (
-            <details key={item.question} className="group border-b border-black/10">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left">
-                <span className="text-base font-medium leading-snug text-black sm:text-[1.05rem]">
-                  {item.question}
-                </span>
-                <span className="shrink-0 text-lg leading-none text-black/50 transition-transform duration-200 group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <div className="pb-6 pr-8 text-sm leading-relaxed text-black/60 sm:text-[15px]">
-                {item.answer}
-              </div>
-            </details>
-          ))}
         </div>
       </div>
     </section>
@@ -330,8 +205,11 @@ export function CTA() {
   }
 
   return (
-    <section id="cta" className="relative bg-black px-6 pt-32 pb-0 text-white">
-      <div className="mx-auto max-w-4xl text-center">
+    <section
+      id="cta"
+      className="relative flex min-h-svh flex-col bg-black px-6 pb-0 pt-24 text-white sm:pt-28 md:pt-32"
+    >
+      <div className="mx-auto w-full max-w-4xl shrink-0 text-center">
         <h2 className="text-5xl sm:text-7xl font-display tracking-tight text-balance">
           Trade with the agents.
           <br />
@@ -370,37 +248,17 @@ export function CTA() {
           </p>
         ) : null}
       </div>
-    </section>
-  );
-}
 
-/* ============================================================
-   FOOTER — Walbi-style giant wordmark
-   ============================================================ */
-export function Footer() {
-  return (
-    <footer className="bg-black px-section pb-8 pt-0 text-white overflow-hidden sm:pb-10">
-      <div className="mx-auto max-w-[1600px]">
-        {/* GIANT WORDMARK — centered logo */}
-        <div className="flex justify-center">
+      <div className="mt-auto w-full px-section leading-none">
+        <div className="mx-auto max-w-[1600px] overflow-hidden">
           <img
             src={logoWhiteSrc}
             alt="CONDUENCE"
-            className="w-full max-w-[1400px] h-auto select-none"
+            className="mx-auto block h-auto w-full max-w-[1400px] -mb-8 select-none sm:-mb-10"
             draggable={false}
           />
         </div>
-
-        <div className="mt-6 text-center text-sm text-white/55">
-          Contact{" "}
-          <a
-            className="text-white/75 transition hover:text-white"
-            href="mailto:contact@conduence.xyz"
-          >
-            contact@conduence.xyz
-          </a>
-        </div>
       </div>
-    </footer>
+    </section>
   );
 }

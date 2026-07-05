@@ -143,3 +143,59 @@
 @utility px-section {
   padding-inline: clamp(1rem, 4vw, 2.5rem);
 }
+
+/* Computational Conviction — ambient grid drift & logo breathe */
+@keyframes cc-grid-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(2px, 2px);
+  }
+}
+
+@keyframes cc-logo-breathe {
+  0%,
+  100% {
+    filter: blur(18px);
+  }
+  50% {
+    filter: blur(22px);
+  }
+}
+
+.cc-grid-drift {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.55) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: cc-grid-drift 18s ease-in-out infinite;
+}
+
+.cc-logo-breathe {
+  animation: cc-logo-breathe 10s ease-in-out infinite;
+}
+
+/* Voice orb — canvas cloud sphere (strict grayscale, no shadow) */
+.voice-orb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-orb__scale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  will-change: transform;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+
+.voice-orb__canvas {
+  display: block;
+  border-radius: 50%;
+}

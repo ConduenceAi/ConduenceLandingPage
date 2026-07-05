@@ -9,11 +9,9 @@ import { cn } from "@/lib/utils";
 const BLACK_LOGO_SECTION_IDS = new Set([
   "top",
   "core-insight",
-  "manifesto",
   "pillars",
   "agents",
   "we-move-as-one",
-  "faq",
 ]);
 
 function useLogoOnDarkBackground(defaultOnDark = true) {

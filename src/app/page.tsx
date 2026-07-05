@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
-import { Pillars } from "@/components/landing/Pillars";
-import { Reasoning, AgentsScroll, FAQ, CTA, Footer } from "@/components/landing/Sections";
-import { Manifesto } from "@/components/landing/Manifesto";
+import { PlatformSections } from "@/components/landing/PlatformSections";
+import { AgentsScroll, CTA } from "@/components/landing/Sections";
+import { FAQ } from "@/components/landing/FAQ";
+import { ComputationalConviction } from "@/components/landing/ComputationalConviction";
 import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
 
 export const metadata: Metadata = {
@@ -22,14 +23,12 @@ export default function HomePage() {
     <main className="bg-background text-foreground">
       <Nav />
       <Hero />
-      <Reasoning />
-      <Pillars />
+      <PlatformSections />
       <AgentsScroll />
       <WeMoveAsOne />
-      <Manifesto />
+      <ComputationalConviction />
       <FAQ />
       <CTA />
-      <Footer />
     </main>
   );
 }

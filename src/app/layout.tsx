@@ -12,7 +12,8 @@ const sans = Inter({
 
 const display = Playfair_Display({
   subsets: ["latin"],
-  weight: "900",
+  weight: ["400", "500", "700", "900"],
+  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 });

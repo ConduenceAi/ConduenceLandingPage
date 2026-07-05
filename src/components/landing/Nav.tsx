@@ -19,7 +19,7 @@ export function Nav() {
       >
         <span
           aria-hidden
-          className="absolute inset-0 rounded-full bg-white/8 backdrop-blur-md supports-[backdrop-filter]:bg-white/6"
+          className="absolute inset-0 rounded-full border border-white/[0.12] bg-white/[0.08] backdrop-blur-[28px] supports-[backdrop-filter]:bg-white/[0.08]"
         />
         <ConduenceLogo className="relative z-10 h-full scale-110" variant="auto" />
       </a>

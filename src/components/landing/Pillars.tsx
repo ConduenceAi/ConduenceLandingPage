@@ -109,25 +109,23 @@ export function Pillars() {
   }, [active]);
 
   return (
-    <section id="pillars" className="relative bg-white text-black">
-      <div className="border-b border-black/10">
-        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-section py-4 font-mono text-[10px] tracking-[0.34em] text-black/50 sm:py-5">
-          <span>&rang;&nbsp;&nbsp;PRODUCT CATALOG</span>
-          <span>
-            [{String(active + 1).padStart(2, "0")}/{String(pillars.length).padStart(2, "0")}]
-          </span>
-        </div>
-      </div>
-
-      <div className="mx-auto grid max-w-[1500px] grid-cols-12 gap-x-6 gap-y-8 px-section py-8 sm:gap-x-10 sm:gap-y-10 sm:py-10 md:py-14">
-        <div className="col-span-12 flex flex-col md:col-span-5 md:-mt-3 lg:-mt-4">
+    <section
+      id="pillars"
+      className="relative overflow-hidden bg-white px-[5%] pb-section pt-0 text-black"
+    >
+      <div className="relative z-10 mx-auto grid max-w-[1480px] grid-cols-12 gap-x-10 gap-y-8 sm:gap-x-16 lg:gap-x-24">
+        <div className="col-span-12 flex flex-col md:col-span-5">
+          <p className="mb-6 flex items-center gap-2.5 text-[10px] uppercase tracking-[0.34em] text-black sm:mb-8">
+            <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-black" />
+            Product Catalog
+          </p>
           <h2 className="text-display-pillar font-display leading-[1.05] tracking-tight">
             Everything you need to
             <br />
             <span className="font-normal text-black/45">ship agents that trade</span>
           </h2>
 
-          <ul className="mt-12 flex flex-col sm:mt-14">
+          <ul className="mt-12 flex flex-col sm:mt-16">
             {pillars.map((p, i) => {
               const isActive = i === active;
               return (
@@ -150,7 +148,7 @@ export function Pillars() {
                   <button
                     type="button"
                     onClick={() => setActive(i)}
-                    className="grid w-full grid-cols-[48px_1fr_12px] items-center gap-4 border-t border-black/10 py-4 text-left"
+                    className="grid w-full grid-cols-[48px_1fr_12px] items-center gap-4 border-t border-black/10 py-[19px] text-left sm:py-[23px]"
                   >
                     <span
                       className={`font-mono text-xs tracking-[0.2em] transition-colors ${
@@ -185,8 +183,8 @@ export function Pillars() {
           </ul>
         </div>
 
-        <div className="col-span-12 flex min-h-full flex-col md:col-span-7 md:-mt-2 lg:-mt-3">
-          <div className="grid md:pl-6 lg:pl-10">
+        <div className="col-span-12 flex min-h-full flex-col md:col-span-7 md:mt-8 lg:mt-10">
+          <div className="grid">
             {pillars.map((pillar, i) => {
               const isActive = i === active;
               return (
@@ -203,7 +201,7 @@ export function Pillars() {
                     isActive ? "z-10" : "pointer-events-none"
                   }`}
                 >
-                  <div className="relative aspect-[16/7] w-full max-w-sm overflow-hidden rounded-sm border border-black/10 bg-white sm:max-w-md md:max-w-xl lg:max-w-2xl">
+                  <div className="relative aspect-[16/8.55] w-full max-w-sm overflow-hidden rounded-sm border border-black/10 bg-white sm:max-w-md md:max-w-xl lg:max-w-2xl">
                     <div
                       className="pointer-events-none absolute inset-0 opacity-[0.4]"
                       style={{

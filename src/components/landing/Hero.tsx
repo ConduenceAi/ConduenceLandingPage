@@ -2,10 +2,28 @@
 
 import { motion } from "framer-motion";
 
+import { heroBgSrc } from "@/lib/assets";
+
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-[58vh] w-full overflow-hidden bg-white text-black">
-      <div className="relative z-10 mx-auto flex min-h-[58vh] max-w-5xl -translate-y-2 flex-col items-center justify-center px-section pt-28 text-center sm:-translate-y-4 sm:pt-32 md:-translate-y-6">
+    <section id="top" className="relative min-h-screen w-full overflow-hidden bg-white text-black">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-y-0 left-0 w-1/2 bg-left bg-no-repeat"
+          style={{
+            backgroundImage: `url(${heroBgSrc})`,
+            backgroundSize: "auto 100%",
+          }}
+        />
+        <div
+          className="absolute inset-y-0 right-0 w-1/2 bg-right bg-no-repeat"
+          style={{
+            backgroundImage: `url(${heroBgSrc})`,
+            backgroundSize: "auto 100%",
+          }}
+        />
+      </div>
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-section pt-28 text-center sm:pt-32">
         <motion.h1
           initial={false}
           animate={{ opacity: 1, y: 0 }}

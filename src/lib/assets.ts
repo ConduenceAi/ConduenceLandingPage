@@ -1,3 +1,4 @@
+export const heroBgSrc = "/images/hero_bg.png";
 export const heroCloudsSrc = {
   src: "/images/hero-section.png",
 };
