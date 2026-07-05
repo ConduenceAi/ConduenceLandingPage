@@ -65,13 +65,7 @@ function clamp01(v: number) {
   return Math.max(0, Math.min(1, v));
 }
 
-function mapRange(
-  p: number,
-  inStart: number,
-  inEnd: number,
-  outStart: number,
-  outEnd: number,
-) {
+function mapRange(p: number, inStart: number, inEnd: number, outStart: number, outEnd: number) {
   const t = clamp01((p - inStart) / (inEnd - inStart));
   return outStart + (outEnd - outStart) * t;
 }
@@ -209,8 +203,7 @@ export function ComputationalConviction() {
         : progress < 0.62
           ? 1
           : mapRange(progress, 0.62, 0.72, 1, 0.06);
-  const ch2Y =
-    progress < 0.62 ? 0 : progress < 0.72 ? mapRange(progress, 0.62, 0.72, 0, -72) : -72;
+  const ch2Y = progress < 0.62 ? 0 : progress < 0.72 ? mapRange(progress, 0.62, 0.72, 0, -72) : -72;
   const autonomousWeight = weightFromProgress(
     progress < 0.4 ? 0 : progress < 0.62 ? mapRange(progress, 0.4, 0.62, 0, 1) : 1,
   );
@@ -223,13 +216,9 @@ export function ComputationalConviction() {
   const ch3HeadlineScale = 1 + mapRange(traderScatter, 0, 0.35, 0, 0.018);
 
   const ghostFollowerOpacity =
-    progress >= 0.4 && progress < 0.85
-      ? mapRange(progress, 0.4, 0.55, 0.008, 0.004)
-      : 0;
+    progress >= 0.4 && progress < 0.85 ? mapRange(progress, 0.4, 0.55, 0.008, 0.004) : 0;
   const ghostAutonomousOpacity =
-    progress >= 0.62 && progress < 0.85
-      ? mapRange(progress, 0.62, 0.78, 0.01, 0.005)
-      : 0;
+    progress >= 0.62 && progress < 0.85 ? mapRange(progress, 0.62, 0.78, 0.01, 0.005) : 0;
 
   return (
     <section
@@ -335,10 +324,7 @@ export function ComputationalConviction() {
               <span className="text-white/70" style={{ fontWeight: 400 }}>
                 fully independent{" "}
               </span>
-              <span
-                className="text-white"
-                style={{ fontWeight: autonomousWeight }}
-              >
+              <span className="text-white" style={{ fontWeight: autonomousWeight }}>
                 autonomous
               </span>
             </p>

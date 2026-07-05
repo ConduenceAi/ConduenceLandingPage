@@ -45,10 +45,7 @@ export function Reasoning() {
         {/* Right half — feature texts */}
         <div className="lg:pt-5">
           {REASONING_ITEMS.map((item, index) => (
-            <article
-              key={item.title}
-              className="relative border-black/10 py-6 not-last:border-b"
-            >
+            <article key={item.title} className="relative border-black/10 py-6 not-last:border-b">
               <span
                 className="pointer-events-none absolute -left-1 top-3 select-none font-display text-[clamp(3.5rem,7vw,5.5rem)] font-medium leading-none tracking-[-0.06em] text-black/[0.055] sm:-left-2 sm:top-2"
                 aria-hidden="true"
@@ -99,7 +96,10 @@ const AGENT_FEATURES = [
    ============================================================ */
 export function AgentsScroll() {
   return (
-    <section id="agents" className="relative overflow-hidden bg-white px-[5%] pt-14 text-black sm:pt-20">
+    <section
+      id="agents"
+      className="relative overflow-hidden bg-white px-[5%] pt-14 text-black sm:pt-20"
+    >
       <div className="relative mx-auto max-w-[1480px] pb-20 sm:pb-44">
         <div className="grid gap-4 pb-6">
           <div className="mx-auto text-center">
