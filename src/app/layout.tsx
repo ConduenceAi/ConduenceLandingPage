@@ -28,8 +28,12 @@ export const metadata: Metadata = {
   },
   description: "AI agents that think with you.",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: [
+      { url: "/favicon-dark.png", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-light.png", media: "(prefers-color-scheme: dark)" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/favicon-dark.png",
   },
   openGraph: {
     title: "CONDUENCE",

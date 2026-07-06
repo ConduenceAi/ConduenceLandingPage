@@ -3,7 +3,7 @@ import { Reasoning } from "@/components/landing/Sections";
 
 export function PlatformSections() {
   return (
-    <div className="relative w-full overflow-x-hidden bg-white">
+    <div className="relative w-full bg-white">
       <Reasoning />
       <Pillars />
     </div>

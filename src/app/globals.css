@@ -58,6 +58,15 @@
   --ring: oklch(0.72 0.16 220);
   --cyan: oklch(0.78 0.17 215);
   --cyan-glow: oklch(0.82 0.2 215);
+  --orb-cloud: #e4e5e5;
+  --orb-sky-top: #b0a9a1;
+  --orb-sky-bottom: #131211;
+  --orb-rim: #252220;
+  --orb-highlight: #c4beb6;
+  --orb-deep: #343029;
+  --orb-mid: #7a7268;
+  --orb-warm: #958c82;
+  --voice-orb-border: #2a2624;
 }
 
 .dark {
@@ -177,25 +186,26 @@
   animation: cc-logo-breathe 10s ease-in-out infinite;
 }
 
-/* Voice orb — canvas cloud sphere (strict grayscale, no shadow) */
-.voice-orb {
+/* Voice orb — ember aurora sphere (matches Conduence voice-orb.js) */
+.voice-orb-host {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .voice-orb__scale {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
   transform-origin: center center;
   will-change: transform;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-  overflow: hidden;
 }
 
 .voice-orb__canvas {
   display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  border: 1px solid var(--voice-orb-border);
+  image-rendering: -webkit-optimize-contrast;
 }

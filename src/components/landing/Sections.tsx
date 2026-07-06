@@ -1,7 +1,4 @@
 "use client";
-
-import type { FormEvent } from "react";
-import { useState } from "react";
 import { logoWhiteSrc } from "@/lib/assets";
 import { CubeAssembly } from "@/components/landing/CubeAssembly";
 import { VoiceOrb } from "@/components/landing/VoiceOrb";
@@ -147,7 +144,7 @@ export function AgentsScroll() {
             <div className="relative flex h-full min-h-[11rem] items-center justify-center p-4 sm:min-h-[20rem] sm:p-6">
               <VoiceOrb
                 demo
-                className="relative aspect-square w-full max-w-[7.5rem] sm:max-w-[11rem] lg:max-w-[14rem]"
+                className="relative aspect-square w-[137px] max-w-full sm:w-[11rem] lg:w-[14rem]"
               />
             </div>
           </div>
@@ -183,42 +180,6 @@ export function AgentsScroll() {
    CTA
    ============================================================ */
 export function CTA() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("loading");
-    setMessage("");
-
-    try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      let data: { error?: string } = {};
-      const contentType = response.headers.get("content-type") ?? "";
-
-      if (contentType.includes("application/json")) {
-        data = (await response.json()) as { error?: string };
-      }
-
-      if (!response.ok) {
-        throw new Error(data.error ?? "Unable to join the waitlist right now.");
-      }
-
-      setStatus("success");
-      setMessage("You're on the waitlist. Check your inbox for confirmation.");
-      setEmail("");
-    } catch (error) {
-      setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Unable to join the waitlist right now.");
-    }
-  }
-
   return (
     <section
       id="cta"
@@ -234,34 +195,12 @@ export function CTA() {
           CONDUENCE is in private beta. Join the waitlist for early access to the Agent Studio and
           Mind Mesh.
         </p>
-        <form
-          className="mt-8 flex flex-col sm:mt-10 sm:flex-row gap-3 max-w-md mx-auto"
-          onSubmit={handleSubmit}
+        <a
+          href="mailto:contact@conduence.xyz?subject=Conduence%20waitlist"
+          className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90 sm:mt-10"
         >
-          <input
-            type="email"
-            name="email"
-            placeholder="you@strategy.io"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            className="flex-1 rounded-full border border-white/30 bg-transparent px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white"
-          />
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="rounded-full bg-white text-black px-6 py-3 text-sm font-semibold transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-70"
-          >
-            {status === "loading" ? "Reserving..." : "Reserve seat"}
-          </button>
-        </form>
-        {message ? (
-          <p
-            className={`mt-4 text-sm ${status === "success" ? "text-emerald-300" : "text-red-300"}`}
-          >
-            {message}
-          </p>
-        ) : null}
+          Reserve seat
+        </a>
       </div>
 
       <div className="mt-12 w-full leading-none sm:mt-auto sm:px-section sm:pb-0">

@@ -133,7 +133,7 @@ export function Pillars() {
     <section
       ref={sectionRef}
       id="pillars"
-      className="relative w-full overflow-x-hidden bg-white px-[5%] pb-section pt-0 text-black"
+      className="relative w-full bg-white px-[5%] pb-section pt-0 text-black"
     >
       <div className="relative z-10 mx-auto grid w-full min-w-0 max-w-[1480px] grid-cols-12 gap-x-0 gap-y-6 md:gap-x-10 md:gap-y-8 lg:gap-x-24">
         <div className="col-span-12 flex min-w-0 flex-col md:col-span-5">
