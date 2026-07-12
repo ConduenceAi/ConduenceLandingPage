@@ -48,10 +48,10 @@ export function buildWaitlistWelcomeEmail() {
 
   const text = `Hey,
 
-My name is Sarthak — I'm building Conduence.
+My name is Sarthak. I'm building Conduence.
 
 We started Conduence because we wanted a better way to trade prediction markets with AI agents.
-A unified platform where your agents think with you — and just work.
+A unified platform where your agents think with you, and just work.
 
 Here are 3 things to explore while you wait.
 
@@ -74,10 +74,10 @@ Sarthak`;
   const html = personalEmailShell(
     `
       ${paragraph("Hey,")}
-      ${paragraph("My name is Sarthak — I'm building Conduence.")}
+      ${paragraph("My name is Sarthak. I'm building Conduence.")}
       ${paragraph(
         `We started Conduence because we wanted a better way to trade prediction markets with AI agents.<br />
-        A unified platform where your agents think with you — and <em>just work</em>.`,
+        A unified platform where your agents think with you, and <em>just work</em>.`,
       )}
       ${paragraph("Here are 3 things to explore while you wait.", "0 0 10px")}
       ${paragraph(link(`${siteUrl}/#pillars`, "Agent Studio"), "0 0 6px")}

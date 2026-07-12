@@ -157,7 +157,7 @@ export function FAQ() {
               transition={{ duration: 0.7, ease: EASE }}
             >
               <p className="font-mono text-[0.68rem] font-medium tracking-[0.32em] text-white/35">
-                — FAQ
+                FAQ
               </p>
             </motion.div>
 

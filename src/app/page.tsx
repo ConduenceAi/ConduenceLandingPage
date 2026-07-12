@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { PlatformSections } from "@/components/landing/PlatformSections";
-import { AgentsScroll, CTA } from "@/components/landing/Sections";
-import { FAQ } from "@/components/landing/FAQ";
+import { CTA } from "@/components/landing/Sections";
+// import { FAQ } from "@/components/landing/FAQ";
 import { ComputationalConviction } from "@/components/landing/ComputationalConviction";
 import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
 
@@ -24,10 +24,9 @@ export default function HomePage() {
       <Nav />
       <Hero />
       <PlatformSections />
-      <AgentsScroll />
       <WeMoveAsOne />
       <ComputationalConviction />
-      <FAQ />
+      {/* <FAQ /> */}
       <CTA />
     </main>
   );

@@ -1,220 +1,71 @@
 "use client";
 
-import { motion, useInView, useMotionValueEvent, useScroll } from "framer-motion";
-import { useRef, useState } from "react";
-
-const STEPS = [
-  {
-    id: "01",
-    lines: ["I recall"],
-  },
-  {
-    id: "02",
-    lines: ["I think"],
-  },
-  {
-    id: "03",
-    lines: ["I decide"],
-  },
-  {
-    id: "04",
-    lines: ["I execute"],
-  },
-  {
-    id: "05",
-    lines: ["Now, I remember"],
-  },
-] as const;
-
-const SCROLL_STEPS = STEPS.length + 0.35;
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 /* ============================================================
-   WE MOVE AS ONE — split scroll section with mantra transitions
+   WE MOVE AS ONE — statement + compounding timeline
    ============================================================ */
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+const COMPOUNDING_STEPS = [
+  {
+    label: "Day 1",
+    body: "Conduence is a blank slate, ready to learn how you think.",
+  },
+  {
+    label: "Month 1",
+    body: "After enough sessions, it already mirrors how you size and decide.",
+  },
+  {
+    label: "Year 1",
+    body: "It knows your trading mind better than you do.",
+  },
+] as const;
+
 export function WeMoveAsOne() {
-  const containerRef = useRef<HTMLElement>(null);
-  const leftHeadingRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const leftHeadingInView = useInView(leftHeadingRef, { once: true, amount: 0.45 });
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (progress) => {
-    const nextIndex = Math.min(STEPS.length - 1, Math.floor(progress * STEPS.length));
-    setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
-  });
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { once: true, amount: 0.35 });
 
   return (
     <section
-      ref={containerRef}
+      ref={sectionRef}
       id="we-move-as-one"
-      className="relative"
-      style={{ height: `${SCROLL_STEPS * 100}vh` }}
-      aria-label="Reasoning sequence"
+      className="relative flex h-svh min-h-svh overflow-hidden bg-white px-[5%] text-black"
+      aria-label="Reasoning that compounds over time"
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* ── Horizontal connector across the split ── */}
-        <div
-          className="pointer-events-none absolute inset-0 z-30 hidden lg:block"
-          aria-hidden="true"
+      <div className="mx-auto flex h-full w-full max-w-[1480px] flex-col justify-center gap-8 py-[clamp(5rem,11vh,7.5rem)] sm:gap-10">
+        <motion.h2
+          className="mx-auto max-w-[20ch] text-center text-[clamp(1.75rem,4vw+0.35rem,3.5rem)] font-medium leading-[1.15] tracking-[-0.03em] text-balance [font-family:var(--font-display),Georgia,serif] sm:max-w-[24ch]"
+          aria-label="I am your reasoning and your perception, scaled past every limit."
+          initial={{ opacity: 0, y: 18 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          transition={{ duration: 0.85, ease: EASE }}
         >
-          {/* Left arm — dark line on white bg */}
-          <div className="absolute left-[calc(50%-3.5rem)] top-1/2 h-px w-14 -translate-y-1/2 bg-black/40" />
-          {/* Left dot — glowing on white bg */}
-          <span className="absolute left-[calc(50%-3.5rem)] top-1/2 h-[9px] w-[9px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black shadow-[0_0_0_3px_rgba(0,0,0,0.08),0_0_18px_rgba(0,0,0,0.35)]" />
-          {/* Right arm — white line on dark bg */}
-          <div className="absolute left-1/2 top-1/2 h-px w-14 -translate-y-1/2 bg-white/45" />
-          {/* Right dot */}
-          <span className="absolute left-[calc(50%+3.5rem)] top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.95)]" />
-        </div>
+          I am your{" "}
+          <span className="font-black tracking-[-0.038em]">reasoning</span>
+          <span className="font-normal italic text-black/55"> and your </span>
+          <span className="font-black tracking-[-0.038em]">perception,</span>
+          <span className="font-normal italic text-black/42"> scaled past every limit.</span>
+        </motion.h2>
 
-        <div className="grid h-full min-h-screen grid-cols-1 lg:grid-cols-2">
-          {/* ───── LEFT — static white panel ───── */}
-          <div className="relative flex h-full min-h-[62vh] flex-col justify-between gap-5 overflow-hidden bg-white px-section text-black lg:min-h-0 lg:justify-stretch lg:gap-0">
-            {/* Heading — top half on desktop */}
-            <div
-              ref={leftHeadingRef}
-              className="flex min-h-0 shrink-0 flex-col justify-start pb-2 pt-24 sm:pt-28 lg:h-1/2 lg:pb-4 lg:pt-36"
+        <div className="grid gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
+          {COMPOUNDING_STEPS.map((step, index) => (
+            <motion.article
+              key={step.label}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.7, delay: 0.2 + index * 0.1, ease: EASE }}
+              className="rounded-xl border border-black/8 bg-white px-6 py-8 text-center sm:px-7 sm:py-10 lg:px-8 lg:py-11"
             >
-              <h2
-                className="max-w-[19.5rem] text-[clamp(1.7rem,3.4vw+0.55rem,3.65rem)] leading-[0.97] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
-                aria-label="I am your reasoning and your perception, scaled past every limit."
-              >
-                <motion.span
-                  className="block"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={leftHeadingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.85, ease: EASE }}
-                >
-                  <span className="block font-medium text-black">I am your</span>
-
-                  <span className="block text-[1.35em] font-black leading-[0.95] tracking-[-0.038em] text-black sm:text-[1.5em]">
-                    reasoning
-                  </span>
-
-                  <span className="block font-normal text-black/82">— and your</span>
-
-                  <span className="block text-[1.35em] font-black leading-[0.95] tracking-[-0.038em] text-black sm:text-[1.5em]">
-                    perception,
-                  </span>
-                </motion.span>
-
-                <motion.span
-                  className="my-2 block h-px w-10 origin-left bg-black/14 sm:my-3.5"
-                  aria-hidden="true"
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  animate={
-                    leftHeadingInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }
-                  }
-                  transition={{ duration: 0.55, delay: 0.35, ease: EASE }}
-                />
-
-                <motion.span
-                  className="block text-[0.84em] font-normal italic leading-[1.05] text-black/42 lg:origin-left lg:whitespace-nowrap"
-                  initial={{ opacity: 0, scale: 0.82 }}
-                  animate={
-                    leftHeadingInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.82 }
-                  }
-                  transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
-                >
-                  scaled past every limit.
-                </motion.span>
-              </h2>
-            </div>
-
-            {/* Footer — bottom half on desktop */}
-            <div className="flex shrink-0 flex-col justify-end pb-6 pt-0 sm:pb-8 lg:h-1/2 lg:min-h-0 lg:pb-12 lg:pt-6">
-              <div className="max-w-[17rem] space-y-1 font-mono text-[9.5px] leading-[1.7] tracking-[0.36em] text-black/42 sm:text-[10px] sm:leading-[1.75]">
-                <p>EVERY CONVERSATION.</p>
-                <p>EVERY MARKET.</p>
-                <p>EVERY DECISION.</p>
-                <p className="text-black/58">NEVER FORGOTTEN.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* ───── RIGHT — scroll-driven black panel ───── */}
-          <div className="relative flex h-full min-h-[38vh] flex-col bg-black text-white lg:min-h-0">
-            {/* Top half — empty on desktop only (connector alignment) */}
-            <div className="hidden h-1/2 shrink-0 lg:block" aria-hidden="true" />
-
-            {/* Bottom half — main text only */}
-            <div className="flex flex-1 flex-col justify-center px-section pb-8 pl-[clamp(3.5rem,10vw,6.5rem)] pt-6 lg:h-1/2 lg:justify-start lg:pb-14 lg:pt-12">
-              <div className="relative grid items-start">
-                {STEPS.map((step, index) => {
-                  const isActive = index === activeIndex;
-
-                  return (
-                    <motion.div
-                      key={step.id}
-                      initial={false}
-                      animate={{
-                        opacity: isActive ? 1 : 0,
-                        y: isActive ? 0 : 22,
-                        filter: isActive ? "blur(0px)" : "blur(5px)",
-                      }}
-                      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                      aria-hidden={!isActive}
-                      className={`col-start-1 row-start-1 ${
-                        isActive ? "z-10" : "pointer-events-none"
-                      }`}
-                    >
-                      <h3 className="font-display text-[clamp(2.25rem,5.5vw,5.25rem)] leading-[0.94] tracking-[-0.04em] text-white">
-                        {step.lines.map((line) => (
-                          <span key={line} className="block">
-                            {line}
-                          </span>
-                        ))}
-                      </h3>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* ── Step indicator — anchored to right edge of the right panel ── */}
-            <div
-              className="pointer-events-none absolute right-[clamp(1rem,4vw,2.5rem)] top-1/2 z-50 hidden -translate-y-1/2 lg:block"
-              aria-label="Reasoning sequence progress"
-            >
-              <div className="flex flex-col items-end gap-[1.1rem]">
-                {STEPS.map((step, index) => {
-                  const isActive = index === activeIndex;
-
-                  return (
-                    <div key={step.id} className="flex items-center gap-3">
-                      {/* Number — right-aligned */}
-                      <span
-                        className={`w-6 text-right font-mono text-[10px] tabular-nums tracking-[0.28em] transition-colors ${
-                          isActive ? "text-white" : "text-white/30"
-                        }`}
-                      >
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      {/* Dot — rightmost element */}
-                      <span className="relative flex h-[10px] w-[10px] shrink-0 items-center justify-center">
-                        {isActive && (
-                          <span className="absolute h-[10px] w-[10px] rounded-full border border-white/35" />
-                        )}
-                        <span
-                          className={`rounded-full transition-all duration-300 ${
-                            isActive
-                              ? "h-[5px] w-[5px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.9)]"
-                              : "h-[5px] w-[5px] bg-white/22"
-                          }`}
-                        />
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+              <h3 className="font-display text-[clamp(1.85rem,3.5vw,2.5rem)] leading-none tracking-[-0.04em] text-black">
+                {step.label}
+              </h3>
+              <p className="mx-auto mt-4 max-w-[22ch] text-[0.95rem] leading-relaxed text-black/55 sm:mt-5 sm:text-[1.05rem]">
+                {step.body}
+              </p>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

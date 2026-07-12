@@ -6,7 +6,13 @@ import { logoBlackSrc, logoWhiteSrc } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 
 /** Fallback when background color cannot be resolved from the DOM. */
-const LIGHT_SECTION_IDS = new Set(["top", "core-insight", "pillars", "agents", "we-move-as-one"]);
+const LIGHT_SECTION_IDS = new Set([
+  "top",
+  "core-insight",
+  "the-problem",
+  "pillars",
+  "we-move-as-one",
+]);
 
 type LogoAppearance =
   | { type: "light" }
