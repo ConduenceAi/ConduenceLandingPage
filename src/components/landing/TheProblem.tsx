@@ -40,8 +40,7 @@ export function TheProblem() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            Every trading agent{" "}
-            <span className="font-black tracking-[-0.038em]">decides</span>
+            Every trading agent <span className="font-black tracking-[-0.038em]">decides</span>
             <span className="font-normal italic text-black/55"> without your </span>
             <span className="font-black tracking-[-0.038em]">beliefs.</span>
             <span className="font-normal italic text-black/42">
@@ -71,9 +70,7 @@ export function TheProblem() {
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
                 transition={{ duration: 0.7, delay: 0.12 + index * 0.1, ease: EASE }}
                 className={`relative flex border-black/8 py-10 sm:py-12 lg:py-14 ${
-                  index === 0
-                    ? "lg:pr-12"
-                    : "border-t lg:border-t-0 lg:pl-12"
+                  index === 0 ? "lg:pr-12" : "border-t lg:border-t-0 lg:pl-12"
                 }`}
               >
                 <div className="pointer-events-none absolute left-0 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black/18" />

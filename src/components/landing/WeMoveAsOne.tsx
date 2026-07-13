@@ -42,8 +42,7 @@ export function WeMoveAsOne() {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.85, ease: EASE }}
         >
-          I am your{" "}
-          <span className="font-black tracking-[-0.038em]">reasoning</span>
+          I am your <span className="font-black tracking-[-0.038em]">reasoning</span>
           <span className="font-normal italic text-black/55"> and your </span>
           <span className="font-black tracking-[-0.038em]">perception,</span>
           <span className="font-normal italic text-black/42"> scaled past every limit.</span>
