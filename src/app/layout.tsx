@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | CONDUENCE",
   },
   description:
-    "Orchestrate AI agents that learn your perspective, mirror your reasoning, from   your voice.",
+    "Orchestrate AI agents that learn your perspective, mirror your reasoning, from your voice.",
   icons: {
     icon: [
       { url: "/favicon-dark.png", media: "(prefers-color-scheme: light)" },
@@ -43,16 +43,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "CONDUENCE. Agents that trade like you",
-    description:
-      "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
+    description: "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
     type: "website",
     images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "CONDUENCE. Agents that trade like you",
-    description:
-      "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
+    description: "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
     images: [ogImage.url],
   },
 };

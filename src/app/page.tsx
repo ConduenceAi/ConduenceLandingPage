@@ -10,12 +10,10 @@ import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
 
 export const metadata: Metadata = {
   title: "CONDUENCE. Agents that trade like you",
-  description:
-    "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
+  description: "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
   openGraph: {
     title: "CONDUENCE. Agents that trade like you",
-    description:
-      "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
+    description: "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
   },
 };
 
