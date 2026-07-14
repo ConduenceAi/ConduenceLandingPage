@@ -9,12 +9,13 @@ import { ComputationalConviction } from "@/components/landing/ComputationalConvi
 import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
 
 export const metadata: Metadata = {
-  title: "CONDUENCE. AI agents that think with you",
+  title: "CONDUENCE. Agents that trade like you",
   description:
-    "Prediction market orchestration at whale speed. Drag and drop agents, tools, and Mind Agents, with you in control.",
+    "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
   openGraph: {
-    title: "CONDUENCE. AI agents that think with you",
-    description: "Prediction market orchestration at whale speed, human in the loop.",
+    title: "CONDUENCE. Agents that trade like you",
+    description:
+      "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
   },
 };
 

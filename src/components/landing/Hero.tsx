@@ -48,7 +48,7 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
           className="text-body-fluid mt-5 max-w-xl bg-transparent leading-relaxed text-black/70 sm:mt-8"
         >
-          Orchestrate AI agents that learn your perspective, mirror your reasoning, from your voice.
+          Orchestrate AI agents that learn your perspective, mirror your reasoning.
         </motion.p>
       </div>
     </section>

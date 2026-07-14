@@ -18,15 +18,21 @@ const display = Playfair_Display({
   display: "swap",
 });
 
-const ogImage =
-  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ed46baa3-270e-4643-94be-75c1e06cdac6/id-preview-44fc04e7--f27dad1e-1bc7-4ac4-b39e-deaf67c3a1bf.lovable.app-1781295377573.png";
+const ogImage = {
+  url: "/og.jpg",
+  width: 1024,
+  height: 568,
+  alt: "CONDUENCE — Agents that trade like you",
+};
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.conduence.xyz"),
   title: {
     default: "CONDUENCE",
     template: "%s | CONDUENCE",
   },
-  description: "AI agents that think with you.",
+  description:
+    "Orchestrate AI agents that learn your perspective, mirror your reasoning, from   your voice.",
   icons: {
     icon: [
       { url: "/favicon-dark.png", media: "(prefers-color-scheme: light)" },
@@ -36,16 +42,18 @@ export const metadata: Metadata = {
     apple: "/favicon-dark.png",
   },
   openGraph: {
-    title: "CONDUENCE",
-    description: "AI agents that think with you.",
+    title: "CONDUENCE. Agents that trade like you",
+    description:
+      "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
     type: "website",
     images: [ogImage],
   },
   twitter: {
-    card: "summary",
-    title: "CONDUENCE",
-    description: "AI agents that think with you.",
-    images: [ogImage],
+    card: "summary_large_image",
+    title: "CONDUENCE. Agents that trade like you",
+    description:
+      "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
+    images: [ogImage.url],
   },
 };
 
