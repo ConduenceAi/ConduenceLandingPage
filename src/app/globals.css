@@ -30,7 +30,7 @@
   --color-cyan: var(--cyan);
   --color-cyan-glow: var(--cyan-glow);
   --color-ink: var(--ink);
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-display), Georgia, "Times New Roman", serif;
   --font-display: var(--font-display), Georgia, "Times New Roman", serif;
 }
 
@@ -100,7 +100,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
     -webkit-font-smoothing: antialiased;
   }
 }
@@ -118,7 +118,7 @@
 
 /* Fluid type & spacing — scales smoothly from phone to large desktop */
 @utility text-display-hero {
-  font-size: clamp(2.5rem, 6.5vw + 0.75rem, 6.25rem);
+  font-size: clamp(2.25rem, 6.5vw + 0.5rem, 6.25rem);
 }
 
 @utility text-display-section {
@@ -138,19 +138,56 @@
 }
 
 @utility text-display-pillar {
-  font-size: clamp(1.625rem, 2.5vw + 0.75rem, 3rem);
+  font-size: clamp(1.5rem, 2.5vw + 0.65rem, 3rem);
+}
+
+/* Section headlines (SharedEdge, TheProblem, Pillars intro) */
+@utility text-display-lede {
+  font-size: clamp(1.5rem, 3.6vw + 0.4rem, 3.5rem);
+}
+
+/* Block / card titles */
+@utility text-heading-block {
+  font-size: clamp(1.25rem, 1.4vw + 0.85rem, 2rem);
 }
 
 @utility text-body-fluid {
-  font-size: clamp(0.9375rem, 0.35vw + 0.875rem, 1.125rem);
+  font-size: clamp(0.875rem, 0.35vw + 0.8rem, 1.125rem);
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+}
+
+@utility text-body-large {
+  font-size: clamp(0.95rem, 0.55vw + 0.8rem, 1.25rem);
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+}
+
+@utility text-body-callout {
+  font-size: clamp(0.82rem, 0.25vw + 0.75rem, 0.95rem);
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+}
+
+@utility text-kicker {
+  font-size: clamp(0.5625rem, 0.15vw + 0.5rem, 0.625rem);
 }
 
 @utility py-section {
-  padding-block: clamp(4rem, 10vw, 10rem);
+  padding-block: clamp(3.5rem, 10vw, 10rem);
+}
+
+@utility py-section-tight {
+  padding-block: clamp(3.25rem, 8vw, 7.5rem);
 }
 
 @utility px-section {
   padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+@utility gap-section {
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+@utility media-frame {
+  max-width: min(100%, clamp(18rem, 55vw, 42rem));
 }
 
 /* Computational Conviction — ambient grid drift & logo breathe */
@@ -164,26 +201,12 @@
   }
 }
 
-@keyframes cc-logo-breathe {
-  0%,
-  100% {
-    filter: blur(18px);
-  }
-  50% {
-    filter: blur(22px);
-  }
-}
-
 .cc-grid-drift {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.55) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.55) 1px, transparent 1px);
   background-size: 64px 64px;
   animation: cc-grid-drift 18s ease-in-out infinite;
-}
-
-.cc-logo-breathe {
-  animation: cc-logo-breathe 10s ease-in-out infinite;
 }
 
 /* Voice orb — ember aurora sphere (matches Conduence voice-orb.js) */

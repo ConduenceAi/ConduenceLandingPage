@@ -3,8 +3,6 @@
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 
-import { logoWhiteSrc } from "@/lib/assets";
-
 const SCROLL_VH = 4.2;
 
 const SECTION_X = "clamp(1rem,4vw,2.5rem)";
@@ -235,19 +233,6 @@ export function ComputationalConviction() {
           aria-hidden="true"
         />
 
-        <div
-          className="pointer-events-none absolute left-1/2 top-[42%] z-20 -translate-x-1/2 -translate-y-1/2"
-          aria-hidden="true"
-        >
-          <img
-            src={logoWhiteSrc}
-            alt=""
-            draggable={false}
-            className="cc-logo-breathe h-[clamp(2.5rem,5vw,3.75rem)] w-auto select-none"
-            style={{ opacity: mapRange(progress, 0, 0.1, 0.35, 0.88) }}
-          />
-        </div>
-
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <p
             className={`absolute text-[clamp(3.5rem,16vw,12rem)] uppercase leading-none tracking-[-0.05em] text-white ${DISPLAY}`}
@@ -279,20 +264,18 @@ export function ComputationalConviction() {
             }}
           >
             <h2
-              className={`text-balance text-[clamp(1.8rem,4.5vw+0.45rem,4.95rem)] uppercase leading-[0.9] tracking-[-0.03em] text-white ${DISPLAY}`}
+              className="text-display-cta text-balance font-display leading-[1.05] tracking-tight text-white"
               style={{
-                fontWeight: 900,
                 opacity: ch1HeadlineOpacity,
                 transform: `translateY(${ch1HeadlineY}px)`,
               }}
             >
-              Don&apos;t be a follower,{" "}
-              <span className="text-[0.8em] [word-spacing:0.18em] sm:whitespace-nowrap">
-                Be the signal others copy.
-              </span>
+              Don&apos;t be a follower,
+              <br />
+              <span className="text-white/40">Be the signal others copy.</span>
             </h2>
             <p
-              className="mt-6 max-w-2xl text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed text-white/55 sm:mt-8"
+              className="mt-6 max-w-2xl text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed text-white/85 sm:mt-8"
               style={{
                 opacity: ch1BodyOpacity,
                 transform: `translateY(${ch1BodyY}px)`,
@@ -312,29 +295,21 @@ export function ComputationalConviction() {
               transform: `translateY(${ch2Y}px)`,
             }}
           >
-            <p
-              className={`text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] uppercase tracking-[0.28em] text-white/45 ${DISPLAY}`}
-              style={{ fontWeight: 400 }}
-            >
+            <p className="text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] uppercase tracking-[0.28em] text-white/45 [font-family:var(--font-display),Georgia,serif]">
               Turn strategies into
             </p>
-            <p
-              className={`mt-4 text-[clamp(1.35rem,2.8vw+0.45rem,3.75rem)] leading-[0.95] tracking-[-0.03em] ${DISPLAY}`}
-            >
-              <span className="text-white/70" style={{ fontWeight: 400 }}>
+            <p className="mt-4 text-[clamp(1.5rem,3vw+0.4rem,3.5rem)] leading-[1.05] tracking-tight [font-family:var(--font-display),Georgia,serif]">
+              <span className="text-white/55" style={{ fontWeight: 400 }}>
                 fully independent{" "}
               </span>
               <span className="text-white" style={{ fontWeight: autonomousWeight }}>
                 autonomous
               </span>
             </p>
-            <p
-              className={`mt-2 text-[clamp(2rem,5vw+0.45rem,4.25rem)] leading-[0.95] tracking-[-0.03em] text-white ${DISPLAY}`}
-              style={{ fontWeight: 900 }}
-            >
+            <p className="text-display-cta mt-2 font-display leading-[1.05] tracking-tight text-white">
               market actors.
             </p>
-            <p className="mt-6 font-mono text-[10px] tracking-[0.32em] text-white/38 sm:text-[16px] lg:text-[24px]">
+            <p className="mt-[clamp(1rem,2vw,1.5rem)] font-mono text-[clamp(0.625rem,1.5vw+0.4rem,1.5rem)] tracking-[0.32em] text-white/38">
               <span className="whitespace-nowrap">No code.</span>
             </p>
           </EditorialType>
@@ -345,16 +320,15 @@ export function ComputationalConviction() {
             style={{ opacity: ch3Opacity }}
           >
             <p
-              className={`max-w-3xl text-balance text-[clamp(1.75rem,4.2vw+0.5rem,4.75rem)] leading-[1.08] tracking-tight text-white ${DISPLAY}`}
+              className="text-display-cta max-w-3xl text-balance font-display leading-[1.05] tracking-tight text-white"
               style={{
-                fontWeight: 900,
                 opacity: ch3HeadlineOpacity,
                 transform: `scale(${ch3HeadlineScale})`,
               }}
             >
               Many strategies.
               <br />
-              One mind.
+              <span className="text-white/40">One mind.</span>
             </p>
             <ScatteringTraderLine scatter={traderScatter} />
           </EditorialType>

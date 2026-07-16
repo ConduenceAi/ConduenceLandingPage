@@ -5,53 +5,59 @@ import { useRef } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const BLOCKS = [
+const CONTRAST = [
   {
-    title: "Belief map.",
-    body: "Conduence helps traders encode how they believe real world events move markets. Agents follow that map, not a generic model’s guess.",
-    callout:
-      "Two agents. One question. Same answer, because both read from the belief map you authored, not from a model inventing its own.",
+    title: "Shared skill compounds.",
+    body: "A better coding model makes everyone ship faster. There is no counterparty absorbing the gain. Progress scales because the work is not a fight over a fixed pie.",
   },
   {
-    title: "Edge wired.",
-    body: "Agents fuse your map with lightning fast news on world events, so every move is filtered through how you actually think markets respond.",
-    callout:
-      "A rate cut headline drops at 2:14pm. Your agent doesn’t just summarize it. It checks your event graph, weights the paths you care about, and acts inside your caps.",
+    title: "Shared skill cancels out.",
+    body: "Every profitable trade has someone on the other side. Edge is relative. When the same intelligence is available to everyone, the advantage is not amplified. It is competed away.",
   },
 ] as const;
 
-export function TheProblem() {
+export function SharedEdge() {
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef, { once: true, amount: 0.25 });
+  const inView = useInView(sectionRef, { once: true, amount: 0.28 });
 
   return (
     <section
       ref={sectionRef}
-      id="the-problem"
+      id="shared-edge"
       className="relative overflow-hidden bg-white px-[5%] py-section text-black"
-      aria-label="The problem Conduence solves"
+      aria-label="Why a universal trading model cannot succeed"
     >
       <div className="mx-auto max-w-[1480px]">
         <div className="text-left xl:mx-auto xl:max-w-[58rem] xl:text-center">
+          <motion.p
+            className="text-kicker mb-[clamp(1rem,2vw,1.5rem)] font-mono uppercase tracking-[0.34em] text-black/45"
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
+            The supermodel trap
+          </motion.p>
+
           <motion.h2
             className="text-display-lede max-w-[min(36rem,100%)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] md:max-w-[48rem] xl:mx-auto xl:max-w-none"
-            aria-label="Every trading agent decides without your beliefs."
+            aria-label="A model that trades for everyone trades for no one."
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            Every trading agent decides
-            <span className="italic text-black/55"> without your </span>
-            beliefs.
+            A model that trades for everyone
+            <span className="italic text-black/55"> trades for </span>
+            no one.
           </motion.h2>
+
           <motion.p
             className="text-body-large mt-[clamp(1rem,2vw,1.5rem)] max-w-[min(42rem,100%)] leading-relaxed text-black/85 xl:mx-auto xl:max-w-[46rem]"
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
-            Conduence turns your trading mind into the source of truth agents read from, so edge
-            comes from how you think, running at agent speed.
+            The roadmap that works for coding agents ends at the market. Trading is not a skill you
+            can simply distribute. It is a contest over scarce opportunity. The market does not reward a public oracle. It prices it in, then erases it.
           </motion.p>
         </div>
 
@@ -59,7 +65,7 @@ export function TheProblem() {
           <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-black/8 lg:block" />
 
           <div className="grid lg:grid-cols-2">
-            {BLOCKS.map((block, index) => (
+            {CONTRAST.map((block, index) => (
               <motion.article
                 key={block.title}
                 initial={{ opacity: 0, y: 22 }}
@@ -73,19 +79,12 @@ export function TheProblem() {
                 <div className="pointer-events-none absolute right-0 bottom-0 h-[clamp(0.4rem,0.8vw,0.5rem)] w-[clamp(0.4rem,0.8vw,0.5rem)] translate-x-1/2 translate-y-1/2 bg-black/18" />
 
                 <div className="relative mx-auto w-full max-w-lg text-left">
-                  <h3 className="text-heading-block font-medium leading-tight tracking-[-0.035em] text-black [font-family:var(--font-display),Georgia,serif]">
+                  <h3 className="text-heading-block font-normal leading-tight tracking-[-0.035em] text-black [font-family:var(--font-display),Georgia,serif]">
                     {block.title}
                   </h3>
-
                   <p className="text-body-fluid mt-[clamp(0.85rem,1.5vw,1rem)] leading-relaxed text-black/85">
                     {block.body}
                   </p>
-
-                  <div className="mt-[clamp(1.25rem,2.5vw,1.75rem)] border-l border-black/15 pl-[clamp(0.85rem,1.5vw,1rem)]">
-                    <p className="text-body-callout italic leading-relaxed text-black/80">
-                      {block.callout}
-                    </p>
-                  </div>
                 </div>
               </motion.article>
             ))}

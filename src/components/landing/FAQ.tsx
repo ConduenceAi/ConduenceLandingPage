@@ -11,10 +11,10 @@ const FAQ_ITEMS = [
   {
     question: "What is Conduence?",
     answer:
-      "Conduence is a voice-first platform for building, training, and orchestrating AI trading agents. It helps you move from market understanding to action without stitching together disconnected tools.",
+      "Conduence is a voice first platform for building, training, and orchestrating AI trading agents. It helps you move from market understanding to action without stitching together disconnected tools.",
   },
   {
-    question: "Why not just use a chatbot or copy-trading tool?",
+    question: "Why not just use a chatbot or copy trading tool?",
     answer:
       "Chatbots can answer questions, but they do not hold your market framework, manage workflows, or stay accountable to a decision process. Copy trading is even further removed. Conduence is built to preserve your reasoning and turn it into repeatable execution.",
   },
@@ -36,7 +36,7 @@ const FAQ_ITEMS = [
   {
     question: "Can I stay in control of trades?",
     answer:
-      "Yes. Conduence is built around human control, not black-box automation. You can review outputs, adjust rules, intervene when needed, and decide how much authority each workflow should have.",
+      "Yes. Conduence is built around human control, not black box automation. You can review outputs, adjust rules, intervene when needed, and decide how much authority each workflow should have.",
   },
 ] as const;
 
@@ -167,11 +167,13 @@ export function FAQ() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: 0.08, ease: EASE }}
             >
-              <span className="block font-display font-black text-white">Frequently</span>
-              <span className="mt-1 block font-sans text-[0.92em] font-light text-white/88">
+              <span className="block font-normal tracking-[-0.04em] text-white [font-family:var(--font-display),Georgia,serif]">
+                Frequently
+              </span>
+              <span className="mt-1 block text-[0.92em] font-normal text-white/88">
                 asked
               </span>
-              <span className="mt-1 block font-sans text-[0.92em] font-light italic text-white/72">
+              <span className="mt-1 block text-[0.92em] font-normal italic text-white/72">
                 questions
               </span>
             </motion.h2>

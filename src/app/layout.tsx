@@ -22,7 +22,7 @@ const ogImage = {
   url: "/og.jpg",
   width: 1024,
   height: 568,
-  alt: "CONDUENCE — Agents that trade like you",
+  alt: "CONDUENCE. Agents that trade like you",
 };
 
 export const metadata: Metadata = {

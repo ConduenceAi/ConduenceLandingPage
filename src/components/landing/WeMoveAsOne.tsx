@@ -19,7 +19,7 @@ const COMPOUNDING_STEPS = [
   },
   {
     label: "Year 1",
-    body: "It knows your trading mind better than you do.",
+    body: "It is a version of you. Same mind, same instincts.",
   },
 ] as const;
 
@@ -34,33 +34,34 @@ export function WeMoveAsOne() {
       className="relative flex h-svh min-h-svh overflow-hidden bg-white px-[5%] text-black"
       aria-label="Reasoning that compounds over time"
     >
-      <div className="mx-auto flex h-full w-full max-w-[1480px] flex-col justify-center gap-8 py-[clamp(5rem,11vh,7.5rem)] sm:gap-10">
+      <div className="mx-auto flex h-full w-full max-w-[1480px] flex-col justify-center gap-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(4rem,11vh,7.5rem)]">
         <motion.h2
-          className="mx-auto max-w-[20ch] text-center text-[clamp(1.75rem,4vw+0.35rem,3.5rem)] font-medium leading-[1.15] tracking-[-0.03em] text-balance [font-family:var(--font-display),Georgia,serif] sm:max-w-[24ch]"
+          className="text-display-lede mx-auto max-w-full text-center font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
           aria-label="I am your reasoning and your perception, scaled past every limit."
           initial={{ opacity: 0, y: 18 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.85, ease: EASE }}
         >
-          I am your <span className="font-black tracking-[-0.038em]">reasoning</span>
-          <span className="font-normal italic text-black/55"> and your </span>
-          <span className="font-black tracking-[-0.038em]">perception,</span>
-          <span className="font-normal italic text-black/42"> scaled past every limit.</span>
+          <span className="block">
+            I am your reasoning
+            <span className="italic text-black/55"> and your </span>
+          </span>
+          <span className="block">perception, scaled past every limit.</span>
         </motion.h2>
 
-        <div className="grid gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
+        <div className="grid gap-[clamp(0.85rem,2vw,1.5rem)] sm:grid-cols-3">
           {COMPOUNDING_STEPS.map((step, index) => (
             <motion.article
               key={step.label}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.7, delay: 0.2 + index * 0.1, ease: EASE }}
-              className="rounded-xl border border-black/8 bg-white px-6 py-8 text-center sm:px-7 sm:py-10 lg:px-8 lg:py-11"
+              className="rounded-xl border border-black/8 bg-white px-[clamp(1.15rem,2.5vw,2rem)] py-[clamp(1.5rem,3.5vw,2.75rem)] text-center"
             >
-              <h3 className="font-display text-[clamp(1.85rem,3.5vw,2.5rem)] leading-none tracking-[-0.04em] text-black">
+              <h3 className="font-display text-[clamp(1.5rem,3.2vw,2.5rem)] leading-none tracking-[-0.04em] text-black">
                 {step.label}
               </h3>
-              <p className="mx-auto mt-4 max-w-[22ch] text-[0.95rem] leading-relaxed text-black/55 sm:mt-5 sm:text-[1.05rem]">
+              <p className="text-body-fluid mx-auto mt-[clamp(0.85rem,1.8vw,1.25rem)] max-w-[22ch] leading-relaxed text-black/85">
                 {step.body}
               </p>
             </motion.article>

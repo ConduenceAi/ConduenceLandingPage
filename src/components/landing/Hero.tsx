@@ -28,7 +28,7 @@ export function Hero() {
           }}
         />
       </div>
-      <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center bg-transparent px-section pb-6 pt-20 text-center sm:min-h-screen sm:pb-0 sm:pt-32">
+      <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center bg-transparent px-section pb-[clamp(1rem,2vw,1.5rem)] pt-[clamp(4.5rem,10vw,8rem)] text-center sm:min-h-screen sm:pb-0">
         <motion.h1
           initial={false}
           animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export function Hero() {
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
-          className="text-body-fluid mt-5 max-w-xl bg-transparent leading-relaxed text-black/70 sm:mt-8"
+          className="text-body-large mt-[clamp(1rem,2.5vw,2rem)] max-w-xl bg-transparent leading-relaxed text-black/88"
         >
           Orchestrate AI agents that learn your perspective, mirror your reasoning.
         </motion.p>

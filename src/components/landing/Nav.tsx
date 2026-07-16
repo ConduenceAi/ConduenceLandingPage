@@ -10,11 +10,11 @@ export function Nav() {
   };
 
   return (
-    <header className="fixed top-5 left-0 right-0 z-50 flex items-center justify-center px-4 sm:px-8 pointer-events-none">
+    <header className="pointer-events-none fixed top-[clamp(0.85rem,2vw,1.25rem)] left-0 right-0 z-50 flex items-center justify-center px-[clamp(1rem,3vw,2rem)]">
       <a
         href="#top"
         onClick={scrollToTop}
-        className="pointer-events-auto relative flex h-11 items-center justify-center px-3 py-1 sm:h-12 sm:px-4 sm:py-1 md:h-14"
+        className="pointer-events-auto relative flex h-[clamp(2.5rem,5vw,3.5rem)] items-center justify-center px-[clamp(0.65rem,1.5vw,1rem)] py-1"
         aria-label="Scroll to top"
       >
         <span
