@@ -170,9 +170,7 @@ export function FAQ() {
               <span className="block font-normal tracking-[-0.04em] text-white [font-family:var(--font-display),Georgia,serif]">
                 Frequently
               </span>
-              <span className="mt-1 block text-[0.92em] font-normal text-white/88">
-                asked
-              </span>
+              <span className="mt-1 block text-[0.92em] font-normal text-white/88">asked</span>
               <span className="mt-1 block text-[0.92em] font-normal italic text-white/72">
                 questions
               </span>

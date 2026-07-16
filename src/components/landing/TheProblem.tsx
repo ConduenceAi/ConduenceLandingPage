@@ -66,7 +66,9 @@ export function TheProblem() {
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
                 transition={{ duration: 0.7, delay: 0.12 + index * 0.1, ease: EASE }}
                 className={`relative flex border-black/8 py-[clamp(2rem,4vw,3.5rem)] ${
-                  index === 0 ? "lg:pr-[clamp(1.5rem,3vw,3rem)]" : "border-t lg:border-t-0 lg:pl-[clamp(1.5rem,3vw,3rem)]"
+                  index === 0
+                    ? "lg:pr-[clamp(1.5rem,3vw,3rem)]"
+                    : "border-t lg:border-t-0 lg:pl-[clamp(1.5rem,3vw,3rem)]"
                 }`}
               >
                 <div className="pointer-events-none absolute left-0 top-0 h-[clamp(0.4rem,0.8vw,0.5rem)] w-[clamp(0.4rem,0.8vw,0.5rem)] -translate-x-1/2 -translate-y-1/2 bg-black/18" />
