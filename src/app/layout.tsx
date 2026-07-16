@@ -34,12 +34,31 @@ export const metadata: Metadata = {
   description:
     "Orchestrate AI agents that learn your perspective, mirror your reasoning, from your voice.",
   icons: {
+    // SVG follows system/browser light|dark theme. PNGs are fallbacks for older clients.
+    // Naming: favicon-dark = black mark (for light UI); favicon-light = white mark (for dark UI).
     icon: [
-      { url: "/favicon-dark.png", media: "(prefers-color-scheme: light)" },
-      { url: "/favicon-light.png", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      {
+        url: "/favicon-dark.png",
+        type: "image/png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-light.png",
+        type: "image/png",
+        media: "(prefers-color-scheme: dark)",
+      },
     ],
-    shortcut: "/favicon.ico",
-    apple: "/favicon-dark.png",
+    apple: [
+      {
+        url: "/favicon-dark.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-light.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
   },
   openGraph: {
     title: "CONDUENCE. Agents that trade like you",
