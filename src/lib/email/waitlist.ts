@@ -1,16 +1,6 @@
-const CONTACT_EMAIL = "contact@conduence.xyz";
-
 const BODY_FONT_SIZE = "14px";
 const BODY_LINE_HEIGHT = "1.5";
 const SECONDARY_FONT_SIZE = "12px";
-
-function getSiteUrl() {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    process.env.SITE_URL ??
-    "https://conduence.xyz"
-  ).replace(/\/$/, "");
-}
 
 function personalEmailShell(content: string, preheader: string) {
   return `<!DOCTYPE html>
@@ -35,34 +25,17 @@ function personalEmailShell(content: string, preheader: string) {
 </html>`;
 }
 
-function link(href: string, label: string) {
-  return `<a href="${href}" style="color: #2563eb; text-decoration: none; font-size: ${BODY_FONT_SIZE};">${label}</a>`;
-}
-
 function paragraph(content: string, margin = "0 0 16px") {
   return `<p style="margin: ${margin}; font-size: ${BODY_FONT_SIZE}; line-height: ${BODY_LINE_HEIGHT};">${content}</p>`;
 }
 
 export function buildWaitlistWelcomeEmail() {
-  const siteUrl = getSiteUrl();
-
   const text = `Hey,
 
 My name is Sarthak. I'm building Conduence.
 
 We started Conduence because we wanted a better way to trade prediction markets with AI agents.
-A unified platform where your agents think with you, and just work.
-
-Here are 3 things to explore while you wait.
-
-1. Agent Studio
-${siteUrl}/#pillars
-
-2. Mind Mesh
-${siteUrl}/#pillars
-
-3. Contact us
-mailto:${CONTACT_EMAIL}
+A platform where traders can orchestrate AI agents that learn their perspective and mirror their reasoning.
 
 P.S.: Why did you sign up? What brought you here?
 
@@ -77,12 +50,8 @@ Sarthak`;
       ${paragraph("My name is Sarthak. I'm building Conduence.")}
       ${paragraph(
         `We started Conduence because we wanted a better way to trade prediction markets with AI agents.<br />
-        A unified platform where your agents think with you, and <em>just work</em>.`,
+        A platform where traders can orchestrate AI agents that learn their perspective and mirror their reasoning.`,
       )}
-      ${paragraph("Here are 3 things to explore while you wait.", "0 0 10px")}
-      ${paragraph(link(`${siteUrl}/#pillars`, "Agent Studio"), "0 0 6px")}
-      ${paragraph(link(`${siteUrl}/#pillars`, "Mind Mesh"), "0 0 6px")}
-      ${paragraph(link(`mailto:${CONTACT_EMAIL}`, "Contact us"), "0 0 16px")}
       ${paragraph("<strong>P.S.: Why did you sign up? What brought you here?</strong>")}
       ${paragraph('Hit "Reply" and let me know. I read and reply to every email.')}
       <p style="margin: 0; font-size: ${BODY_FONT_SIZE}; line-height: ${BODY_LINE_HEIGHT};">
