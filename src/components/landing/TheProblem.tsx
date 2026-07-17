@@ -7,13 +7,13 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const BLOCKS = [
   {
-    title: "Belief map.",
+    title: "Map the Mind.",
     body: "Conduence helps traders encode how they believe real world events move markets. Agents follow that map, not a generic model’s guess.",
     callout:
       "Two agents. One question. Same answer, because both read from the belief map you authored, not from a model inventing its own.",
   },
   {
-    title: "Edge wired.",
+    title: "Edge in motion.",
     body: "Agents fuse your map with lightning fast news on world events, so every move is filtered through how you actually think markets respond.",
     callout:
       "A rate cut headline drops at 2:14pm. Your agent doesn’t just summarize it. It checks your event graph, weights the paths you care about, and acts inside your caps.",
@@ -50,8 +50,8 @@ export function TheProblem() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
-            Conduence turns your trading mind into the source of truth agents read from, so edge
-            comes from how you think, running at agent speed.
+            Conduence turns your trading mind into the source of truth that agents read from, so
+            edge comes from how you think, running at agent speed.
           </motion.p>
         </div>
 

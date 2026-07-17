@@ -264,7 +264,7 @@ export function ComputationalConviction() {
             }}
           >
             <h2
-              className="text-display-cta text-balance font-display leading-[1.05] tracking-tight text-white"
+              className="text-display-cta font-display leading-[1.05] tracking-tight text-white"
               style={{
                 opacity: ch1HeadlineOpacity,
                 transform: `translateY(${ch1HeadlineY}px)`,
@@ -272,7 +272,7 @@ export function ComputationalConviction() {
             >
               Don&apos;t be a follower,
               <br />
-              <span className="text-white/40">Be the signal others copy.</span>
+              <span className="whitespace-nowrap text-white/40">Be the signal others copy.</span>
             </h2>
             <p
               className="mt-6 max-w-2xl text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed text-white/85 sm:mt-8"
@@ -309,7 +309,7 @@ export function ComputationalConviction() {
             <p className="text-display-cta mt-2 font-display leading-[1.05] tracking-tight text-white">
               market actors.
             </p>
-            <p className="mt-[clamp(1rem,2vw,1.5rem)] font-mono text-[clamp(0.625rem,1.5vw+0.4rem,1.5rem)] tracking-[0.32em] text-white/38">
+            <p className="mt-[clamp(1rem,2vw,1.5rem)] text-[clamp(0.625rem,1.5vw+0.4rem,1.5rem)] tracking-[0.32em] text-white/38 [font-family:var(--font-display),Georgia,serif]">
               <span className="whitespace-nowrap">No code.</span>
             </p>
           </EditorialType>

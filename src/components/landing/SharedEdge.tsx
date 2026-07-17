@@ -7,11 +7,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const CONTRAST = [
   {
-    title: "Shared skill compounds.",
+    title: "Coding lifts all.",
     body: "A better coding model makes everyone ship faster. There is no counterparty absorbing the gain. Progress scales because the work is not a fight over a fixed pie.",
   },
   {
-    title: "Shared skill cancels out.",
+    title: "Market zeros out.",
     body: "Every profitable trade has someone on the other side. Edge is relative. When the same intelligence is available to everyone, the advantage is not amplified. It is competed away.",
   },
 ] as const;
@@ -56,9 +56,9 @@ export function SharedEdge() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
-            The roadmap that works for coding agents ends at the market. Trading is not a skill you
-            can simply distribute. It is a contest over scarce opportunity. The market does not
-            reward a public oracle. It prices it in, then erases it.
+            The approach that works for coding agents struggles at the market. Trading is not a
+            skill you can simply distribute. It is a contest over scarce opportunity. The market
+            does not reward a public oracle. It prices it in, then erases it.
           </motion.p>
         </div>
 
