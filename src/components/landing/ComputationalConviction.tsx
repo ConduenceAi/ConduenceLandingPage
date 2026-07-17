@@ -200,14 +200,16 @@ export function ComputationalConviction() {
         ? mapRange(progress, 0.3, 0.4, 0, 1)
         : progress < 0.62
           ? 1
-          : mapRange(progress, 0.62, 0.72, 1, 0.06);
-  const ch2Y = progress < 0.62 ? 0 : progress < 0.72 ? mapRange(progress, 0.62, 0.72, 0, -72) : -72;
+          : progress < 0.68
+            ? mapRange(progress, 0.62, 0.68, 1, 0)
+            : 0;
+  const ch2Y = progress < 0.62 ? 0 : progress < 0.68 ? mapRange(progress, 0.62, 0.68, 0, -72) : -72;
   const autonomousWeight = weightFromProgress(
     progress < 0.4 ? 0 : progress < 0.62 ? mapRange(progress, 0.4, 0.62, 0, 1) : 1,
   );
 
   const ch3Opacity =
-    progress < 0.62 ? 0 : progress < 0.72 ? mapRange(progress, 0.62, 0.72, 0, 1) : 1;
+    progress < 0.66 ? 0 : progress < 0.76 ? mapRange(progress, 0.66, 0.76, 0, 1) : 1;
 
   const traderScatter = mapRange(progress, 0.74, 1, 0, 1);
   const ch3HeadlineOpacity = progress < 0.9 ? 1 : mapRange(progress, 0.9, 1, 1, 0.92);
@@ -292,6 +294,7 @@ export function ComputationalConviction() {
             style={{
               right: SECTION_X,
               opacity: ch2Opacity,
+              visibility: ch2Opacity === 0 ? "hidden" : "visible",
               transform: `translateY(${ch2Y}px)`,
             }}
           >
