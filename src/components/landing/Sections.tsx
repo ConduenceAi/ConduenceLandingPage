@@ -11,11 +11,11 @@ import { CubeAssembly } from "@/components/landing/CubeAssembly";
 const REASONING_ITEMS = [
   {
     title: "Mind Mesh",
-    body: "Use voice to interact with your second brain, explore opportunities, monitor workflows, and deploy AI agents through natural commands instead of manual coordination.",
+    body: "Use voice to interact with your second brain, Brainstorm with AI agents that already know how you think. Stress-test ideas, sharpen your thesis, and lock the final version into agent memory so it compounds across every future decision.",
   },
   {
     title: "One surface for every tool",
-    body: "Bring research inputs, market data, execution surfaces, and the tools you already rely on into one place, so your agents can operate with the full context at their fingertips.",
+    body: "Brought research inputs, market data, execution surfaces, and the tools you already rely on into one place, so your agents can operate with the full context at their fingertips.",
   },
   {
     title: "Logic that compounds",

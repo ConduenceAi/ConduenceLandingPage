@@ -16,7 +16,7 @@ const BLOCKS = [
     title: "Edge in motion.",
     body: "Agents fuse your map with lightning fast news on world events, so every move is filtered through how you actually think markets respond.",
     callout:
-      "A rate cut headline drops at 2:14pm. Your agent doesn’t just summarize it. It checks your event graph, weights the paths you care about, and acts inside your caps.",
+      "A rate cut headline drops at 2:14pm. Your agent doesn’t just summarize it. It checks mind mesh, weights the paths you care about, and acts inside your caps.",
   },
 ] as const;
 
