@@ -41,7 +41,7 @@ const pillars: Pillar[] = [
   },
   {
     title: "Connectors",
-    body: "Connect Telegram and Discord to your workflow. Get trade signals and event alerts where you already are, so you can take command while away from the dashboard. When your agent finds an opportunity, verify it and execute in one tap. You stay in full control.",
+    body: "Both modes travel with you. Keep full command: agents reach you on Telegram or Discord so you can verify and execute in one tap, or speak a rule and they obey. Or grant autonomy: agents keep watch on twenty four hour markets and act with rational decisions inside your rules while you are away. Your judgment stays the source of truth either way.",
     image: featConnectorsSrc,
   },
   {

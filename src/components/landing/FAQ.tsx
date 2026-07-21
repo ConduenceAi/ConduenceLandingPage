@@ -26,7 +26,7 @@ const FAQ_ITEMS = [
   {
     question: "What makes Conduence different?",
     answer:
-      "Instead of giving you a single assistant, Conduence lets you orchestrate systems of agents. You can train them on your reasoning, connect them to tools, monitor their decision path, and stay in control of execution.",
+      "Instead of giving you a single assistant, Conduence lets you orchestrate systems of agents. You train them on your reasoning, connect them to tools, monitor their decision path, and choose how much authority they hold: full command, or autonomous action inside your rules.",
   },
   {
     question: "Do I need to know how to code?",
@@ -34,9 +34,9 @@ const FAQ_ITEMS = [
       "No. Conduence is being designed so you can build workflows, train agents, and coordinate execution through voice and visual interfaces rather than writing code from scratch.",
   },
   {
-    question: "Can I stay in control of trades?",
+    question: "Is it fully automatic, or do I stay in full control?",
     answer:
-      "Yes. Conduence is built around human control, not black box automation. You can review outputs, adjust rules, intervene when needed, and decide how much authority each workflow should have.",
+      "Both. You choose the authority for each workflow. Keep full command: review outputs, approve trades, intervene by voice, and set hard guardrails. Or let agents act autonomously with rational decisions inside the belief map and rules you authored. Same mind either way. Not a black box.",
   },
 ] as const;
 

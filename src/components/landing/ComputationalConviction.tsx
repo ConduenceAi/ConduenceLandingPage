@@ -312,7 +312,7 @@ export function ComputationalConviction() {
             <p className="text-display-cta mt-2 font-display leading-[1.05] tracking-tight text-white">
               market actors.
             </p>
-            <p className="mt-[clamp(1rem,2vw,1.5rem)] text-[clamp(0.625rem,1.5vw+0.4rem,1.5rem)] tracking-[0.32em] text-white/38 [font-family:var(--font-display),Georgia,serif]">
+            <p className="mt-6 font-mono text-[10px] tracking-[0.32em] text-white/38 sm:text-[16px] lg:text-[24px]">
               <span className="whitespace-nowrap">No code.</span>
             </p>
           </EditorialType>

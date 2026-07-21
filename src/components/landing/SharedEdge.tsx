@@ -25,7 +25,7 @@ export function SharedEdge() {
       ref={sectionRef}
       id="shared-edge"
       className="relative overflow-hidden bg-white px-[5%] py-section text-black"
-      aria-label="Why a universal trading model cannot succeed"
+      aria-label="Why a public trading strategy cannot succeed at scale"
     >
       <div className="mx-auto max-w-[1480px]">
         <div className="text-left xl:mx-auto xl:max-w-[58rem] xl:text-center">
@@ -35,17 +35,17 @@ export function SharedEdge() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            The supermodel trap
+            The shared edge trap
           </motion.p>
 
           <motion.h2
             className="text-display-lede max-w-[min(36rem,100%)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] md:max-w-[48rem] xl:mx-auto xl:max-w-none"
-            aria-label="A model that trades for everyone trades for no one."
+            aria-label="A strategy that trades for everyone trades for no one."
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            A model that trades for everyone
+            A strategy that trades for everyone
             <span className="italic text-black/55"> trades for </span>
             no one.
           </motion.h2>
@@ -57,8 +57,9 @@ export function SharedEdge() {
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
             The approach that works for coding agents struggles at the market. Trading is not a
-            skill you can simply distribute. It is a contest over scarce opportunity. The market
-            does not reward a public oracle. It prices it in, then erases it.
+            skill you can simply distribute. Once a strategy is public, whether copy trading, a
+            prebuilt parlay, or shared “insider” flow, a growing userbase crowds the same alpha
+            until first come first serve takes it away.
           </motion.p>
         </div>
 
