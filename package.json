@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "format": "prettier --write ."
+    "lint": "eslint ."
   },
+
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
@@ -29,11 +29,8 @@
     "@types/three": "^0.185.0",
     "eslint": "^9.32.0",
     "eslint-config-next": "^15.3.3",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^15.15.0",
-    "prettier": "^3.7.3",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1"
