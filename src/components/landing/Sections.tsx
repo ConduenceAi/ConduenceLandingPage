@@ -11,7 +11,7 @@ import { CubeAssembly } from "@/components/landing/CubeAssembly";
 const REASONING_ITEMS = [
   {
     title: "Mind Mesh",
-    body: "Use voice to interact with your second brain, Brainstorm with AI agents that already know how you think. Stress-test ideas, sharpen your thesis, and lock the final version into agent memory so it compounds across every future decision.",
+    body: "Use voice to interact with your second brain, Brainstorm with agents that already know your perspective. Stress-test ideas, sharpen your thesis, and lock the final version into agent memory so it compounds across every future decision.",
   },
   {
     title: "One surface for every tool",

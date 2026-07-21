@@ -35,11 +35,11 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.05, ease: "easeOut" }}
           className="text-display-hero max-w-4xl bg-transparent text-balance font-display leading-[0.95] tracking-[-0.02em] text-black"
         >
-          Agents
+          Your edge.
           <br />
-          <span className="font-display">that trade like</span>
+          <span className="font-display">Running on</span>
           <br />
-          <span className="font-display">you</span>
+          <span className="font-display">agents</span>
         </motion.h1>
 
         <motion.p
@@ -48,8 +48,8 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
           className="text-body-large mt-[clamp(1rem,2.5vw,2rem)] max-w-xl bg-transparent leading-relaxed text-black/88"
         >
-          Orchestrate AI agents that inherit your perspective and act rationally when emotion would
-          get in the way.
+          Orchestrate AI agents on the fastest autonomous trading pipeline, from
+          event to execution.
         </motion.p>
       </div>
     </section>

@@ -134,12 +134,12 @@ export function Pillars() {
             Product Catalog
           </p>
           <h2
-            className="w-full min-w-0 text-[clamp(1.35rem,9.2cqw,3.15rem)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
+            className="w-full min-w-0 text-[clamp(1.2rem,7.2cqw,2.55rem)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
             aria-label="Everything you need to ship agents that trade."
           >
             <span className="block whitespace-nowrap">Everything you need to</span>
             <span className="block whitespace-nowrap">
-              <span className="italic text-black/55">ship</span> agents that trade.
+              ship agents that <span className="italic text-black/55">trade</span>.
             </span>
           </h2>
 
