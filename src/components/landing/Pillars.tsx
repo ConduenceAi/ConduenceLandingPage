@@ -6,8 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import {
   featCanvasSrc,
   featConnectorsSrc,
+  featExploreSrc,
   featGraphSrc,
-  featMindSrc,
   featObservabilitySrc,
   featPaperSrc,
 } from "@/lib/assets";
@@ -21,32 +21,32 @@ type Pillar = {
 const pillars: Pillar[] = [
   {
     title: "Mind Mesh",
-    body: "You control the orchestrator mind. You shape its view of the world, its reasoning, the factors that matter, and how they relate. It traverses that structure in milliseconds instead of reasoning from scratch, so your perspective, your edges, and your weights become its intuition.",
+    body: "Teach the system how you think. In Shape, share beliefs by voice, text, or build the graph manually, like a normal conversation that becomes your knowledge graph. In Brainstorm, stress-test theses with agents that already know your perspective. That mesh is what agents use as intuition, not a blank prompt each time.",
     image: featGraphSrc,
   },
   {
     title: "Retrace",
-    body: "Every trade is a path you can trace: which agent called which tool, what each returned, cost per call, cost per Mind Agent, and the full decision path. The exit rules set by the orchestrator at entry live there too, and you can change them anytime. Find something wrong? Flag it. The orchestrator's mind absorbs that correction, and its next intuition carries the lesson.",
+    body: "On each agent, open Trace for every run. See step latency, what was looked up, what came back, what failed or returned unusable output, and whether evidence supported or contradicted the thesis. Open vs skipped markets, entry thesis, and exit plan sit in one place, so you can debug the decision path instead of guessing.",
     image: featObservabilitySrc,
   },
   {
     title: "Agent Studio",
-    body: "Compose your own agent workflow on a drag and drop canvas. Preloaded tools, sub agent templates, the orchestrator, and Mind Agents. Wire them together without writing a single line of code. Explore the strategy that works best for you.",
+    body: "Create an orchestrator, then load it out with tools for markets, news, wallets, and X, triggers that wake it when conditions hit, and graphs in priority order. Drag to reorder so P1 is consulted first, including your Mind Mesh. Agents also run with time awareness, so belief validity from your mesh stays temporally coherent. No code. Compose the loadout and go.",
     image: featCanvasSrc,
   },
   {
-    title: "Mind Agents",
-    body: "We extract the complexity so anyone can use the final product through micropayments. Monetize your strategy or your entire workflow as a Mind Agent. Your strategy stays private while you earn from it. Subscribe to one and plug it into your own workflow, or run it standalone. With Mind Agents that emit trades, you're live within minutes.",
-    image: featMindSrc,
+    title: "Explore",
+    body: "Browse every tool to see when to use it, what to set, what you get back, and how agents benefit, plus a Test playground. Monitor triggers you created, including which watcher is active, which events fired, and which runs they woke. Research Polymarket, Twitter/X, and recent news across markets, wallets, profiles, and detailed analysis before a thesis hardens.",
+    image: featExploreSrc,
   },
   {
     title: "Connectors",
-    body: "Both modes travel with you. Keep full command: agents reach you on Telegram or Discord so you can verify and execute in one tap, or speak a rule and they obey. Or grant autonomy: agents keep watch on twenty four hour markets and act with rational decisions inside your rules while you are away. Your judgment stays the source of truth either way.",
+    body: "Want full control over every agent decision? Connect Telegram or Discord and verify each decision before it executes. Or wire in the tools you already use daily to monitor and control agents from where you already work. Your judgment stays in the loop when you want it.",
     image: featConnectorsSrc,
   },
   {
     title: "Simulator",
-    body: "Test a strategy or an entire AI agent workflow against live Polymarket and Kalshi data, without putting real money on the line. Validate edge, debug behavior, and tune parameters before going live.",
+    body: "Deploy agents in Paper mode against live market data without risking capital. Validate edge, inspect open and skipped markets and P&L, tune tools, triggers, and graphs, then go live when the path looks right.",
     image: featPaperSrc,
   },
 ];
@@ -131,7 +131,7 @@ export function Pillars() {
         <div className="@container col-span-12 flex min-w-0 flex-col overflow-hidden md:col-span-5">
           <p className="text-kicker mb-[clamp(1.1rem,2.5vw,2rem)] flex items-center gap-2.5 uppercase tracking-[0.34em] text-black">
             <span aria-hidden className="h-px w-[clamp(1rem,2vw,1.5rem)] shrink-0 bg-black" />
-            Product Catalog
+            Product Features
           </p>
           <h2
             className="w-full min-w-0 text-[clamp(1.2rem,7.2cqw,2.55rem)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"

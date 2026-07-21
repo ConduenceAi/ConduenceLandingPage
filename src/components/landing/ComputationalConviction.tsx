@@ -274,7 +274,7 @@ export function ComputationalConviction() {
             >
               Don&apos;t be a follower,
               <br />
-              <span className="whitespace-nowrap text-white/40">Be the signal others copy.</span>
+              <span className="whitespace-nowrap">Be the signal others copy.</span>
             </h2>
             <p
               className="mt-6 max-w-2xl text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed text-white/85 sm:mt-8"
@@ -301,18 +301,15 @@ export function ComputationalConviction() {
             <p className="text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] uppercase tracking-[0.28em] text-white/45 [font-family:var(--font-display),Georgia,serif]">
               Turn strategies into
             </p>
-            <p className="mt-4 text-[clamp(1.5rem,3vw+0.4rem,3.5rem)] leading-[1.05] tracking-tight [font-family:var(--font-display),Georgia,serif]">
-              <span className="text-white/55" style={{ fontWeight: 400 }}>
-                fully independent{" "}
-              </span>
-              <span className="text-white" style={{ fontWeight: autonomousWeight }}>
-                autonomous
+            <p className="mt-4 text-[clamp(1.5rem,3vw+0.4rem,3.5rem)] leading-[1.05] tracking-tight text-white [font-family:var(--font-display),Georgia,serif]">
+              <span style={{ fontWeight: autonomousWeight }}>
+                fully independent autonomous
               </span>
             </p>
             <p className="text-display-cta mt-2 font-display leading-[1.05] tracking-tight text-white">
               market actors.
             </p>
-            <p className="mt-6 font-mono text-[10px] tracking-[0.32em] text-white/38 sm:text-[16px] lg:text-[24px]">
+            <p className="mt-6 text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] tracking-tight text-white [font-family:var(--font-display),Georgia,serif]">
               <span className="whitespace-nowrap">No code.</span>
             </p>
           </EditorialType>
@@ -331,7 +328,7 @@ export function ComputationalConviction() {
             >
               Many strategies.
               <br />
-              <span className="text-white/40">One mind.</span>
+              One mind.
             </p>
             <ScatteringTraderLine scatter={traderScatter} />
           </EditorialType>

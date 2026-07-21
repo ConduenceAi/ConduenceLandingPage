@@ -47,11 +47,10 @@ export function WeMoveAsOne() {
               <span className="text-black/35" aria-hidden="true">
                 “
               </span>
-              I am your reasoning
-              <span className="italic text-black/55"> and your </span>
+              I am your <span className="italic">reasoning</span> and your{" "}
             </span>
             <span className="block">
-              perception, scaled past every limit.
+              <span className="italic">perception</span>, scaled past every limit.
               <span className="text-black/35" aria-hidden="true">
                 ”
               </span>
@@ -63,7 +62,7 @@ export function WeMoveAsOne() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.7, delay: 0.08, ease: EASE }}
           >
-            Conduence
+            - Conduence
           </motion.p>
         </div>
 

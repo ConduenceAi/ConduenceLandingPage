@@ -14,6 +14,7 @@ export const featPaperSrc = "/images/feat-paper.jpg";
 export const featObservabilitySrc = "/images/feat-trace.png";
 export const featCanvasSrc = "/images/feat-canvas.jpg";
 export const featMindSrc = "/images/feat-mind.jpg";
+export const featExploreSrc = "/images/feat-explore.jpg";
 export const featConnectorsSrc = "/images/feat-connectors.jpg";
 export const featByosSrc = "/images/feat-byos.jpg";
 export const agentsOrbSrc = "/images/agents-orb.png";

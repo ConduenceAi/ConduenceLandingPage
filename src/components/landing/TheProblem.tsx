@@ -52,9 +52,7 @@ export function TheProblem() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            Every trading agent decides
-            <span className="italic text-black/55"> without your </span>
-            beliefs.
+            Every trading agent decides without your beliefs.
           </motion.h2>
           <motion.p
             className="text-body-large mt-[clamp(1rem,2vw,1.5rem)] max-w-[min(42rem,100%)] leading-relaxed text-black/85 xl:mx-auto xl:max-w-[46rem]"
@@ -62,9 +60,11 @@ export function TheProblem() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
-            Conduence turns your trading mind into the source of truth that agents read from. Keep
-            full command of every trade, or let agents act autonomously with rational decisions
-            inside your rules. Same mind. You choose the authority.
+            Conduence turns your trading mind into the source of truth that agents read
+            <br />
+            from. Keep full command of every trade, or let agents act autonomously
+            <br />
+            with rational decisions inside your rules. Same mind.
           </motion.p>
         </div>
 

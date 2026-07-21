@@ -11,11 +11,11 @@ import { CubeAssembly } from "@/components/landing/CubeAssembly";
 const REASONING_ITEMS = [
   {
     title: "Mind Mesh",
-    body: "Use voice to interact with your second brain, Brainstorm with agents that already know your perspective. Stress test ideas, sharpen your thesis, and lock the final version into agent memory so it compounds across every future decision.",
+    body: "Shape and Brainstorm turn how you think into a second brain—stress-test theses with agents that already know your perspective, then lock the final version so it compounds across every future decision.",
   },
   {
     title: "One surface for every tool",
-    body: "Brought research inputs, market data, execution surfaces, and the tools you already rely on into one place, so your agents can operate with the full context at their fingertips.",
+    body: "Conduence aggregates research inputs, market data, execution surfaces, and the tools you already rely on into one place, so you don’t have to stitch them together. Your agents operate with the full context at their fingertips.",
   },
   {
     title: "Logic that compounds",
