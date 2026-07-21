@@ -21,8 +21,8 @@ const display = Playfair_Display({
 const ogImage = {
   url: "/og.jpg",
   width: 1024,
-  height: 568,
-  alt: "CONDUENCE. Agents that trade like you",
+  height: 570,
+  alt: "CONDUENCE. Your edge. Running on agents",
 };
 
 export const metadata: Metadata = {
