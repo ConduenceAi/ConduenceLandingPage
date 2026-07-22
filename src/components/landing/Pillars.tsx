@@ -21,7 +21,7 @@ type Pillar = {
 const pillars: Pillar[] = [
   {
     title: "Mind Mesh",
-    body: "Teach the system how you think. In Shape, share beliefs by voice, text, or build the graph manually, like a normal conversation that becomes your knowledge graph. In Brainstorm, stress-test theses with agents that already know your perspective. That mesh is what agents use as intuition, not a blank prompt each time.",
+    body: "Teach the system how you think. In Shape, share beliefs by voice, text, or build the mesh manually. Talk with agents the way you normally would, and they learn how you think and where you stand. In Brainstorm, stress-test theses with agents that already know your perspective. Agents use your mesh as intuition, not a blank prompt each time.",
     image: featGraphSrc,
   },
   {

@@ -19,7 +19,7 @@ const BLOCKS = [
       "A rate cut headline drops at 2:14am. Your agent doesn’t just summarize it. It checks mind mesh, weights the paths you care about, and acts on them.",
   },
   {
-    title: "Voice that commands.",
+    title: "Agents that understand.",
     body: "Want full command? Keep it. Speak the rules and agents obey. Guardrails update in language, not dashboards.",
     callout:
       "“Stop trading.” The agents stand down. “Do not trade Bitcoin or Bitcoin related markets.” Those parameters lock out until you say otherwise.",
