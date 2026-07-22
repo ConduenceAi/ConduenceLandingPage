@@ -224,7 +224,7 @@ export function ComputationalConviction() {
     <section
       ref={containerRef}
       id="computational-conviction"
-      className="relative bg-black text-white"
+      className="relative bg-black text-white/88"
       style={{ height: `${SCROLL_VH * 100}vh` }}
       aria-label="Computational conviction"
     >
@@ -237,7 +237,7 @@ export function ComputationalConviction() {
 
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <p
-            className={`absolute text-[clamp(3.5rem,16vw,12rem)] uppercase leading-none tracking-[-0.05em] text-white ${DISPLAY}`}
+            className={`absolute text-[clamp(3.5rem,16vw,12rem)] uppercase leading-none tracking-[-0.05em] text-white/88 ${DISPLAY}`}
             style={{
               left: SECTION_X,
               top: "28%",
@@ -248,7 +248,7 @@ export function ComputationalConviction() {
             FOLLOWER.
           </p>
           <p
-            className={`absolute right-[10%] top-[42%] text-right text-[clamp(2.5rem,10vw,7rem)] uppercase leading-none tracking-[-0.04em] text-white ${DISPLAY}`}
+            className={`absolute right-[10%] top-[42%] text-right text-[clamp(2.5rem,10vw,7rem)] uppercase leading-none tracking-[-0.04em] text-white/88 ${DISPLAY}`}
             style={{ opacity: ghostAutonomousOpacity, fontWeight: 900 }}
           >
             AUTONOMOUS.
@@ -266,7 +266,7 @@ export function ComputationalConviction() {
             }}
           >
             <h2
-              className="text-display-cta font-display leading-[1.05] tracking-tight text-white"
+              className="text-display-cta font-display leading-[1.05] tracking-tight text-white/88"
               style={{
                 opacity: ch1HeadlineOpacity,
                 transform: `translateY(${ch1HeadlineY}px)`,
@@ -274,10 +274,10 @@ export function ComputationalConviction() {
             >
               Don&apos;t be a follower,
               <br />
-              <span className="whitespace-nowrap">Be the signal others copy.</span>
+              <span className="whitespace-nowrap text-white/40">Be the signal others copy.</span>
             </h2>
             <p
-              className="mt-6 max-w-2xl text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed text-white/85 sm:mt-8"
+              className="mt-6 max-w-2xl text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed text-white/72 sm:mt-8"
               style={{
                 opacity: ch1BodyOpacity,
                 transform: `translateY(${ch1BodyY}px)`,
@@ -298,18 +298,18 @@ export function ComputationalConviction() {
               transform: `translateY(${ch2Y}px)`,
             }}
           >
-            <p className="text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] uppercase tracking-[0.28em] text-white/45 [font-family:var(--font-display),Georgia,serif]">
+            <p className="text-display-medium font-display leading-[1.05] tracking-tight text-white/88">
               Turn strategies into
             </p>
-            <p className="mt-4 text-[clamp(1.5rem,3vw+0.4rem,3.5rem)] leading-[1.05] tracking-tight text-white [font-family:var(--font-display),Georgia,serif]">
+            <p className="mt-4 text-[clamp(1.5rem,3vw+0.4rem,3.5rem)] leading-[1.05] tracking-tight text-white/40 [font-family:var(--font-display),Georgia,serif]">
               <span style={{ fontWeight: autonomousWeight }}>
                 fully independent autonomous
               </span>
             </p>
-            <p className="text-display-cta mt-2 font-display leading-[1.05] tracking-tight text-white">
+            <p className="text-display-medium mt-2 font-display leading-[1.05] tracking-tight text-white/88">
               market actors.
             </p>
-            <p className="mt-6 text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] tracking-tight text-white [font-family:var(--font-display),Georgia,serif]">
+            <p className="mt-6 text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] tracking-tight text-white/88 [font-family:var(--font-display),Georgia,serif]">
               <span className="whitespace-nowrap">No code.</span>
             </p>
           </EditorialType>
@@ -320,7 +320,7 @@ export function ComputationalConviction() {
             style={{ opacity: ch3Opacity }}
           >
             <p
-              className="text-display-cta max-w-3xl text-balance font-display leading-[1.05] tracking-tight text-white"
+              className="text-display-cta max-w-3xl text-balance font-display leading-[1.05] tracking-tight text-white/88"
               style={{
                 opacity: ch3HeadlineOpacity,
                 transform: `scale(${ch3HeadlineScale})`,
@@ -328,7 +328,7 @@ export function ComputationalConviction() {
             >
               Many strategies.
               <br />
-              One mind.
+              <span className="text-white/40">One Judgment.</span>
             </p>
             <ScatteringTraderLine scatter={traderScatter} />
           </EditorialType>

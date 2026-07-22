@@ -113,7 +113,7 @@ export function CTA() {
   return (
     <section
       id="cta"
-      className="relative flex flex-col overflow-hidden bg-black px-[clamp(1rem,4vw,1.5rem)] pb-[clamp(2rem,4vw,2.5rem)] pt-[clamp(3.5rem,8vw,8rem)] text-white sm:min-h-svh sm:pb-0"
+      className="relative flex flex-col overflow-hidden bg-black px-[clamp(1rem,4vw,1.5rem)] pb-[clamp(2rem,4vw,2.5rem)] pt-[clamp(3.5rem,8vw,8rem)] text-white/88 sm:min-h-svh sm:pb-0"
     >
       <div className="mx-auto w-full max-w-4xl shrink-0 text-center">
         <h2 className="text-display-cta font-display tracking-tight text-balance">
@@ -121,7 +121,7 @@ export function CTA() {
           <br />
           <span className="text-white/40">Not against them.</span>
         </h2>
-        <p className="text-body-large mx-auto mt-[clamp(1.25rem,3vw,2rem)] max-w-xl text-white/85">
+        <p className="text-body-large mx-auto mt-[clamp(1.25rem,3vw,2rem)] max-w-xl text-white/72">
           CONDUENCE is in private beta. Join the waitlist for early access to the Agent Studio and
           Mind Mesh.
         </p>
@@ -136,7 +136,7 @@ export function CTA() {
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="flex-1 rounded-full border border-white/30 bg-transparent px-[clamp(1rem,2vw,1.25rem)] py-[clamp(0.65rem,1.2vw,0.75rem)] text-[clamp(0.8rem,0.3vw+0.7rem,0.875rem)] text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white"
+            className="flex-1 rounded-full border border-white/30 bg-transparent px-[clamp(1rem,2vw,1.25rem)] py-[clamp(0.65rem,1.2vw,0.75rem)] text-[clamp(0.8rem,0.3vw+0.7rem,0.875rem)] text-white/88 placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white/60"
           />
           <button
             type="submit"
