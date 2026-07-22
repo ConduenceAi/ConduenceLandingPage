@@ -45,7 +45,7 @@ export function SharedEdge() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            A <span className="italic">strategy</span> that trades for everyone trades
+            A <span className="italic text-black/55">strategy</span> that trades for everyone trades
             for no one.
           </motion.h2>
 
@@ -57,7 +57,7 @@ export function SharedEdge() {
           >
             The approaches that work for coding agents struggle at the market. Trading is not a
             skill you can simply distribute. Once a strategy is public, whether copy trading, a
-            prebuilt parlay, or shared “insider” flow, a growing userbase crowds the same alpha
+            prebuilt parlay, or shared insider flow, a growing userbase crowds the same alpha
             until first come first serve takes it away.
           </motion.p>
         </div>

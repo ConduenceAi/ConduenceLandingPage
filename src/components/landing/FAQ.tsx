@@ -26,7 +26,7 @@ const FAQ_ITEMS = [
   {
     question: "What makes Conduence different?",
     answer:
-      "Instead of giving you a single assistant, Conduence lets you orchestrate systems of agents. You train them on your reasoning, connect them to tools, monitor their decision path, and choose how much authority they hold: full command, or autonomous action inside your rules.",
+      "Instead of giving you a single assistant, Conduence lets you orchestrate systems of agents. You train them on your reasoning, connect them to tools, monitor their decision path, and choose how much authority they hold: full command, or autonomous action bounded by your rules.",
   },
   {
     question: "Do I need to know how to code?",
@@ -36,7 +36,7 @@ const FAQ_ITEMS = [
   {
     question: "Is it fully automatic, or do I stay in full control?",
     answer:
-      "Both. You choose the authority for each workflow. Keep full command: review outputs, approve trades, intervene by voice, and set hard guardrails. Or let agents act autonomously with rational decisions inside the belief map and rules you authored. Same mind either way. Not a black box.",
+      "Both. You choose the authority for each workflow. Keep full command: review outputs, approve trades, intervene by voice, and set hard guardrails. Or let agents act autonomously with rational decisions boundedthe belief map and rules you authored. Same mind either way. Not a black box.",
   },
 ] as const;
 

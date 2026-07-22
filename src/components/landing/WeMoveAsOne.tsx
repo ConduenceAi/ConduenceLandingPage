@@ -47,10 +47,10 @@ export function WeMoveAsOne() {
               <span className="text-black/35" aria-hidden="true">
                 “
               </span>
-              I am your <span className="italic">reasoning</span> and your{" "}
+              I am your <span className="italic text-black/55">reasoning</span> and your{" "}
             </span>
             <span className="block">
-              <span className="italic">perception</span>, scaled past every limit.
+              <span className="italic text-black/55">perception</span>, scaled past every limit.
               <span className="text-black/35" aria-hidden="true">
                 ”
               </span>

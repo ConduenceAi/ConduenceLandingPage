@@ -1,6 +1,9 @@
 "use client";
 
+import Link from "next/link";
+
 import { ConduenceLogo } from "@/components/ConduenceLogo";
+import { CornerArrow } from "@/components/landing/CornerArrow";
 
 export function Nav() {
   const scrollToTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -23,6 +26,14 @@ export function Nav() {
         />
         <ConduenceLogo className="relative z-10 h-full scale-110" variant="auto" />
       </a>
+
+      <Link
+        href="/talk-to-founder"
+        className="pointer-events-auto absolute right-[clamp(1rem,3vw,2rem)] top-1/2 inline-flex -translate-y-1/2 items-center gap-1.5 rounded-full border border-black/12 bg-white/80 px-3.5 py-2 text-[clamp(0.75rem,0.2vw+0.7rem,0.875rem)] font-medium tracking-[-0.01em] text-black shadow-[0_1px_0_rgba(0,0,0,0.04)] backdrop-blur-md transition hover:bg-white [font-family:var(--font-ui),system-ui,sans-serif]"
+      >
+        <CornerArrow direction="right" className="size-[1.05em]" />
+        Talk to Founder
+      </Link>
     </header>
   );
 }
