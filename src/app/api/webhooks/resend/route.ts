@@ -5,8 +5,16 @@ const NOREPLY_FROM = "CONDUENCE <noreply@conduence.xyz>";
 
 const FORWARDING_RULES: Record<string, string | string[]> = {
   "anjali@conduence.xyz": "anjalijha2k3@gmail.com",
-  "sarthakden@conduence.xyz": "dengresarthak420@gmail.com",
-  "contact@conduence.xyz": ["dengresarthak420@gmail.com", "blizet2k3@gmail.com"],
+  "sarthakden@conduence.xyz": [
+    "dengresarthak420@gmail.com",
+    "dengresarthak2002@gmail.com",
+  ],
+  "contact@conduence.xyz": [
+    "dengresarthak420@gmail.com",
+    "dengresarthak2002@gmail.com",
+    "blizet2k3@gmail.com",
+    "anjalijha2k3@gmail.com",
+  ],
 };
 
 type ResendWebhookEvent = {
