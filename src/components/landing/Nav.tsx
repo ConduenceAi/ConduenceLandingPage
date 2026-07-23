@@ -33,10 +33,12 @@ export function Nav() {
 
         <Link
           href="/talk-to-founder"
-          className="pointer-events-auto absolute right-0 top-1/2 inline-flex -translate-y-1/2 items-center gap-1.5 rounded-full border border-black/12 bg-white/80 px-3.5 py-2 text-[clamp(0.75rem,0.2vw+0.7rem,0.875rem)] font-medium tracking-[-0.01em] text-black shadow-[0_1px_0_rgba(0,0,0,0.04)] backdrop-blur-md transition hover:bg-white [font-family:var(--font-ui),system-ui,sans-serif]"
+          aria-label="Talk to Founder"
+          title="Talk to Founder"
+          className="pointer-events-auto absolute right-0 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-black/12 bg-white/80 text-black shadow-[0_1px_0_rgba(0,0,0,0.04)] backdrop-blur-md transition hover:bg-white sm:h-auto sm:w-auto sm:gap-1.5 sm:px-3.5 sm:py-2 sm:text-[clamp(0.75rem,0.2vw+0.7rem,0.875rem)] sm:font-medium sm:tracking-[-0.01em] [font-family:var(--font-ui),system-ui,sans-serif]"
         >
-          <CornerArrow direction="right" className="size-[1.05em]" />
-          Talk to Founder
+          <CornerArrow direction="right" className="size-4 sm:size-[1.05em]" />
+          <span className="hidden sm:inline">Talk to Founder</span>
         </Link>
       </nav>
     </header>

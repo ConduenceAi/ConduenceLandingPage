@@ -14,6 +14,9 @@ type ResendWebhookEvent = {
   data: {
     email_id: string;
     to?: string[];
+    cc?: string[];
+    bcc?: string[];
+    received_for?: string[];
   };
 };
 
@@ -26,6 +29,15 @@ function resolveForwardTargets(address: string): string[] {
   const rule = FORWARDING_RULES[normalizeAddress(address)];
   if (!rule) return [];
   return Array.isArray(rule) ? rule : [rule];
+}
+
+function collectRecipients(event: ResendWebhookEvent): string[] {
+  return [
+    ...(event.data.to ?? []),
+    ...(event.data.cc ?? []),
+    ...(event.data.bcc ?? []),
+    ...(event.data.received_for ?? []),
+  ];
 }
 
 export async function POST(request: NextRequest) {
@@ -64,7 +76,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  const recipients = event.data.to ?? [];
+  const recipients = collectRecipients(event);
   const forwardTargets = new Set<string>();
 
   for (const recipient of recipients) {
@@ -74,7 +86,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (forwardTargets.size === 0) {
-    return NextResponse.json({ ok: true, forwarded: false });
+    return NextResponse.json({ ok: true, forwarded: false, recipients });
   }
 
   try {
@@ -91,22 +103,27 @@ export async function POST(request: NextRequest) {
       (receivedEmail.text ? `<pre>${receivedEmail.text}</pre>` : "<p>(no content)</p>");
     const text = receivedEmail.text ?? receivedEmail.html ?? "(no content)";
 
-    await Promise.all(
-      [...forwardTargets].map((to) =>
-        resend.emails.send({
+    const sendResults = await Promise.all(
+      [...forwardTargets].map(async (to) => {
+        const { error: sendError } = await resend.emails.send({
           from: NOREPLY_FROM,
           to,
           subject: receivedEmail.subject ? `Fwd: ${receivedEmail.subject}` : "Forwarded email",
           html,
           text,
           replyTo: receivedEmail.from,
-        }),
-      ),
+        });
+        if (sendError) {
+          throw new Error(sendError.message);
+        }
+        return to;
+      }),
     );
 
-    return NextResponse.json({ ok: true, forwarded: true });
+    return NextResponse.json({ ok: true, forwarded: true, to: sendResults });
   } catch (error) {
-    console.error("Inbound email forwarding failed", error);
-    return NextResponse.json({ error: "Unable to forward email." }, { status: 502 });
+    const message = error instanceof Error ? error.message : "Unable to forward email.";
+    console.error("Inbound email forwarding failed", message, error);
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }
