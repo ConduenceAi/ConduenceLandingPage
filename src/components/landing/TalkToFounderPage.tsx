@@ -5,7 +5,6 @@ import { useCallback } from "react";
 
 import { ConduenceLogo } from "@/components/ConduenceLogo";
 import { CornerArrow } from "@/components/landing/CornerArrow";
-import { Footer } from "@/components/landing/Footer";
 import { CALENDLY_URL } from "@/lib/calendly";
 
 declare global {
@@ -69,8 +68,6 @@ export function TalkToFounderPage() {
           Back to home
         </Link>
       </div>
-
-      <Footer variant="light" />
     </main>
   );
 }

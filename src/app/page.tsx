@@ -7,7 +7,6 @@ import { CTA } from "@/components/landing/Sections";
 // import { FAQ } from "@/components/landing/FAQ";
 import { ComputationalConviction } from "@/components/landing/ComputationalConviction";
 import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
-import { Footer } from "@/components/landing/Footer";
 import { absoluteUrl, siteTagline } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -33,7 +32,6 @@ export default function HomePage() {
       <ComputationalConviction />
       {/* <FAQ /> */}
       <CTA />
-      <Footer variant="dark" />
     </main>
   );
 }
