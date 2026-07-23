@@ -5,6 +5,7 @@ import { useCallback } from "react";
 
 import { ConduenceLogo } from "@/components/ConduenceLogo";
 import { CornerArrow } from "@/components/landing/CornerArrow";
+import { Footer } from "@/components/landing/Footer";
 import { CALENDLY_URL } from "@/lib/calendly";
 
 declare global {
@@ -31,7 +32,7 @@ export function TalkToFounderPage() {
   }, []);
 
   return (
-    <main className="relative min-h-svh bg-white text-black">
+    <main className="relative flex min-h-svh flex-col bg-white text-black">
       <header className="absolute inset-x-0 top-[clamp(0.85rem,2vw,1.25rem)] z-20 flex items-center justify-center px-[clamp(1rem,3vw,2rem)]">
         <Link
           href="/"
@@ -42,19 +43,20 @@ export function TalkToFounderPage() {
         </Link>
       </header>
 
-      <div className="mx-auto flex min-h-svh max-w-2xl flex-col items-center justify-center px-[clamp(1.25rem,4vw,2rem)] text-center">
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-[clamp(1.25rem,4vw,2rem)] py-[clamp(6rem,12vw,8rem)] text-center">
         <h1 className="text-[clamp(2.25rem,5vw+0.5rem,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-black [font-family:var(--font-display),Georgia,serif]">
           Talk to the founder.
         </h1>
 
         <p className="mt-[clamp(1rem,2.5vw,1.35rem)] max-w-md text-[clamp(0.9375rem,0.35vw+0.85rem,1.0625rem)] leading-relaxed text-black/55 [font-family:var(--font-ui),system-ui,sans-serif]">
-          Book a 15-minute call to discuss agent orchestration, private beta, or early access.
+          Book a 30-minute call to discuss agent orchestration, private beta, or early access.
         </p>
 
         <button
           type="button"
           onClick={openCalendly}
-          className="mt-[clamp(1.75rem,4vw,2.5rem)] rounded-full bg-[#14161A] px-[clamp(1.5rem,3vw,1.85rem)] py-[clamp(0.7rem,1.4vw,0.85rem)] text-[clamp(0.875rem,0.25vw+0.8rem,0.9375rem)] font-medium text-white transition hover:bg-black [font-family:var(--font-ui),system-ui,sans-serif]"
+          disabled={!CALENDLY_URL}
+          className="mt-[clamp(1.75rem,4vw,2.5rem)] rounded-full bg-[#14161A] px-[clamp(1.5rem,3vw,1.85rem)] py-[clamp(0.7rem,1.4vw,0.85rem)] text-[clamp(0.875rem,0.25vw+0.8rem,0.9375rem)] font-medium text-white transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 [font-family:var(--font-ui),system-ui,sans-serif]"
         >
           Talk to founder
         </button>
@@ -67,6 +69,8 @@ export function TalkToFounderPage() {
           Back to home
         </Link>
       </div>
+
+      <Footer variant="light" />
     </main>
   );
 }

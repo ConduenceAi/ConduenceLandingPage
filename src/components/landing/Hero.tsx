@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 
 import { heroBgSrc } from "@/lib/assets";
+import { siteTagline } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -48,7 +49,7 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
           className="text-body-large mt-[clamp(1rem,2.5vw,2rem)] max-w-xl bg-transparent leading-relaxed text-black/88"
         >
-          Orchestrate AI agents on the fastest AI powered trading Operating System, from event to execution.
+          {siteTagline}
         </motion.p>
       </div>
     </section>

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteTagline, siteUrl } from "@/lib/site";
+
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -25,14 +28,19 @@ const ogImage = {
   alt: "CONDUENCE. Your edge. Running on agents",
 };
 
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.conduence.xyz"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "CONDUENCE",
     template: "%s | CONDUENCE",
   },
-  description:
-    "Orchestrate AI agents that learn your perspective, mirror your reasoning, from your voice.",
+  description: siteTagline,
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     // SVG follows system/browser light|dark theme. PNGs are fallbacks for older clients.
     // Naming: favicon-dark = black mark (for light UI); favicon-light = white mark (for dark UI).
@@ -62,22 +70,29 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "CONDUENCE. Agents that trade like you",
-    description: "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
+    description: siteTagline,
     type: "website",
+    url: siteUrl,
+    siteName: "CONDUENCE",
+    locale: "en_US",
     images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "CONDUENCE. Agents that trade like you",
-    description: "Orchestrate AI agents that learn your perspective, mirror your reasoning.",
+    description: siteTagline,
     images: [ogImage.url],
   },
+  ...(googleVerification
+    ? { verification: { google: googleVerification } }
+    : {}),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${sans.variable} ${display.variable}`}>
+        <JsonLd />
         <Providers>{children}</Providers>
       </body>
     </html>

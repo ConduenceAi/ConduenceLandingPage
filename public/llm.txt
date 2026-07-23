@@ -1,0 +1,9 @@
+# CONDUENCE — LLM discovery pointer
+
+For the full LLM-oriented site summary, use:
+
+https://conduence.xyz/llms.txt
+
+Canonical site: https://conduence.xyz
+Sitemap: https://conduence.xyz/sitemap.xml
+Robots: https://conduence.xyz/robots.txt

@@ -3,9 +3,10 @@ import { Resend } from "resend";
 
 const NOREPLY_FROM = "CONDUENCE <noreply@conduence.xyz>";
 
-const FORWARDING_RULES: Record<string, string> = {
+const FORWARDING_RULES: Record<string, string | string[]> = {
   "anjali@conduence.xyz": "anjalijha2k3@gmail.com",
-  "sarthak@conduence.xyz": "dengresarthak2002@gmail.com",
+  "sarthakden@conduence.xyz": "dengresarthak420@gmail.com",
+  "contact@conduence.xyz": ["dengresarthak420@gmail.com", "blizet2k3@gmail.com"],
 };
 
 type ResendWebhookEvent = {
@@ -19,6 +20,12 @@ type ResendWebhookEvent = {
 function normalizeAddress(address: string) {
   const match = address.match(/<([^>]+)>/);
   return (match?.[1] ?? address).trim().toLowerCase();
+}
+
+function resolveForwardTargets(address: string): string[] {
+  const rule = FORWARDING_RULES[normalizeAddress(address)];
+  if (!rule) return [];
+  return Array.isArray(rule) ? rule : [rule];
 }
 
 export async function POST(request: NextRequest) {
@@ -61,8 +68,7 @@ export async function POST(request: NextRequest) {
   const forwardTargets = new Set<string>();
 
   for (const recipient of recipients) {
-    const forwardTo = FORWARDING_RULES[normalizeAddress(recipient)];
-    if (forwardTo) {
+    for (const forwardTo of resolveForwardTargets(recipient)) {
       forwardTargets.add(forwardTo);
     }
   }

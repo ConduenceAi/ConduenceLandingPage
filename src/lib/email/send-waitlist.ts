@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { buildWaitlistNotificationEmail, buildWaitlistWelcomeEmail } from "@/lib/email/waitlist";
 
 const NOREPLY_FROM = "Conduence <noreply@conduence.xyz>";
-const SARTHAK_FROM = "Sarthak <sarthak@conduence.xyz>";
+const SARTHAK_FROM = "Sarthak <sarthakden@conduence.xyz>";
 const CONTACT_EMAIL = "Conduence <contact@conduence.xyz>";
 const TEAM_NOTIFICATION_RECIPIENTS = ["anjalijha2k3@gmail.com", "dengresarthak2002@gmail.com"];
 
