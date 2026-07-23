@@ -2,11 +2,6 @@ import Link from "next/link";
 
 const links = [
   {
-    href: "/talk-to-founder",
-    label: "Talk to the founder",
-    description: "Book a 30-minute call about agent orchestration and early access.",
-  },
-  {
     href: "/#pillars",
     label: "Product features",
     description: "Mind Mesh, Retrace, Agent Studio, and more — on one surface.",
@@ -30,7 +25,7 @@ export function Footer({ variant = "dark" }: FooterProps) {
     >
       <nav
         aria-label="Site"
-        className="mx-auto grid w-full max-w-4xl gap-[clamp(1.5rem,3vw,2rem)] sm:grid-cols-2"
+        className="mx-auto w-full max-w-4xl"
       >
         {links.map((link) => (
           <Link
