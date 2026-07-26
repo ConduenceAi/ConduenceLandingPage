@@ -8,6 +8,7 @@ import {
   featConnectorsSrc,
   featExploreSrc,
   featGraphSrc,
+  featMindSrc,
   featObservabilitySrc,
   featPaperSrc,
 } from "@/lib/assets";
@@ -20,8 +21,13 @@ type Pillar = {
 
 const pillars: Pillar[] = [
   {
-    title: "Mind Mesh",
-    body: "Teach the system how you think. In Shape, share beliefs by voice, text, or build the mesh manually. Talk with agents the way you normally would, and they learn how you think and where you stand. In Brainstorm, stress-test theses with agents that already know your perspective. Agents use your mesh as intuition, not a blank prompt each time.",
+    title: "Shape",
+    body: "Teach the system how you think. Share beliefs by voice, text, or build the mesh manually. Talk with agents the way you normally would, and they learn how you think and where you stand. Your mesh becomes the source agents read from, not a blank prompt each time.",
+    image: featMindSrc,
+  },
+  {
+    title: "Brainstorm",
+    body: "Stress-test theses with agents that already know your perspective. Sharpen ideas against your mesh, challenge assumptions, and lock the versions that hold, so judgment compounds before capital moves.",
     image: featGraphSrc,
   },
   {

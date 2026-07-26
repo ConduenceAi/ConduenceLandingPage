@@ -13,6 +13,7 @@ const LIGHT_SECTION_IDS = new Set([
   "the-problem",
   "pillars",
   "we-move-as-one",
+  "what-conduence-is-not",
 ]);
 
 type LogoAppearance =

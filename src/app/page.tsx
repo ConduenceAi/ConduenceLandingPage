@@ -7,6 +7,7 @@ import { CTA } from "@/components/landing/Sections";
 // import { FAQ } from "@/components/landing/FAQ";
 import { ComputationalConviction } from "@/components/landing/ComputationalConviction";
 import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
+import { WhatConduenceIsNot } from "@/components/landing/WhatConduenceIsNot";
 import { absoluteUrl, siteTagline } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function HomePage() {
       <Hero />
       <PlatformSections />
       <WeMoveAsOne />
+      <WhatConduenceIsNot />
       <ComputationalConviction />
       {/* <FAQ /> */}
       <CTA />

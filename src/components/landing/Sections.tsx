@@ -15,7 +15,7 @@ const REASONING_ITEMS = [
   },
   {
     title: "Capability Registry",
-    body: "Conduence aggregates research inputs, market data, execution surfaces, and the tools you already rely on into one place, so you don’t have to stitch them together. Your agents operate with the full context at their fingertips.",
+    body: "Conduence aggregates research inputs, market data, execution surfaces, and the tools you already rely on into one place. Agents operate with the full context at their fingertips.",
   },
   {
     title: "Execution Runtime",
