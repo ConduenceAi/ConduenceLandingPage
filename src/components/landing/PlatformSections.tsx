@@ -6,8 +6,8 @@ import { TheProblem } from "@/components/landing/TheProblem";
 export function PlatformSections() {
   return (
     <div className="relative w-full bg-white">
-      <Reasoning />
       <SharedEdge />
+      <Reasoning />
       <TheProblem />
       <Pillars />
     </div>

@@ -10,16 +10,16 @@ import { CubeAssembly } from "@/components/landing/CubeAssembly";
    ============================================================ */
 const REASONING_ITEMS = [
   {
-    title: "Mind Mesh",
-    body: "Capture your memory, perspective, and reasoning so the system does not forget how you think. Your logic compounds over time instead of getting lost between trades.",
+    title: "Memory Plane",
+    body: "Conduence turns your trading mind into the system agents run on. Long term memory carries experience across decisions. Short term instructions keep each task sharp and on track.",
   },
   {
-    title: "Logic that compounds",
-    body: "Use shape to interact with your second brain, brainstorm for stress testing ideas, sharpen your thesis with agents that already know your perspective, and lock the final version so it compounds across every future decision.",
-  },
-  {
-    title: "One surface for every tool",
+    title: "Capability Registry",
     body: "Conduence aggregates research inputs, market data, execution surfaces, and the tools you already rely on into one place, so you don’t have to stitch them together. Your agents operate with the full context at their fingertips.",
+  },
+  {
+    title: "Execution Runtime",
+    body: "Conduence have the in house pipeline to orchestrate every flow of the system. From events to waking up the agents in 850ms to executing trades with a diversion rate of 0.15%."
   },
 ];
 
@@ -33,7 +33,7 @@ export function Reasoning() {
         {/* Left half — title + cube */}
         <div>
           <h2 className="max-w-3xl text-display-lede font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]">
-            The unified platform
+            The OS Layer for Agents
           </h2>
 
           <div className="relative mx-auto mt-[clamp(1.5rem,3vw,2rem)] w-full max-w-[min(34rem,100%)] lg:mx-0">

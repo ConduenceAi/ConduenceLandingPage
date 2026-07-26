@@ -3,10 +3,7 @@
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 
-const SCROLL_VH = 4.2;
-
-const SECTION_X = "clamp(1rem,4vw,2.5rem)";
-const DISPLAY = '[font-family:var(--font-display),Georgia,"Times New Roman",serif]';
+const SCROLL_VH = 1.8;
 
 const TRADER_LINE = "Traders may not live forever, but how they trade will.";
 
@@ -68,14 +65,6 @@ function mapRange(p: number, inStart: number, inEnd: number, outStart: number, o
   return outStart + (outEnd - outStart) * t;
 }
 
-function weightFromProgress(t: number): number {
-  const clamped = clamp01(t);
-  if (clamped < 0.25) return 400 + (clamped / 0.25) * 100;
-  if (clamped < 0.5) return 500 + ((clamped - 0.25) / 0.25) * 200;
-  if (clamped < 0.75) return 700 + ((clamped - 0.5) / 0.25) * 200;
-  return 900;
-}
-
 function EditorialType({
   children,
   className = "",
@@ -103,7 +92,6 @@ function ScatteringTraderLine({ scatter }: { scatter: number }) {
       className="relative mt-6 max-w-2xl text-center text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed"
       aria-label={TRADER_LINE}
     >
-      {/* Soft energy bloom as sentence pressurizes */}
       <span
         className="pointer-events-none absolute left-1/2 top-1/2 h-24 w-[min(28rem,80vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.04] blur-2xl"
         aria-hidden="true"
@@ -132,7 +120,6 @@ function ScatteringTraderLine({ scatter }: { scatter: number }) {
 
           return (
             <span key={`${particle.char}-${i}`} className="relative inline-block">
-              {/* Trailing ghost — particle shedding */}
               {burst > 0.08 && (
                 <span
                   className="pointer-events-none absolute inset-0 text-white/25"
@@ -164,7 +151,7 @@ function ScatteringTraderLine({ scatter }: { scatter: number }) {
 }
 
 /* ============================================================
-   COMPUTATIONAL CONVICTION — 3 pinned chapters, original copy
+   COMPUTATIONAL CONVICTION — finale chapter
    ============================================================ */
 export function ComputationalConviction() {
   const containerRef = useRef<HTMLElement>(null);
@@ -183,42 +170,11 @@ export function ComputationalConviction() {
     setProgress(v);
   });
 
-  const gridOpacity = mapRange(progress, 0, 0.05, 0.02, 0.06);
-
-  const ch1HeadlineY = mapRange(progress, 0, 0.12, 22, 0);
-  const ch1HeadlineOpacity = progress < 0.3 ? 1 : mapRange(progress, 0.3, 0.4, 1, 0.06);
-  const ch1BodyOpacity =
-    progress < 0.3 ? mapRange(progress, 0, 0.1, 0, 1) : mapRange(progress, 0.3, 0.4, 1, 0.06);
-  const ch1BodyY = progress < 0.1 ? mapRange(progress, 0, 0.1, 14, 0) : 0;
-  const ch1Y = progress < 0.3 ? 0 : mapRange(progress, 0.3, 0.4, 0, -90);
-  const ch1ForegroundOpacity = progress < 0.3 ? 1 : ch1HeadlineOpacity;
-
-  const ch2Opacity =
-    progress < 0.3
-      ? 0
-      : progress < 0.4
-        ? mapRange(progress, 0.3, 0.4, 0, 1)
-        : progress < 0.62
-          ? 1
-          : progress < 0.68
-            ? mapRange(progress, 0.62, 0.68, 1, 0)
-            : 0;
-  const ch2Y = progress < 0.62 ? 0 : progress < 0.68 ? mapRange(progress, 0.62, 0.68, 0, -72) : -72;
-  const autonomousWeight = weightFromProgress(
-    progress < 0.4 ? 0 : progress < 0.62 ? mapRange(progress, 0.4, 0.62, 0, 1) : 1,
-  );
-
-  const ch3Opacity =
-    progress < 0.66 ? 0 : progress < 0.76 ? mapRange(progress, 0.66, 0.76, 0, 1) : 1;
-
-  const traderScatter = mapRange(progress, 0.74, 1, 0, 1);
-  const ch3HeadlineOpacity = progress < 0.9 ? 1 : mapRange(progress, 0.9, 1, 1, 0.92);
-  const ch3HeadlineScale = 1 + mapRange(traderScatter, 0, 0.35, 0, 0.018);
-
-  const ghostFollowerOpacity =
-    progress >= 0.4 && progress < 0.85 ? mapRange(progress, 0.4, 0.55, 0.008, 0.004) : 0;
-  const ghostAutonomousOpacity =
-    progress >= 0.62 && progress < 0.85 ? mapRange(progress, 0.62, 0.78, 0.01, 0.005) : 0;
+  const gridOpacity = mapRange(progress, 0, 0.12, 0.02, 0.06);
+  const headlineOpacity = mapRange(progress, 0.08, 0.28, 0, 1);
+  const headlineY = mapRange(progress, 0.08, 0.28, 18, 0);
+  const traderScatter = mapRange(progress, 0.45, 1, 0, 1);
+  const headlineScale = 1 + mapRange(traderScatter, 0, 0.35, 0, 0.018);
 
   return (
     <section
@@ -235,95 +191,15 @@ export function ComputationalConviction() {
           aria-hidden="true"
         />
 
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <p
-            className={`absolute text-[clamp(3.5rem,16vw,12rem)] uppercase leading-none tracking-[-0.05em] text-white/88 ${DISPLAY}`}
-            style={{
-              left: SECTION_X,
-              top: "28%",
-              opacity: ghostFollowerOpacity,
-              fontWeight: 900,
-            }}
-          >
-            FOLLOWER.
-          </p>
-          <p
-            className={`absolute right-[10%] top-[42%] text-right text-[clamp(2.5rem,10vw,7rem)] uppercase leading-none tracking-[-0.04em] text-white/88 ${DISPLAY}`}
-            style={{ opacity: ghostAutonomousOpacity, fontWeight: 900 }}
-          >
-            AUTONOMOUS.
-          </p>
-        </div>
-
         <div className="relative z-10 flex h-full items-center px-section">
-          {/* Chapter 1 */}
-          <EditorialType
-            className="absolute max-w-[min(46rem,92vw)]"
-            style={{
-              left: SECTION_X,
-              opacity: ch1ForegroundOpacity,
-              transform: `translateY(${ch1Y}px)`,
-            }}
-          >
-            <h2
-              className="text-display-cta font-display leading-[1.05] tracking-tight text-white/88"
-              style={{
-                opacity: ch1HeadlineOpacity,
-                transform: `translateY(${ch1HeadlineY}px)`,
-              }}
-            >
-              Don&apos;t be a follower,
-              <br />
-              <span className="whitespace-nowrap text-white/40">Be the signal others copy.</span>
-            </h2>
-            <p
-              className="mt-6 max-w-2xl text-[clamp(0.9375rem,0.35vw+0.875rem,1.125rem)] leading-relaxed text-white/72 sm:mt-8"
-              style={{
-                opacity: ch1BodyOpacity,
-                transform: `translateY(${ch1BodyY}px)`,
-              }}
-            >
-              Copy trading puts you behind the move. Conduence puts you at the front of it,
-              Orchestrate the agents others end up watching.
-            </p>
-          </EditorialType>
-
-          {/* Chapter 2 — right aligned */}
-          <EditorialType
-            className="absolute w-[calc(100%-2*clamp(1rem,4vw,2.5rem))] max-w-[min(56rem,96vw)] text-right"
-            style={{
-              right: SECTION_X,
-              opacity: ch2Opacity,
-              visibility: ch2Opacity === 0 ? "hidden" : "visible",
-              transform: `translateY(${ch2Y}px)`,
-            }}
-          >
-            <p className="text-display-medium font-display leading-[1.05] tracking-tight text-white/88">
-              Turn strategies into
-            </p>
-            <p className="mt-4 text-[clamp(1.5rem,3vw+0.4rem,3.5rem)] leading-[1.05] tracking-tight text-white/40 [font-family:var(--font-display),Georgia,serif]">
-              <span style={{ fontWeight: autonomousWeight }}>
-                fully independent autonomous
-              </span>
-            </p>
-            <p className="text-display-medium mt-2 font-display leading-[1.05] tracking-tight text-white/88">
-              market actors.
-            </p>
-            <p className="mt-6 text-[clamp(0.95rem,1.6vw+0.3rem,1.35rem)] tracking-tight text-white/88 [font-family:var(--font-display),Georgia,serif]">
-              <span className="whitespace-nowrap">No code.</span>
-            </p>
-          </EditorialType>
-
-          {/* Chapter 3 — centered finale */}
           <EditorialType
             className="absolute inset-0 flex flex-col items-center justify-center px-section text-center"
-            style={{ opacity: ch3Opacity }}
+            style={{ opacity: headlineOpacity }}
           >
             <p
               className="text-display-cta max-w-3xl text-balance font-display leading-[1.05] tracking-tight text-white/88"
               style={{
-                opacity: ch3HeadlineOpacity,
-                transform: `scale(${ch3HeadlineScale})`,
+                transform: `translateY(${headlineY}px) scale(${headlineScale})`,
               }}
             >
               Many strategies.

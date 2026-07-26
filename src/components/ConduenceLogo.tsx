@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 /** Fallback when background color cannot be resolved from the DOM. */
 const LIGHT_SECTION_IDS = new Set([
   "top",
+  "shared-edge",
   "core-insight",
   "the-problem",
   "pillars",
