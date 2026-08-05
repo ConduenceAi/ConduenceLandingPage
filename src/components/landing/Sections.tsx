@@ -11,15 +11,15 @@ import { CubeAssembly } from "@/components/landing/CubeAssembly";
 const REASONING_ITEMS = [
   {
     title: "Memory Plane",
-    body: "Conduence turns your trading mind into the system agents run on. Long term memory carries experience across decisions. Short term instructions keep each task sharp and on track.",
+    body: "Conduence turns your trading mind into the system agents run on. Long term memory carries reasoning across decisions. Short term instructions keep each trade sharp and on track.",
   },
   {
     title: "Capability Registry",
-    body: "Conduence aggregates research inputs, market data, execution surfaces, and the tools you already rely on into one place. Agents operate with the full context at their fingertips.",
+    body: "Conduence is the aggregation layer for your agent, bringing the best tools together, combining their strengths, and delivering richer, more actionable context. Tools are only as useful as the instructions behind them. Conduence helps agents choose and combine the right capabilities for every decision.",
   },
   {
     title: "Execution Runtime",
-    body: "Conduence have the in house pipeline to orchestrate every flow of the system. From events to waking up the agents in 850ms to executing trades with a diversion rate of 0.15%."
+    body: "Conduence coordinates the full path from event to execution. Agents wake within 850 ms, act within your rules, and maintain a diversion rate of below 0.15%. Our runtime also reduces LLM token usage by 70%.",
   },
 ];
 

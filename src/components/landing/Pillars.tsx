@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import {
   featCanvasSrc,
   featConnectorsSrc,
+  featBrainstormSrc,
   featExploreSrc,
   featGraphSrc,
-  featMindSrc,
   featObservabilitySrc,
   featPaperSrc,
 } from "@/lib/assets";
@@ -23,17 +23,17 @@ const pillars: Pillar[] = [
   {
     title: "Shape",
     body: "Teach the system how you think. Share beliefs by voice, text, or build the mesh manually. Talk with agents the way you normally would, and they learn how you think and where you stand. Your mesh becomes the source agents read from, not a blank prompt each time.",
-    image: featMindSrc,
+    image: featGraphSrc,
   },
   {
     title: "Brainstorm",
     body: "Stress-test theses with agents that already know your perspective. Sharpen ideas against your mesh, challenge assumptions, and lock the versions that hold, so judgment compounds before capital moves.",
-    image: featGraphSrc,
+    image: featBrainstormSrc,
   },
   {
-    title: "Retrace",
-    body: "On each agent, open Trace for every run. See step latency, what was looked up, what came back, what failed or returned unusable output, and whether evidence supported or contradicted the thesis. Open vs skipped markets, entry thesis, and exit plan sit in one place, so you can debug the decision path instead of guessing.",
-    image: featObservabilitySrc,
+    title: "Library",
+    body: "Browse every tool to see when to use it, what to set, what you get back, and how agents benefit, plus a Test playground. Monitor triggers you created, including which watcher is active, which events fired, and which runs they woke. Research Polymarket, Twitter/X, and recent news across markets, wallets, profiles, and detailed analysis before a thesis hardens.",
+    image: featExploreSrc,
   },
   {
     title: "Agent Studio",
@@ -41,9 +41,9 @@ const pillars: Pillar[] = [
     image: featCanvasSrc,
   },
   {
-    title: "Explore",
-    body: "Browse every tool to see when to use it, what to set, what you get back, and how agents benefit, plus a Test playground. Monitor triggers you created, including which watcher is active, which events fired, and which runs they woke. Research Polymarket, Twitter/X, and recent news across markets, wallets, profiles, and detailed analysis before a thesis hardens.",
-    image: featExploreSrc,
+    title: "Retrace",
+    body: "On each agent, open Trace for every run. See step latency, what was looked up, what came back, what failed or returned unusable output, and whether evidence supported or contradicted the thesis. Open vs skipped markets, entry thesis, and exit plan sit in one place, so you can debug the decision path instead of guessing.",
+    image: featObservabilitySrc,
   },
   {
     title: "Connectors",

@@ -10,6 +10,7 @@ export const pillarMindSrc = { url: "/images/pillar-mind.png" };
 export const pillarFlowSrc = { url: "/images/pillar-flow.png" };
 
 export const featGraphSrc = "/images/pillar-graph.png";
+export const featBrainstormSrc = "/images/feat-brainstorm.png";
 export const featPaperSrc = "/images/feat-paper.jpg";
 export const featObservabilitySrc = "/images/feat-trace.png";
 export const featCanvasSrc = "/images/feat-canvas.jpg";

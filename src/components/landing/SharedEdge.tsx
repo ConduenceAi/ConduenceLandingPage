@@ -56,9 +56,7 @@ export function SharedEdge() {
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
             The approaches that work for coding agents struggle at the market. Trading is not a
-            skill you can simply distribute. Once a strategy is public, whether copy trading, a
-            prebuilt parlay, or shared insider flow, a growing userbase crowds the same alpha
-            until first come first serve takes it away.
+            skill you can simply distribute. The moment a strategy is public, a growing userbase crowds the alpha.
           </motion.p>
         </div>
 

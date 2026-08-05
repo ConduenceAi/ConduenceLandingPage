@@ -9,14 +9,24 @@ const BLOCKS = [
   {
     title: "Say what stays off limits.",
     body: "Tell an agent what it must not do: markets to avoid, actions to freeze, lines it cannot cross. Speak the constraint once. It locks until you release it.",
-    callout:
-      "“Stop trading.” The agents stand down. “Do not trade Bitcoin or Bitcoin related markets.” Those parameters lock out until you say otherwise.",
+    callout: (
+      <>
+        <span className="font-medium text-black">“Stop trading.”</span> - The agents stand down OR{" "}
+        <span className="font-medium text-black">“Do not trade Bitcoin-related markets.”</span> - Those
+        markets are locked out until you say otherwise.
+      </>
+    ),
   },
   {
     title: "Say what to check first.",
     body: "Tell an agent what must be true before it enters: liquidity, size, confirmation, or any check you care about. Speak it once. It applies on every run or for specific markets.",
-    callout:
-      "“Only enter liquid markets above $50k volume.” “Confirm before size over 2%.” Those checks hold until you change them.",
+    callout: (
+      <>
+        <span className="font-medium text-black">"Only enter liquid markets above $50k volume."</span>{" "} , 
+        <span className="font-medium text-black">“Ask before risking over 7% of capital on one trade.”</span> Those rules stay in place
+        until you change them.
+      </>
+    ),
   },
 ] as const;
 
@@ -32,7 +42,7 @@ export function TheProblem() {
       aria-label="How Conduence agents run on dedicated compute and follow spoken rules"
     >
       <div className="mx-auto grid max-w-[1480px] gap-[clamp(2.5rem,5vw,4.5rem)] lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:items-start lg:gap-[clamp(3rem,6vw,7rem)]">
-        <div className="max-w-xl lg:sticky lg:top-[clamp(5rem,12vw,7rem)]">
+        <div className="max-w-xl pt-[clamp(1rem,3vw,2rem)] lg:sticky lg:top-[clamp(5rem,12vw,7rem)] lg:pt-[clamp(2rem,5vw,4rem)]">
           <motion.h2
             className="text-display-lede max-w-[18ch] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
             aria-label="Dedicated power. Rules you speak."
@@ -40,18 +50,9 @@ export function TheProblem() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            Dedicated power. Rules you speak.
+            <span className="block">Dedicated power.</span>
+            <span className="block">Rules you speak.</span>
           </motion.h2>
-
-          <motion.p
-            className="text-body-large mt-[clamp(1rem,2vw,1.5rem)] max-w-[34rem] leading-relaxed text-black/85"
-            initial={{ opacity: 0, y: 14 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-            transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
-          >
-            W several events hit at once, it handles
-            them in sync: no shared queue, no dropped signals, no waiting on someone else’s load.
-          </motion.p>
         </div>
 
         <div>

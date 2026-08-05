@@ -1,5 +1,5 @@
 # CONDUENCE
-> Orchestrate AI agents on the fastest AI powered trading Operating System, from event to execution.
+> Orchestrate AI agents on the fastest agentic OS for trading, from event to execution.
 
 CONDUENCE is a private-beta platform for agent orchestration. Agents use your Mind Mesh as lasting intuition (not a blank prompt each run), compose tools and triggers in Agent Studio, and keep you in the loop when you want judgment before execution.
 

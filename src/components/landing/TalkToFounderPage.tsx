@@ -48,7 +48,8 @@ export function TalkToFounderPage() {
         </h1>
 
         <p className="mt-[clamp(1rem,2.5vw,1.35rem)] max-w-md text-[clamp(0.9375rem,0.35vw+0.85rem,1.0625rem)] leading-relaxed text-black/55 [font-family:var(--font-ui),system-ui,sans-serif]">
-          Book a 30-minute call to discuss agent orchestration, private beta, or early access.
+          Meet the founder, explore the future of agentic operating systems for trading, and see what’s taking shape in
+          the private beta.
         </p>
 
         <button
