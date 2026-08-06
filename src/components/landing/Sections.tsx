@@ -11,7 +11,7 @@ import { CubeAssembly } from "@/components/landing/CubeAssembly";
 const REASONING_ITEMS = [
   {
     title: "Memory Plane",
-    body: "Conduence turns your trading mind into the system agents run on. Long term memory carries reasoning across decisions. Short term instructions keep each trade sharp and on track.",
+    body: "Conduence turns your trading mind into the system agents run on. Long term memory carries reasoning across decisions. Short term instructions keep each trade sharp and on track. Your knowledge stays user-scoped and securely hosted.",
   },
   {
     title: "Capability Registry",
