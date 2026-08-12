@@ -59,14 +59,14 @@ function ClarifierRow({
         aria-expanded={isOpen}
         className="flex w-full items-baseline justify-between gap-x-[clamp(0.85rem,2vw,1.5rem)] py-[clamp(1.15rem,2.4vw,1.65rem)] text-left"
       >
-        <span
+        <h3
           className={cn(
             "text-[clamp(1.15rem,2.2vw,1.65rem)] leading-tight tracking-[-0.03em] transition-colors [font-family:var(--font-display),Georgia,serif]",
             isOpen ? "text-black" : "text-black/70",
           )}
         >
           {label}
-        </span>
+        </h3>
         <motion.span
           aria-hidden
           className="shrink-0 font-mono text-[clamp(1rem,1.5vw,1.25rem)] font-light leading-none text-black/35"

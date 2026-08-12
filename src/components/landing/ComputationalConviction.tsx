@@ -196,7 +196,7 @@ export function ComputationalConviction() {
             className="absolute inset-0 flex flex-col items-center justify-center px-section text-center"
             style={{ opacity: headlineOpacity }}
           >
-            <p
+            <h2
               className="text-display-cta max-w-3xl text-balance font-display leading-[1.05] tracking-tight text-white/88"
               style={{
                 transform: `translateY(${headlineY}px) scale(${headlineScale})`,
@@ -205,7 +205,7 @@ export function ComputationalConviction() {
               Many strategies.
               <br />
               <span className="text-white/40">One Judgment.</span>
-            </p>
+            </h2>
             <ScatteringTraderLine scatter={traderScatter} />
           </EditorialType>
         </div>
