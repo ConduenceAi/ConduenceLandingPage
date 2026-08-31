@@ -133,6 +133,7 @@ export function CTA() {
             type="email"
             name="email"
             placeholder="you@strategy.io"
+            aria-label="Email address"
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}

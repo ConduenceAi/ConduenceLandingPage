@@ -36,6 +36,7 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.05, ease: "easeOut" }}
           className="text-display-hero max-w-4xl bg-transparent text-balance font-display leading-[0.95] tracking-[-0.02em] text-black"
         >
+          <span className="sr-only">CONDUENCE — </span>
           Your edge.
           <br />
           <span className="font-display">Running on</span>

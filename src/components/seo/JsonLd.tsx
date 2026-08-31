@@ -9,9 +9,12 @@ export function JsonLd() {
     "@type": "Organization",
     name: SITE_NAME,
     url: siteUrl,
-    logo: absoluteUrl("/favicon-dark.png"),
+    // 720x720 brand mark (Google Logo rich result requires >= 112x112)
+    logo: absoluteUrl("/images/brand_logo.png"),
     email: "contact@conduence.xyz",
     description: SITE_DESCRIPTION,
+    // Add official profile URLs here when available, e.g.:
+    // sameAs: ["https://x.com/…", "https://www.linkedin.com/company/…"],
   };
 
   const website = {

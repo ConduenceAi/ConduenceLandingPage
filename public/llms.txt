@@ -9,13 +9,14 @@ Contact: contact@conduence.xyz
 ## Pages
 - [Home](https://conduence.xyz/): Product overview — agents that trade like you
 - [Talk to the founder](https://conduence.xyz/talk-to-founder): Book a 30-minute call about orchestration, private beta, or early access
-- [Product features](https://conduence.xyz/#pillars): Feature overview on the homepage (Mind Mesh, Retrace, Agent Studio, Explore, Connectors, Simulator)
+- [Product features](https://conduence.xyz/#pillars): Feature overview on the homepage (Shape, Brainstorm, Library, Agent Studio, Retrace, Connectors, Simulator)
 
 ## Product features
-- [Mind Mesh](https://conduence.xyz/#pillars): Teach the system how you think via voice, text, or manual mesh; agents use it as intuition
-- [Retrace](https://conduence.xyz/#pillars): Inspect every agent run — latency, lookups, evidence, open vs skipped markets, thesis and exit plan
+- [Shape](https://conduence.xyz/#pillars): Teach the system how you think via voice, text, or manual mesh; agents use it as intuition
+- [Brainstorm](https://conduence.xyz/#pillars): Stress-test theses with agents that already know your perspective
+- [Library](https://conduence.xyz/#pillars): Tool docs, trigger monitoring, and research across markets, wallets, profiles, and news
 - [Agent Studio](https://conduence.xyz/#pillars): Compose orchestrators with tools, triggers, and priority graphs — no code
-- [Explore](https://conduence.xyz/#pillars): Tool docs, trigger monitoring, and research across markets, wallets, profiles, and news
+- [Retrace](https://conduence.xyz/#pillars): Inspect every agent run — latency, lookups, evidence, open vs skipped markets, thesis and exit plan
 - [Connectors](https://conduence.xyz/#pillars): Telegram/Discord and daily tools so your judgment stays in the loop
 - [Simulator](https://conduence.xyz/#pillars): Paper mode against live market data before going live
 
@@ -23,6 +24,7 @@ Contact: contact@conduence.xyz
 - [robots.txt](https://conduence.xyz/robots.txt): Crawl rules for bots
 - [sitemap.xml](https://conduence.xyz/sitemap.xml): Indexable URLs for search engines
 - [llm.txt](https://conduence.xyz/llm.txt): Short pointer to this file
+- [Web app manifest](https://conduence.xyz/manifest.webmanifest): PWA / install metadata
 
 ## Optional
 - [Open Graph image](https://conduence.xyz/og.jpg): Social / link-preview image for CONDUENCE
