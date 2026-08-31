@@ -19,7 +19,7 @@ const REASONING_ITEMS = [
   },
   {
     title: "Execution Runtime",
-    body: "Conduence coordinates the full path from event to execution. Agents wake within 850 ms, act within your rules, and maintain a diversion rate of below 0.15%. Our runtime also reduces LLM token usage by 70%.",
+    body: "Conduence coordinates the full path from event to execution. Agents wake within 1,250 ms, act within your rules, and maintain a diversion rate of below 1.3%. Our runtime also reduces LLM token usage by 72.5%.",
   },
 ];
 
