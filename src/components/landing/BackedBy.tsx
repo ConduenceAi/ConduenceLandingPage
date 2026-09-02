@@ -51,7 +51,7 @@ export function BackedBy() {
     >
       <div className="mx-auto flex max-w-[1480px] flex-wrap items-center justify-center gap-x-[clamp(0.75rem,2vw,1.25rem)] gap-y-2 text-center">
         <span className="text-kicker font-mono font-semibold uppercase tracking-[0.34em] text-black/55">
-          Backed by
+          Supported by
         </span>
         {BACKERS.map(({ name, Logo }, index) => (
           <span key={name} className="flex items-center gap-x-[clamp(0.75rem,2vw,1.25rem)]">
