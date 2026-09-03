@@ -48,9 +48,24 @@ function NvidiaLogo() {
 }
 
 const BACKERS = [
-  { name: "Microsoft", Logo: MicrosoftLogo },
-  { name: "AWS", Logo: AwsLogo },
-  { name: "NVIDIA", Logo: NvidiaLogo },
+  {
+    name: "Microsoft",
+    Logo: MicrosoftLogo,
+    labelClassName: "text-[0.91em] font-bold",
+    sizeClassName: "",
+  },
+  {
+    name: "Amazon",
+    Logo: AwsLogo,
+    labelClassName: "text-[0.91em] font-bold",
+    sizeClassName: "",
+  },
+  {
+    name: "NVIDIA",
+    Logo: NvidiaLogo,
+    labelClassName: "text-[0.91em] font-semibold",
+    sizeClassName: "text-[clamp(1.25rem,2.65vw,1.55rem)]",
+  },
 ] as const;
 
 export function BackedBy() {
@@ -70,12 +85,12 @@ export function BackedBy() {
         <span className="text-kicker font-mono font-semibold uppercase tracking-[0.34em] text-black/55">
           Supported by
         </span>
-        {BACKERS.map(({ name, Logo }, index) => (
+        {BACKERS.map(({ name, Logo, labelClassName, sizeClassName }, index) => (
           <span key={name} className="flex items-center gap-x-[clamp(0.75rem,2vw,1.25rem)]">
             {index !== 0 ? <span className="text-black/25" aria-hidden="true">·</span> : null}
-            <span className="flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-[clamp(1.1rem,2.4vw,1.4rem)] text-black/80">
+            <span className={`flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-black/80 ${sizeClassName || "text-[clamp(1.1rem,2.4vw,1.4rem)]"}`}>
               <Logo />
-              <span className="text-kicker font-mono uppercase tracking-[0.1em] text-black/70">
+              <span className={`font-mono uppercase tracking-[0.08em] text-black/70 ${labelClassName}`}>
                 {name}
               </span>
             </span>
