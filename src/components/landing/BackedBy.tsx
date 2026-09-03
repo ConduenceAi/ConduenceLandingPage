@@ -51,19 +51,19 @@ const BACKERS = [
   {
     name: "Microsoft",
     Logo: MicrosoftLogo,
-    labelClassName: "text-[0.91em] font-bold",
+    labelClassName: "text-[0.91em]",
     sizeClassName: "",
   },
   {
     name: "Amazon",
     Logo: AwsLogo,
-    labelClassName: "text-[0.91em] font-bold",
+    labelClassName: "text-[0.91em]",
     sizeClassName: "",
   },
   {
     name: "NVIDIA",
     Logo: NvidiaLogo,
-    labelClassName: "text-[0.91em] font-semibold",
+    labelClassName: "text-[0.91em]",
     sizeClassName: "text-[clamp(1.25rem,2.65vw,1.55rem)]",
   },
 ] as const;
@@ -82,7 +82,7 @@ export function BackedBy() {
       transition={{ duration: 0.7, ease: EASE }}
     >
       <div className="mx-auto flex max-w-[1480px] flex-wrap items-center justify-center gap-x-[clamp(0.75rem,2vw,1.25rem)] gap-y-2 text-center">
-        <span className="text-kicker font-mono font-semibold uppercase tracking-[0.34em] text-black/55">
+        <span className="text-[clamp(0.680625rem,0.1815vw+0.605rem,0.75625rem)] font-mono font-semibold uppercase tracking-[0.34em] text-black">
           Supported by
         </span>
         {BACKERS.map(({ name, Logo, labelClassName, sizeClassName }, index) => (
@@ -90,7 +90,7 @@ export function BackedBy() {
             {index !== 0 ? <span className="text-black/25" aria-hidden="true">·</span> : null}
             <span className={`flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-black/80 ${sizeClassName || "text-[clamp(1.1rem,2.4vw,1.4rem)]"}`}>
               <Logo />
-              <span className={`font-mono uppercase tracking-[0.08em] text-black/70 ${labelClassName}`}>
+              <span className={`uppercase tracking-[-0.01em] text-black/70 [font-family:var(--font-display),Georgia,serif] ${labelClassName}`}>
                 {name}
               </span>
             </span>
