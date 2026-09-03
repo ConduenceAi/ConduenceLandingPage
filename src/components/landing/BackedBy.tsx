@@ -31,9 +31,33 @@ function AwsLogo() {
   );
 }
 
+function NvidiaLogo() {
+  return (
+    <svg
+      viewBox="0 0 28 20"
+      aria-hidden
+      className="h-[1em] w-[1.4em] shrink-0"
+    >
+      <rect width="20" height="20" fill="#76b900" />
+      <path
+        d="M4 10c2.7-3.4 6.8-5.2 11.2-5.2 1.5 0 3 .2 4.3.7-2.4.2-4.7 1.2-6.4 2.8 2.2.1 4.2 1.3 5.3 3.2-1.2-1-2.7-1.6-4.3-1.6-2.7 0-5.1 1.5-6.3 3.8 1.9-1.4 4.6-1.8 6.9-.9-2.2 1.7-5.2 2.4-8 1.9-1-.2-1.9-.5-2.7-1 1.5-2.5 4.2-4 7.1-4.1-2.3-.6-4.7-.4-6.8.4L4 10Zm10.3 1.3a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+        fill="white"
+      />
+      <text x="22" y="14" fill="currentColor" fontSize="6" fontWeight="700">
+        NVIDIA
+      </text>
+    </svg>
+  );
+}
+
 const BACKERS = [
-  { name: "Microsoft for Startups", Logo: MicrosoftLogo },
-  { name: "AWS for Startups", Logo: AwsLogo },
+  { name: "Microsoft for Startups", Logo: MicrosoftLogo, href: undefined },
+  { name: "AWS for Startups", Logo: AwsLogo, href: undefined },
+  {
+    name: "NVIDIA Inception",
+    Logo: NvidiaLogo,
+    href: "https://www.nvidia.com/en-in/startups/",
+  },
 ] as const;
 
 export function BackedBy() {
@@ -53,17 +77,37 @@ export function BackedBy() {
         <span className="text-kicker font-mono font-semibold uppercase tracking-[0.34em] text-black/55">
           Supported by
         </span>
-        {BACKERS.map(({ name, Logo }, index) => (
-          <span key={name} className="flex items-center gap-x-[clamp(0.75rem,2vw,1.25rem)]">
-            {index !== 0 ? <span className="text-black/25" aria-hidden="true">·</span> : null}
-            <span className="flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-[clamp(1.1rem,2.4vw,1.4rem)] text-black/80">
+        {BACKERS.map(({ name, Logo, href }, index) => {
+          const content = (
+            <>
               <Logo />
               <span className="text-kicker font-mono uppercase tracking-[0.1em] text-black/70">
                 {name}
               </span>
+            </>
+          );
+
+          const className = "flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-[clamp(1.1rem,2.4vw,1.4rem)] text-black/80";
+
+          return (
+            <span key={name} className="flex items-center gap-x-[clamp(0.75rem,2vw,1.25rem)]">
+              {index !== 0 ? <span className="text-black/25" aria-hidden="true">·</span> : null}
+              {href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Learn about ${name}`}
+                  className={`${className} transition-colors hover:text-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black`}
+                >
+                  {content}
+                </a>
+              ) : (
+                <span className={className}>{content}</span>
+              )}
             </span>
-          </span>
-        ))}
+          );
+        })}
       </div>
     </motion.section>
   );
