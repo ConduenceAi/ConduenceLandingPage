@@ -6,7 +6,6 @@ import { BackedBy } from "@/components/landing/BackedBy";
 import { PlatformSections } from "@/components/landing/PlatformSections";
 import { CTA } from "@/components/landing/Sections";
 import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
-import { WhatConduenceIsNot } from "@/components/landing/WhatConduenceIsNot";
 import { absoluteUrl, siteTagline } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -30,7 +29,6 @@ export default function HomePage() {
       <BackedBy />
       <PlatformSections />
       <WeMoveAsOne />
-      <WhatConduenceIsNot />
       <CTA />
     </main>
   );
