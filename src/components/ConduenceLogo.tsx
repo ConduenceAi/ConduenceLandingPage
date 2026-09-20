@@ -11,6 +11,7 @@ const LIGHT_SECTION_IDS = new Set([
   "shared-edge",
   "core-insight",
   "the-problem",
+  "problem",
   "pillars",
   "we-move-as-one",
   "what-conduence-is-not",
