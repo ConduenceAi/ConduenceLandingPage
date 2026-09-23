@@ -1,5 +1,5 @@
+import { ConduenceProblem } from "@/components/landing/ConduenceProblem";
 import { Pillars } from "@/components/landing/Pillars";
-import { ProblemSection } from "@/components/landing/ProblemSection";
 import { Reasoning } from "@/components/landing/Sections";
 import { SharedEdge } from "@/components/landing/SharedEdge";
 import { TheProblem } from "@/components/landing/TheProblem";
@@ -11,7 +11,7 @@ export function PlatformSections() {
       <SharedEdge />
       <Reasoning />
       <UnfairAdvantage />
-      <ProblemSection />
+      <ConduenceProblem />
       <TheProblem />
       <Pillars />
     </div>
