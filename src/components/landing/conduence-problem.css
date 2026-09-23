@@ -248,8 +248,8 @@
 }
 
 .ob-problem .run-tabs .is-on[data-side="conduence"] {
-  background: #fff;
-  color: #111;
+  background: #3a7dd9;
+  color: #fff;
 }
 
 .ob-problem .run-note {
@@ -426,8 +426,8 @@
 }
 
 .ob-problem .run-svg[data-mode="conduence"] .run-profit-box[data-lane="retail"] {
-  fill: #fff;
-  stroke: #111;
+  fill: #3a7dd9;
+  stroke: #3a7dd9;
 }
 
 .ob-problem .run-profit {
@@ -447,6 +447,10 @@
 
 .ob-problem .run-profit--loss {
   fill: var(--ob-down);
+}
+
+.ob-problem .run-svg[data-mode="conduence"] .run-profit[data-lane="retail"] {
+  fill: #fff;
 }
 
 .ob-problem .run-readout {
