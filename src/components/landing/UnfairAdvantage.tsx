@@ -7,11 +7,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const METRICS = [
   {
-    value: "72.5%",
+    value: "70.5%",
     label: "less token usage for sustained operation",
   },
   {
-    value: "1250 ms",
+    value: "850 ms",
     label: "to wake an agent after a dedicated event trigger",
   },
   {
