@@ -2,7 +2,8 @@ import { ConduenceProblem } from "@/components/landing/ConduenceProblem";
 import { Pillars } from "@/components/landing/Pillars";
 import { Reasoning } from "@/components/landing/Sections";
 import { SharedEdge } from "@/components/landing/SharedEdge";
-import { TheProblem } from "@/components/landing/TheProblem";
+// Temporarily hidden; retain the component for a future re-enable.
+// import { TheProblem } from "@/components/landing/TheProblem";
 import { UnfairAdvantage } from "@/components/landing/UnfairAdvantage";
 
 export function PlatformSections() {
@@ -12,7 +13,7 @@ export function PlatformSections() {
       <Reasoning />
       <UnfairAdvantage />
       <ConduenceProblem />
-      <TheProblem />
+      {/* <TheProblem /> */}
       <Pillars />
     </div>
   );
