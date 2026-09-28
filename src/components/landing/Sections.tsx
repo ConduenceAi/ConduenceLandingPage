@@ -19,7 +19,7 @@ const REASONING_ITEMS = [
   },
   {
     title: "Execution Runtime",
-    body: "Conduence coordinates the full path from event to execution. Agents wake within 1,250 ms, act within your rules, and maintain a diversion rate of below 1.3%. Our runtime also reduces LLM token usage by 72.5%.",
+    body: "Conduence coordinates the full path from event to execution. Agents wake within 850 ms, act within your rules, and maintain a divergence of 1.3%. Our runtime also reduces LLM token usage by 70.5%.",
   },
 ];
 
@@ -119,7 +119,7 @@ export function CTA() {
         <h2 className="text-display-cta font-display tracking-tight text-balance">
           Trade with the agents.
           <br />
-          <span className="text-white/40">Not against them.</span>
+          <span className="text-[#48A8D0]">Not against them.</span>
         </h2>
         <p className="text-body-large mx-auto mt-[clamp(1.25rem,3vw,2rem)] max-w-xl text-white/72">
           CONDUENCE is in private beta. Join the waitlist for early access to the Agent Studio and
@@ -142,7 +142,7 @@ export function CTA() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="rounded-full bg-white px-[clamp(1.25rem,2.5vw,1.5rem)] py-[clamp(0.65rem,1.2vw,0.75rem)] text-[clamp(0.8rem,0.3vw+0.7rem,0.875rem)] font-semibold text-black transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-70"
+            className="border-2 border-white bg-[#48A8D0] px-[clamp(1.25rem,2.5vw,1.5rem)] py-[clamp(0.65rem,1.2vw,0.75rem)] text-[clamp(0.8rem,0.3vw+0.7rem,0.875rem)] font-semibold text-black transition hover:bg-[#3b96bc] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {status === "loading" ? "Reserving..." : "Reserve seat"}
           </button>

@@ -10,9 +10,9 @@ export function PlatformSections() {
   return (
     <div className="relative w-full bg-white">
       <SharedEdge />
+      <ConduenceProblem />
       <Reasoning />
       <UnfairAdvantage />
-      <ConduenceProblem />
       {/* <TheProblem /> */}
       <Pillars />
     </div>

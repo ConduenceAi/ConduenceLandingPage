@@ -4,6 +4,8 @@ import { Fragment, useEffect, useRef, useState } from "react";
 
 import { ProblemSection } from "@/components/landing/ProblemSection";
 import {
+  CATALYST_NODES,
+  ELSEWHERE_LEN,
   GATES,
   INITIAL_SCRIPT,
   LANES_Y,
@@ -20,11 +22,11 @@ import {
 } from "@/components/landing/conduence-run";
 
 const BLOCKS = [
-  { title: "Thesis", conduenceTitle: "Thesis" },
   { title: "Catalyst", conduenceTitle: "Catalyst" },
+  { title: "Thesis", conduenceTitle: "Thesis" },
   { title: "Opportunity", conduenceTitle: "Opportunity" },
-  { title: "Position", conduenceTitle: "Position" },
-  { title: "Entry", conduenceTitle: "Entry" },
+  { title: "Size", conduenceTitle: "Size" },
+  { title: "Fill", conduenceTitle: "Fill" },
 ] as const;
 
 const TABS: Record<Side, string> = {
@@ -59,8 +61,10 @@ function RunDiagram({
   const map = MAP[orient];
   const wide = orient === "h";
   const hatch = `ob-run-hatch-${orient}`;
-  const bend = 34 * (1 - scene.k[0]);
+  const late = 34 * (1 - scene.k[0]);
+  const bend = 34 * (1 - scene.k[1]);
   const sold = 40 * (1 - scene.k[4]);
+  const fillSlide = scene.fillShift;
 
   const box = (x0: number, y0: number, x1: number, y1: number) => {
     const [ax, ay] = map(x0, y0);
@@ -89,6 +93,32 @@ function RunDiagram({
       transform: `translate(${mx} ${my}) scale(${scale})`,
     };
   };
+
+  const hops = (
+    nodes: readonly { u: number; side: -1 | 0 | 1; label: string }[],
+    hop: number,
+  ) =>
+    nodes.map((node) => {
+      const y = LANES_Y[0] + node.side * hop;
+      const [nx, ny] = map(node.u, y);
+      const label = wide
+        ? {
+            x: nx,
+            y: node.side === 1 ? ny + 18 : ny - (node.side ? 10 : 13),
+            textAnchor: "middle" as const,
+          }
+        : node.side === -1
+          ? { x: nx - 9, y: ny + 3.5, textAnchor: "end" as const }
+          : { x: nx + 9, y: ny + 3.5 };
+      return (
+        <Fragment key={node.label}>
+          <rect {...square(node.u, y, 8)} className="run-node" />
+          <text {...label} className="run-text run-tag">
+            {node.label}
+          </text>
+        </Fragment>
+      );
+    });
 
   return (
     <svg
@@ -126,62 +156,29 @@ function RunDiagram({
               {names[index]}
             </text>
 
-            {index === 0 ? (
-              <g>
-                <g opacity={1 - scene.k[0]}>
-                  {NODES.map((node) => {
-                    const y = LANES_Y[0] + node.side * bend;
-                    const [nx, ny] = map(node.u, y);
-                    const label = wide
-                      ? {
-                          x: nx,
-                          y: node.side === 1 ? ny + 18 : ny - (node.side ? 10 : 13),
-                          textAnchor: "middle" as const,
-                        }
-                      : node.side === -1
-                        ? { x: nx - 9, y: ny + 3.5, textAnchor: "end" as const }
-                        : { x: nx + 9, y: ny + 3.5 };
-                    return (
-                      <Fragment key={node.label}>
-                        <rect {...square(node.u, y, 8)} className="run-node" />
-                        <text {...label} className="run-text run-tag">
-                          {node.label}
-                        </text>
-                      </Fragment>
-                    );
-                  })}
-                </g>
-              </g>
-            ) : null}
+            {index === 0 ? <g>{hops(CATALYST_NODES, late)}</g> : null}
 
-            {index === 1
-              ? (["bid", "ask"] as const).map((side) =>
+            {index === 1 ? <g>{hops(NODES, bend)}</g> : null}
+
+            {index === 3 ? (
+              <g>
+                {( ["bid", "ask"] as const).map((side) =>
                   scene.depth[side].map((depth, level) => {
                     const dir = side === "bid" ? -1 : 1;
                     const inner = (gate.u0 + gate.u1) / 2 + (4 * dir) / 2;
                     const outer = inner + dir * depth * 0.58;
                     const top = LANES_Y[0] - 11 - 9 * level;
-                    const klass = `run-bar run-bar--${side}`;
                     return (
-                      <g key={`${side}-${level}`}>
-                        {level === 0 ? (
-                          <rect {...box(inner, top - 6, outer, top)} className={klass} />
-                        ) : (
-                          <>
-                            <rect {...box(inner, top - 6, outer, top)} fill={`url(#${hatch})`} className="run-bar-hatch" />
-                            <rect {...box(inner, top - 6, outer, top)} className={klass} opacity={scene.k[1]} />
-                          </>
-                        )}
-                      </g>
+                      <rect
+                        key={`${side}-${level}`}
+                        {...box(inner, top - 6, outer, top)}
+                        className={`run-bar run-bar--${side}`}
+                      />
                     );
                   }),
-                )
-              : null}
-
-            {index === 3 ? (
-              <g>
+                )}
                 <g opacity={1 - scene.k[3]}>
-                  <line {...line(712, LANES_Y[0] - 30, 812, LANES_Y[0] - 30)} className="run-rung" />
+                  <line {...line(712, LANES_Y[0] + 30, 812, LANES_Y[0] + 30)} className="run-rung" />
                 </g>
               </g>
             ) : null}
@@ -250,9 +247,12 @@ function RunDiagram({
 
       {sold > 0.5 ? (
         <g>
-          <rect {...box(915 - sold, LANES_Y[0] - 22, 915 + sold, LANES_Y[0] + 22)} className="run-box" />
           <rect
-            {...box(915 - sold, LANES_Y[0] - 22, 915 + sold, LANES_Y[0] + 22)}
+            {...box(915 - sold + fillSlide, LANES_Y[0] - 22, 915 + sold + fillSlide, LANES_Y[0] + 22)}
+            className="run-box"
+          />
+          <rect
+            {...box(915 - sold + fillSlide, LANES_Y[0] - 22, 915 + sold + fillSlide, LANES_Y[0] + 22)}
             fill={`url(#${hatch})`}
             className="run-box-edge"
           />
@@ -367,10 +367,10 @@ export function ConduenceProblemClient() {
     if (!stage) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
       const frame = requestAnimationFrame(() => {
-        timeRef.current = 5.5;
+        timeRef.current = ELSEWHERE_LEN;
         setScript(scriptFor("elsewhere", "elsewhere"));
         setReduced(true);
-        setTime(5.5);
+        setTime(ELSEWHERE_LEN);
       });
       return () => cancelAnimationFrame(frame);
     }
@@ -460,7 +460,7 @@ export function ConduenceProblemClient() {
 
   const choose = (side: Side) => {
     const current = computeScene(scriptRef.current, timeRef.current).omni ? "conduence" : "elsewhere";
-    timeRef.current = reduced ? 5.5 : 0;
+    timeRef.current = reduced ? ELSEWHERE_LEN : 0;
     setCapped(false);
     setScript(scriptFor(side, current));
     setTime(timeRef.current);

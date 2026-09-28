@@ -51,6 +51,7 @@ export type RunScene = {
   omni: boolean;
   k: number[];
   depth: { bid: number[]; ask: number[] };
+  fillShift: number;
   lanes: RunLane[];
   charges: RunCharge[];
   line: number[];
@@ -60,10 +61,14 @@ export type RunScene = {
 export const LANES_Y = [150, 290] as const;
 export const LANE_NAMES = ["Retail trader", "Institution"] as const;
 export const GATES = [230, 384, 538, 692, 846].map((u0) => ({ u0, u1: u0 + 140 }));
+export const CATALYST_NODES = [
+  { u: 269, side: -1 as const, label: "event" },
+  { u: 315, side: 1 as const, label: "hear" },
+] as const;
 export const NODES = [
-  { u: 270, side: -1 as const, label: "app" },
-  { u: 310, side: 1 as const, label: "broker" },
-  { u: 350, side: 0 as const, label: "router" },
+  { u: 424, side: -1 as const, label: "price" },
+  { u: 464, side: 1 as const, label: "flow" },
+  { u: 504, side: 0 as const, label: "read" },
 ] as const;
 export const QUEUE_X = [621, 603, 585] as const;
 
@@ -72,18 +77,23 @@ const DEPTH_REST = [5, 12] as const;
 
 const RETAIL_WAYPOINTS: Pt[] = [
   [0.15, 170],
-  [0.35, 270],
-  [0.45, 270],
-  [0.6, 310],
-  [0.7, 310],
-  [0.85, 350],
-  [0.95, 350],
-  [1.4, 560],
-  [1.85, 560],
-  [2.1, 660],
-  [2.45, 800],
-  [2.8, 960],
-  [3, 1010],
+  [0.42, 269],
+  [0.95, 269],
+  [1.85, 315],
+  [2.4, 315],
+  [2.65, 424],
+  [3.15, 424],
+  [3.35, 454],
+  [3.85, 454],
+  [4.05, 504],
+  [4.55, 504],
+  [4.85, 568],
+  [5.65, 568],
+  [5.95, 670],
+  [6.18, 762],
+  [6.65, 762],
+  [7.0, 900],
+  [7.25, 1010],
 ];
 
 const DIRECT_WAYPOINTS: Pt[] = [
@@ -93,12 +103,12 @@ const DIRECT_WAYPOINTS: Pt[] = [
 
 const CHARGE_TABLE: Record<Side, { gate: number; lane: number; u: number; amount: number }[]> = {
   elsewhere: [
-    { gate: 0, lane: 0, u: 355, amount: -6 },
-    { gate: 1, lane: 0, u: 470, amount: -4 },
-    { gate: 2, lane: 0, u: 600, amount: -5 },
-    { gate: 3, lane: 0, u: 770, amount: -3 },
+    { gate: 0, lane: 0, u: 345, amount: -4 },
+    { gate: 1, lane: 0, u: 530, amount: -6 },
+    { gate: 2, lane: 0, u: 620, amount: -5 },
+    { gate: 3, lane: 0, u: 748, amount: -3 },
     { gate: 3, lane: 1, u: 770, amount: -1 },
-    { gate: 4, lane: 0, u: 962, amount: -2 },
+    { gate: 4, lane: 0, u: 940, amount: -2 },
   ],
   conduence: [
     { gate: 3, lane: 0, u: 770, amount: -1 },
@@ -106,8 +116,10 @@ const CHARGE_TABLE: Record<Side, { gate: number; lane: number; u: number; amount
   ],
 };
 
+export const ELSEWHERE_LEN = 9.4;
+
 export const INITIAL_SCRIPT: Step[] = [
-  { kind: "act", side: "elsewhere", len: 5.5 },
+  { kind: "act", side: "elsewhere", len: ELSEWHERE_LEN },
   { kind: "flip", to: "conduence" },
   { kind: "act", side: "conduence" },
 ];
@@ -177,12 +189,14 @@ function lanePoints(lane: number, k: number[]): Pt[] {
   const y = LANES_Y[lane];
   const pts: Pt[] = [[170, y]];
   if (lane === 0) {
-    const bend = 34 * (1 - k[0]);
-    pts.push([250, y], [250, y - bend], [290, y - bend], [290, y + bend], [330, y + bend], [330, y]);
+    const late = 34 * (1 - k[0]);
+    pts.push([246, y], [246, y - late], [292, y - late], [292, y + late], [338, y + late], [338, y]);
+    const bend = 34 * (1 - k[1]);
+    pts.push([404, y], [404, y - bend], [444, y - bend], [444, y + bend], [484, y + bend], [484, y]);
   }
   // Institution keeps the Elsewhere route when the view switches to On Conduence.
   const opened = lane === 1 ? 0 : k[3];
-  const fee = 30 * (1 - opened) * (lane === 0 ? -1 : 1);
+  const fee = 30 * (1 - opened);
   pts.push([730, y], [730, y + fee], [795, y + fee], [795, y], [1010, y]);
   return pts;
 }
@@ -240,7 +254,7 @@ function orderTimes(mode: Side, lane: number, clock: number) {
     const burst = entry.bursts++;
     const last = times.length ? times[times.length - 1] : null;
     if (retail) {
-      times.push(last === null ? 0 : last + 0.9 + 0.9 * hash(burst, 0, 11));
+      times.push(last === null ? 0 : last + 3.1 + 0.4 * hash(burst, 0, 11));
     } else {
       const start = last === null ? 0 : last + 0.4 + 0.8 * hash(burst, 1, 13);
       const roll = hash(burst, 1, 12);
@@ -282,10 +296,19 @@ export function orderCount(n: number) {
 
 export const RUN_COPY: Record<Side, string> = {
   elsewhere:
-    "Elsewhere, a retail trader sends orders into the market, each order with $100 of potential profit. Each order passes an app, a broker and a router, sees only the best price, waits in line, pays the top fee tier, is sold on and acts on a late price, so its profit goes up and down.",
+    "Elsewhere, an event happens and the retail trader hears it much later. The trader then builds a view from price, flow, and a read, and that takes time. Finding the setup takes longer. Sizing hesitates. The fill lands on a price that has already moved, so profit leaks at every step.",
   conduence:
-    "On Conduence, five steps run in order. You state the thesis, set the trigger, and own the agent. On trigger it decides against your rules, then the trade fires live or in demo.",
+    "On Conduence, catalyst, thesis, opportunity, size, and fill are already in line. You state the thesis, set the trigger, and own the agent. On trigger it decides against your rules, then the trade fires live or in demo.",
 };
+
+function newestOrder(orders: RunOrder[], from: number, to: number) {
+  let chosen: RunOrder | null = null;
+  for (const order of orders) {
+    if (order.alpha < 0.08 || order.local < from || order.local > to) continue;
+    if (!chosen || order.local < chosen.local) chosen = order;
+  }
+  return chosen;
+}
 
 export function computeScene(script: Step[], time: number): RunScene {
   const { step, local } = activeStep(script, time);
@@ -377,16 +400,23 @@ export function computeScene(script: Step[], time: number): RunScene {
     };
   });
 
-  const line = QUEUE_X.map((_, index) => {
-    let scale = 1;
-    if (acting === "elsewhere") {
-      for (const order of lanes[0].orders) {
-        const enter = clamp((order.local - (1.5 + 0.12 * index)) / 0.1);
-        const leave = clamp((order.local - (2.3 + 0.1 * index)) / 0.15);
-        scale = Math.min(scale, 1 - enter * (1 - leave));
-      }
+  let fillShift = 0;
+  if (acting === "elsewhere") {
+    for (const order of lanes[0].orders) {
+      if (order.alpha < 0.05) continue;
+      const on = clamp((order.local - 6.8) / 0.2);
+      const off = clamp((order.local - 7.15) / 0.18);
+      fillShift = Math.max(fillShift, on * (1 - off) * 20);
     }
-    return scale * (1 - k[2]);
+  }
+
+  const open = 1 - k[2];
+  const line = QUEUE_X.map((_, index) => {
+    if (acting !== "elsewhere") return open;
+    const order = newestOrder(lanes[0].orders, 4.75, 5.85);
+    if (!order) return open;
+    const start = 4.95 + 0.22 * (2 - index);
+    return (0.18 + 0.82 * clamp((order.local - start) / 0.14)) * open;
   });
 
   const gap = Math.abs(lanes[1].profit - lanes[0].profit);
@@ -395,6 +425,7 @@ export function computeScene(script: Step[], time: number): RunScene {
     omni: k.every((value) => value >= 0.5),
     k,
     depth: { bid: depthBars(time, 7), ask: depthBars(time, 8) },
+    fillShift,
     lanes,
     charges,
     line,

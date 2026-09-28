@@ -5,8 +5,8 @@
  * ---------------------------------------------------------------
  * The visitor lives the problem first, then reads it.
  *
- *   ready    5s countdown replaces the cards
- *   select   cards appear showing their move and stay visible for 3s
+ *   ready    3s countdown replaces the cards
+ *   select   cards appear showing their move and stay visible for 5s
  *   picked   brief acknowledgement of the click
  *   zoom     other markets fade, the matching one grows to 50% of the
  *            grid; the right column says what happened
@@ -83,8 +83,8 @@ const SPOT = { network: "Sepolia testnet", tvl: "412 WETH", fees: "8.50%" };
 /* ------------------------------------------------------------------ */
 /* Timing (ms) — tune here                                              */
 /* ------------------------------------------------------------------ */
-const PREP_MS = 5000; // 5s countdown in place of the cards
-const SELECT_MS = 3000; // time to pick while the moves stay visible
+const PREP_MS = 3000; // 3s countdown in place of the cards
+const SELECT_MS = 5000; // time to pick while the moves stay visible
 const PICK_HOLD_MS = 500; // acknowledge the click before revealing
 const RESULT_MS = 2600; // outcome message on screen before the statement
 const SELECT_S = SELECT_MS / 1000;
@@ -518,10 +518,7 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
           {/* 1 · instructions */}
           <div className="cdn-panel" data-on={showTask ? "true" : undefined}>
             <p className="cdn-eyebrow">Can you spot it?</p>
-            <p className="cdn-task-title">
-              <span className="cdn-dot" aria-hidden="true" />
-              Buy momentum.
-            </p>
+            <p className="cdn-task-title">Buy momentum.</p>
             <p className="cdn-support cdn-task-body">
               Pick the market with the strongest upward move within {SELECT_S} seconds.
             </p>
@@ -692,10 +689,10 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
 const CSS = `
 .cdn-problem {
   --cdn-bg: #ffffff;
-  --cdn-card: #f4f4f5;
-  --cdn-card-back: #ececee;
-  --cdn-border: rgba(0,0,0,.08);
-  --cdn-border-hi: rgba(0,0,0,.18);
+  --cdn-card: #ffffff;
+  --cdn-card-back: #ffffff;
+  --cdn-border: #000000;
+  --cdn-border-hi: #000000;
   --cdn-text: #111113;
   --cdn-text-2: #3f3f46;
   --cdn-muted: #8a8a93;
@@ -798,7 +795,7 @@ const CSS = `
 .cdn-back {
   background: var(--cdn-card-back);
   transform: rotateY(180deg);
-  border-color: rgba(0,0,0,.12);
+  border-color: #000000;
 }
 
 .cdn-name {
@@ -806,9 +803,9 @@ const CSS = `
   line-height: 1.25;
   font-weight: 400;
   letter-spacing: -.02em;
-  color: var(--cdn-text-2);
+  color: #000000;
 }
-.cdn-name-dim { color: var(--cdn-muted); }
+.cdn-name-dim { color: #000000; }
 
 .cdn-hint {
   font-size: 9.5px;
@@ -833,7 +830,7 @@ const CSS = `
   font-size: 9px;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--cdn-muted);
+  color: #000000;
   margin-right: 3px;
 }
 .cdn-split {
@@ -855,8 +852,8 @@ const CSS = `
 .cdn-problem[data-hidden="true"] .cdn-front .cdn-probs-real { opacity: 0; transition-duration: .2s; }
 .cdn-problem[data-hidden="true"] .cdn-probs-mask { opacity: 1; transition-duration: .2s; }
 
-.cdn-delta { color: var(--cdn-text); font-size: 11px; }
-.cdn-delta-down { color: var(--cdn-muted); }
+.cdn-delta { color: #000000; font-size: 11px; }
+.cdn-delta-down { color: #000000; }
 
 /* rings: quiet white for the visitor's pick, blue for the match (static mode) */
 .cdn-ring, .cdn-pick {
@@ -1110,7 +1107,6 @@ const CSS = `
 /* instructions */
 .cdn-task-title {
   margin: 0;
-  display: flex; align-items: center; justify-content: center; gap: .32em;
   font-size: clamp(1.5rem, 3.6vw + 0.4rem, 3.5rem);
   line-height: 1.12;
   letter-spacing: -.03em;
@@ -1159,11 +1155,6 @@ const CSS = `
   letter-spacing: -.04em;
   font-variant-numeric: tabular-nums;
   color: var(--cdn-text);
-}
-.cdn-dot {
-  flex: none;
-  width: .2em; height: .2em; border-radius: 50%;
-  background: var(--cdn-accent);
 }
 .cdn-task-body { margin-top: 12px; max-width: 36ch; }
 
@@ -1230,7 +1221,8 @@ const CSS = `
   pointer-events: auto;
   transition: opacity .7s ease .08s, visibility 0s 0s;
 }
-.cdn-finale .cdn-eyebrow { margin-bottom: 18px; }
+.cdn-finale .cdn-eyebrow { margin-bottom: 18px; color: #3a3a3a; }
+.cdn-finale .cdn-h-a { color: #3a3a3a; }
 .cdn-finale .cdn-heading {
   font-size: clamp(1.5rem, 3.6vw + 0.4rem, 3.5rem);
   max-width: 18ch;
@@ -1241,6 +1233,7 @@ const CSS = `
   margin-top: 18px;
   max-width: 36ch;
   font-size: clamp(0.95rem, 0.55vw + 0.8rem, 1.25rem);
+  color: #3a3a3a;
 }
 
 .cdn-replay {
