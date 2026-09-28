@@ -36,10 +36,9 @@ import {
 /* ------------------------------------------------------------------ */
 /* Data — fictional markets, no live data.                             */
 /* yes = probability on the calm card · d = move shown on the back     */
-/* Index 6 is the market that matches "Buy momentum" (strongest rise). */
+/* Each round is one question with its own twelve markets; `winner`    */
+/* is the index of the only market that answers it.                    */
 /* ------------------------------------------------------------------ */
-const WINNER = 6;
-
 type Market = {
   name: string;
   tag: string;
@@ -62,20 +61,232 @@ type RunState = {
   zoom: Zoom;
 };
 
-const MARKETS: Market[] = [
-  { name: "Fed cuts rates", tag: "Macro", yes: 61, d: 3, vol: "820 WETH" },
-  { name: "ETH ETF inflows", tag: "ETH / USD", yes: 47, d: -2, vol: "380 WETH" },
-  { name: "Oil above $80", tag: "OIL / USD", yes: 38, d: 5, vol: "290 WETH" },
-  { name: "Gold above $3,500", tag: "XAU / USD", yes: 72, d: -4, vol: "590 WETH" },
-  { name: "S&P closes higher", tag: "Equities", yes: 58, d: 1, vol: "1,100 WETH" },
-  { name: "BTC dominance", tag: "Crypto", yes: 54, d: -3, vol: "320 WETH" },
-  { name: "BTC above $115K", tag: "BTC / USD", yes: 68, d: 14, vol: "1,930 WETH" },
-  { name: "ETH above $4K", tag: "ETH / USD", yes: 44, d: 6, vol: "710 WETH" },
-  { name: "US unemployment", tag: "Macro", yes: 33, d: -1, vol: "210 WETH" },
-  { name: "Tech earnings", tag: "Equities", yes: 65, d: 2, vol: "450 WETH" },
-  { name: "Treasury yields", tag: "Rates", yes: 51, d: -5, vol: "680 WETH" },
-  { name: "Crypto ETF flows", tag: "Crypto", yes: 59, d: 4, vol: "520 WETH" },
+type Round = {
+  title: string;
+  task: string; // completed with " within N seconds."
+  winner: number;
+  markets: Market[];
+};
+
+const ROUNDS: Round[] = [
+  {
+    // strongest ▲
+    title: "Buy momentum.",
+    task: "Pick the market with the strongest upward move",
+    winner: 6,
+    markets: [
+      { name: "BTC above $120K", tag: "BTC / USD", yes: 58, d: 3, vol: "1,240 WETH" },
+      { name: "ETH above $5K", tag: "ETH / USD", yes: 41, d: -2, vol: "860 WETH" },
+      { name: "SOL ETF approved", tag: "ETF", yes: 63, d: 5, vol: "540 WETH" },
+      { name: "BTC dominance 60%", tag: "Crypto", yes: 49, d: -4, vol: "320 WETH" },
+      { name: "ETH/BTC above 0.04", tag: "ETH / BTC", yes: 36, d: 1, vol: "290 WETH" },
+      { name: "USDT stays pegged", tag: "Stablecoins", yes: 91, d: -1, vol: "410 WETH" },
+      { name: "BTC hits new ATH", tag: "BTC / USD", yes: 62, d: 14, vol: "1,930 WETH" },
+      { name: "XRP above $3", tag: "XRP / USD", yes: 44, d: 6, vol: "470 WETH" },
+      { name: "DOGE above $0.30", tag: "Memes", yes: 27, d: -3, vol: "380 WETH" },
+      { name: "Base TVL above $10B", tag: "L2", yes: 55, d: 2, vol: "260 WETH" },
+      { name: "ETH gas under 5 gwei", tag: "ETH", yes: 70, d: -5, vol: "180 WETH" },
+      { name: "SOL flips ETH volume", tag: "SOL / ETH", yes: 33, d: 4, vol: "350 WETH" },
+    ],
+  },
+  {
+    // strongest ▼
+    title: "Spot the sell-off.",
+    task: "Pick the market with the sharpest drop",
+    winner: 2,
+    markets: [
+      { name: "BTC above $110K", tag: "BTC / USD", yes: 64, d: 4, vol: "1,480 WETH" },
+      { name: "ETH ETF inflows", tag: "ETF", yes: 52, d: -3, vol: "640 WETH" },
+      { name: "SOL above $250", tag: "SOL / USD", yes: 57, d: -13, vol: "1,120 WETH" },
+      { name: "Stablecoin cap $300B", tag: "Stablecoins", yes: 46, d: 2, vol: "390 WETH" },
+      { name: "LINK above $30", tag: "LINK / USD", yes: 39, d: -5, vol: "310 WETH" },
+      { name: "BTC ETF record week", tag: "ETF", yes: 61, d: 7, vol: "870 WETH" },
+      { name: "ARB above $1", tag: "L2", yes: 34, d: -2, vol: "240 WETH" },
+      { name: "ETH above $4.5K", tag: "ETH / USD", yes: 48, d: 3, vol: "920 WETH" },
+      { name: "OP above $3", tag: "L2", yes: 42, d: -4, vol: "200 WETH" },
+      { name: "BNB new high", tag: "BNB / USD", yes: 37, d: 1, vol: "430 WETH" },
+      { name: "Uniswap fee switch", tag: "DeFi", yes: 29, d: 5, vol: "280 WETH" },
+      { name: "AVAX above $50", tag: "AVAX / USD", yes: 31, d: -6, vol: "260 WETH" },
+    ],
+  },
+  {
+    // highest Bull %
+    title: "Follow the crowd.",
+    task: "Pick the market with the highest Bull odds",
+    winner: 9,
+    markets: [
+      { name: "BTC above $100K", tag: "BTC / USD", yes: 71, d: 3, vol: "1,650 WETH" },
+      { name: "ETH staking at 35%", tag: "ETH", yes: 58, d: -2, vol: "340 WETH" },
+      { name: "SOL above $200", tag: "SOL / USD", yes: 44, d: 9, vol: "780 WETH" },
+      { name: "USDC supply grows", tag: "Stablecoins", yes: 76, d: -1, vol: "420 WETH" },
+      { name: "BTC halving rally", tag: "BTC / USD", yes: 62, d: 4, vol: "990 WETH" },
+      { name: "DOGE above $0.25", tag: "Memes", yes: 38, d: -5, vol: "360 WETH" },
+      { name: "ETH ETF net inflow", tag: "ETF", yes: 67, d: 12, vol: "710 WETH" },
+      { name: "Base beats Arbitrum", tag: "L2", yes: 49, d: 2, vol: "230 WETH" },
+      { name: "XRP ETF approved", tag: "ETF", yes: 55, d: -4, vol: "560 WETH" },
+      { name: "BTC green this week", tag: "BTC / USD", yes: 85, d: 3, vol: "1,310 WETH" },
+      { name: "Aave TVL record", tag: "DeFi", yes: 60, d: -3, vol: "300 WETH" },
+      { name: "TON above $5", tag: "TON / USD", yes: 41, d: 6, vol: "250 WETH" },
+    ],
+  },
+  {
+    // lowest Bull %
+    title: "Find the long shot.",
+    task: "Pick the market with the lowest Bull odds",
+    winner: 4,
+    markets: [
+      { name: "BTC above $130K", tag: "BTC / USD", yes: 34, d: 3, vol: "1,090 WETH" },
+      { name: "ETH above $6K", tag: "ETH / USD", yes: 26, d: -4, vol: "680 WETH" },
+      { name: "SOL flips ETH", tag: "SOL / ETH", yes: 23, d: 2, vol: "410 WETH" },
+      { name: "BTC ETF outflows", tag: "ETF", yes: 45, d: -6, vol: "530 WETH" },
+      { name: "DOGE hits $1", tag: "Memes", yes: 11, d: -2, vol: "620 WETH" },
+      { name: "Stablecoin depeg", tag: "Stablecoins", yes: 18, d: 4, vol: "290 WETH" },
+      { name: "ETH gas spike", tag: "ETH", yes: 52, d: 5, vol: "170 WETH" },
+      { name: "New L1 in top 10", tag: "Crypto", yes: 29, d: -8, vol: "220 WETH" },
+      { name: "Airdrop season", tag: "Crypto", yes: 40, d: 7, vol: "350 WETH" },
+      { name: "LTC above $200", tag: "LTC / USD", yes: 31, d: 1, vol: "190 WETH" },
+      { name: "BTC below $80K", tag: "BTC / USD", yes: 27, d: -3, vol: "840 WETH" },
+      { name: "NFT volume doubles", tag: "NFTs", yes: 21, d: 6, vol: "150 WETH" },
+    ],
+  },
+  {
+    // Bull % nearest 50
+    title: "Call the coin flip.",
+    task: "Pick the market closest to a 50/50 split",
+    winner: 7,
+    markets: [
+      { name: "BTC above $115K", tag: "BTC / USD", yes: 58, d: 4, vol: "1,370 WETH" },
+      { name: "ETH above $4K", tag: "ETH / USD", yes: 49, d: -5, vol: "810 WETH" },
+      { name: "SOL ETF this year", tag: "ETF", yes: 38, d: 3, vol: "460 WETH" },
+      { name: "USDT market cap up", tag: "Stablecoins", yes: 72, d: -2, vol: "330 WETH" },
+      { name: "BTC dominance falls", tag: "Crypto", yes: 55, d: 1, vol: "380 WETH" },
+      { name: "ARB above $1.50", tag: "L2", yes: 31, d: -4, vol: "210 WETH" },
+      { name: "ETH outperforms BTC", tag: "ETH / BTC", yes: 60, d: -3, vol: "570 WETH" },
+      { name: "BTC green today", tag: "BTC / USD", yes: 46, d: 4, vol: "1,020 WETH" },
+      { name: "Memecoin index up", tag: "Memes", yes: 64, d: 5, vol: "440 WETH" },
+      { name: "DeFi TVL record", tag: "DeFi", yes: 41, d: -7, vol: "270 WETH" },
+      { name: "XRP above $2.50", tag: "XRP / USD", yes: 52, d: -8, vol: "490 WETH" },
+      { name: "ETH gas under 3 gwei", tag: "ETH", yes: 35, d: 2, vol: "160 WETH" },
+    ],
+  },
+  {
+    // strongest ▼ among BTC markets
+    title: "Buy the BTC dip.",
+    task: "Pick the Bitcoin market that fell the most",
+    winner: 3,
+    markets: [
+      { name: "BTC above $110K", tag: "BTC / USD", yes: 63, d: -4, vol: "1,410 WETH" },
+      { name: "ETH above $4K", tag: "ETH / USD", yes: 47, d: -12, vol: "890 WETH" },
+      { name: "BTC ETF inflows", tag: "ETF", yes: 55, d: 3, vol: "760 WETH" },
+      { name: "BTC hits new ATH", tag: "BTC / USD", yes: 58, d: -9, vol: "1,870 WETH" },
+      { name: "SOL above $220", tag: "SOL / USD", yes: 42, d: 5, vol: "620 WETH" },
+      { name: "BTC dominance 60%", tag: "Crypto", yes: 51, d: -2, vol: "350 WETH" },
+      { name: "DOGE above $0.30", tag: "Memes", yes: 36, d: -10, vol: "480 WETH" },
+      { name: "BTC green this week", tag: "BTC / USD", yes: 60, d: 6, vol: "1,150 WETH" },
+      { name: "LINK above $25", tag: "LINK / USD", yes: 44, d: 2, vol: "280 WETH" },
+      { name: "BTC above $100K", tag: "BTC / USD", yes: 77, d: -5, vol: "1,590 WETH" },
+      { name: "AVAX above $40", tag: "AVAX / USD", yes: 33, d: -3, vol: "240 WETH" },
+      { name: "Base TVL record", tag: "L2", yes: 48, d: 4, vol: "310 WETH" },
+    ],
+  },
+  {
+    // the only ▲
+    title: "Against the tide.",
+    task: "Everything is falling. Pick the only market still rising",
+    winner: 10,
+    markets: [
+      { name: "BTC above $115K", tag: "BTC / USD", yes: 61, d: -6, vol: "1,520 WETH" },
+      { name: "ETH above $4.5K", tag: "ETH / USD", yes: 45, d: -4, vol: "940 WETH" },
+      { name: "SOL above $250", tag: "SOL / USD", yes: 39, d: -9, vol: "730 WETH" },
+      { name: "BTC ETF inflows", tag: "ETF", yes: 57, d: -3, vol: "810 WETH" },
+      { name: "XRP above $3", tag: "XRP / USD", yes: 42, d: -5, vol: "450 WETH" },
+      { name: "DOGE above $0.25", tag: "Memes", yes: 34, d: -7, vol: "390 WETH" },
+      { name: "ETH ETF inflows", tag: "ETF", yes: 50, d: -2, vol: "600 WETH" },
+      { name: "ARB above $1", tag: "L2", yes: 28, d: -4, vol: "220 WETH" },
+      { name: "Aave TVL record", tag: "DeFi", yes: 53, d: -8, vol: "290 WETH" },
+      { name: "BNB above $900", tag: "BNB / USD", yes: 46, d: -3, vol: "370 WETH" },
+      { name: "USDC supply grows", tag: "Stablecoins", yes: 66, d: 3, vol: "520 WETH" },
+      { name: "LINK above $30", tag: "LINK / USD", yes: 37, d: -6, vol: "260 WETH" },
+    ],
+  },
+  {
+    // ▲ from under 50% to over 50%
+    title: "Catch the flip.",
+    task: "Pick the market that just crossed above 50% Bull",
+    winner: 1,
+    markets: [
+      { name: "BTC above $120K", tag: "BTC / USD", yes: 55, d: 4, vol: "1,280 WETH" },
+      { name: "SOL ETF approved", tag: "ETF", yes: 46, d: 7, vol: "690 WETH" },
+      { name: "ETH above $5K", tag: "ETH / USD", yes: 38, d: 9, vol: "910 WETH" },
+      { name: "BTC dominance 60%", tag: "Crypto", yes: 57, d: -4, vol: "340 WETH" },
+      { name: "DOGE above $0.30", tag: "Memes", yes: 29, d: 3, vol: "400 WETH" },
+      { name: "ETH gas under 5 gwei", tag: "ETH", yes: 64, d: -2, vol: "170 WETH" },
+      { name: "XRP above $3", tag: "XRP / USD", yes: 44, d: 5, vol: "480 WETH" },
+      { name: "Base TVL above $10B", tag: "L2", yes: 52, d: -6, vol: "250 WETH" },
+      { name: "USDT stays pegged", tag: "Stablecoins", yes: 93, d: 1, vol: "430 WETH" },
+      { name: "LINK above $30", tag: "LINK / USD", yes: 35, d: -4, vol: "270 WETH" },
+      { name: "BTC ETF record week", tag: "ETF", yes: 61, d: 6, vol: "850 WETH" },
+      { name: "Uniswap fee switch", tag: "DeFi", yes: 41, d: 2, vol: "230 WETH" },
+    ],
+  },
+  {
+    // smallest move
+    title: "Find the calm.",
+    task: "Pick the market that barely moved",
+    winner: 5,
+    markets: [
+      { name: "BTC above $110K", tag: "BTC / USD", yes: 60, d: 7, vol: "1,460 WETH" },
+      { name: "ETH above $4K", tag: "ETH / USD", yes: 48, d: -6, vol: "830 WETH" },
+      { name: "SOL above $200", tag: "SOL / USD", yes: 43, d: 9, vol: "700 WETH" },
+      { name: "BTC ETF inflows", tag: "ETF", yes: 56, d: -8, vol: "790 WETH" },
+      { name: "XRP ETF approved", tag: "ETF", yes: 39, d: 5, vol: "540 WETH" },
+      { name: "USDT stays pegged", tag: "Stablecoins", yes: 94, d: 1, vol: "440 WETH" },
+      { name: "DOGE above $0.25", tag: "Memes", yes: 31, d: -7, vol: "370 WETH" },
+      { name: "ETH/BTC above 0.04", tag: "ETH / BTC", yes: 35, d: 6, vol: "300 WETH" },
+      { name: "Aave TVL record", tag: "DeFi", yes: 52, d: -5, vol: "280 WETH" },
+      { name: "ARB above $1", tag: "L2", yes: 27, d: 8, vol: "210 WETH" },
+      { name: "BNB new high", tag: "BNB / USD", yes: 45, d: -9, vol: "410 WETH" },
+      { name: "NFT volume doubles", tag: "NFTs", yes: 22, d: 5, vol: "140 WETH" },
+    ],
+  },
+  {
+    // strongest ▲ among memecoins
+    title: "Meme season.",
+    task: "Pick the memecoin market with the biggest jump",
+    winner: 8,
+    markets: [
+      { name: "BTC above $115K", tag: "BTC / USD", yes: 59, d: 3, vol: "1,390 WETH" },
+      { name: "DOGE above $0.30", tag: "Memes", yes: 34, d: 5, vol: "520 WETH" },
+      { name: "ETH above $4.5K", tag: "ETH / USD", yes: 46, d: -3, vol: "880 WETH" },
+      { name: "SOL above $250", tag: "SOL / USD", yes: 41, d: 15, vol: "1,060 WETH" },
+      { name: "SHIB flips DOGE", tag: "Memes", yes: 12, d: -2, vol: "310 WETH" },
+      { name: "BTC ETF inflows", tag: "ETF", yes: 62, d: 4, vol: "770 WETH" },
+      { name: "WIF above $3", tag: "Memes", yes: 28, d: 6, vol: "360 WETH" },
+      { name: "Base TVL record", tag: "L2", yes: 51, d: -5, vol: "240 WETH" },
+      { name: "PEPE new high", tag: "Memes", yes: 37, d: 11, vol: "1,930 WETH" },
+      { name: "LINK above $30", tag: "LINK / USD", yes: 38, d: 2, vol: "270 WETH" },
+      { name: "BONK 2x this month", tag: "Memes", yes: 30, d: -4, vol: "290 WETH" },
+      { name: "ETH ETF inflows", tag: "ETF", yes: 54, d: 8, vol: "650 WETH" },
+    ],
+  },
 ];
+
+/* Shuffle bag: every round comes up once, in random order, before any
+   repeats — and never the same round twice in a row. */
+let bag: number[] = [];
+let lastRound = -1;
+function drawRound(): Round {
+  if (!bag.length) {
+    bag = ROUNDS.map((_, i) => i);
+    for (let i = bag.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [bag[i], bag[j]] = [bag[j], bag[i]];
+    }
+    if (bag[bag.length - 1] === lastRound) [bag[0], bag[bag.length - 1]] = [bag[bag.length - 1], bag[0]];
+  }
+  lastRound = bag.pop()!;
+  return ROUNDS[lastRound];
+}
 
 // Extra detail shown only on the zoomed card.
 const SPOT = { network: "Sepolia testnet", tvl: "412 WETH", fees: "8.50%" };
@@ -108,8 +319,8 @@ const STATUS: Record<"ready" | "select" | "picked", string> = {
 
 const seconds = (ms: number) => (ms / 1000).toFixed(1);
 
-function resultCopy(outcome: Outcome, reaction: number | null) {
-  const winner = MARKETS[WINNER].name;
+function resultCopy(round: Round, outcome: Outcome, reaction: number | null) {
+  const winner = round.markets[round.winner].name;
   if (outcome === "caught")
     return {
       title: "You caught it.",
@@ -404,6 +615,7 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
 
   const [s, setS] = useState<RunState>(READY);
   const [runId, setRunId] = useState(0);
+  const [round, setRound] = useState(drawRound);
   const sRef = useRef(s);
   sRef.current = s;
 
@@ -426,7 +638,7 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
     (outcome: Exclude<Outcome, null>, picked: number | null, reaction: number | null) => {
       let zoom: Zoom = null;
       const spot = spotRef.current;
-      const cell = cellRefs.current[WINNER];
+      const cell = cellRefs.current[round.winner];
       if (spot && cell) {
         const a = spot.getBoundingClientRect(); // final size, centred in the grid
         const b = cell.getBoundingClientRect();
@@ -441,7 +653,7 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
       setS((p) => ({ ...p, phase: "zoom", outcome, picked, reaction, zoom }));
       later(RESULT_MS, () => setS((p) => ({ ...p, phase: "statement" })));
     },
-    [later],
+    [later, round.winner],
   );
 
   /* the run: starts when visible, stops (and resets) when not */
@@ -472,7 +684,7 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
     }
 
     const reaction = performance.now() - selectAt.current;
-    const outcome = i === WINNER ? "caught" : "wrong";
+    const outcome = i === round.winner ? "caught" : "wrong";
     setS((p) => ({ ...p, phase: "picked", picked: i, outcome, reaction }));
     later(PICK_HOLD_MS, () => enterZoom(outcome, i, reaction));
   };
@@ -480,6 +692,7 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
   const replay = () => {
     clearAll();
     setS(READY);
+    setRound(drawRound());
     setRunId((n) => n + 1);
   };
 
@@ -492,9 +705,9 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
   const showProblem = reduced;
   const running = phase === "select" || phase === "picked";
 
-  const result = resultCopy(s.outcome, s.reaction);
+  const result = resultCopy(round, s.outcome, s.reaction);
   const z = s.zoom;
-  const win = MARKETS[WINNER];
+  const win = round.markets[round.winner];
   const statusLabel =
     phase === "ready" || phase === "select" || phase === "picked" ? STATUS[phase] : STATUS.ready;
 
@@ -518,9 +731,9 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
           {/* 1 · instructions */}
           <div className="cdn-panel" data-on={showTask ? "true" : undefined}>
             <p className="cdn-eyebrow">Can you spot it?</p>
-            <p className="cdn-task-title">Buy momentum.</p>
+            <p className="cdn-task-title">{round.title}</p>
             <p className="cdn-support cdn-task-body">
-              Pick the market with the strongest upward move within {SELECT_S} seconds.
+              {round.task} within {SELECT_S} seconds.
             </p>
 
             {phase !== "ready" && (
@@ -566,14 +779,14 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
             <PrepCountdown active={active} />
           ) : (
           <div className="cdn-grid" role="group" aria-label="Twelve prediction markets">
-            {MARKETS.map((m, i) => (
+            {round.markets.map((m, i) => (
               <Card
                 key={m.name}
                 market={m}
                 index={i}
                 flipped={s.flipped}
                 picked={s.picked === i}
-                match={i === WINNER}
+                match={i === round.winner}
                 selectable={selectable}
                 onSelect={choose}
                 cellRef={(el) => {

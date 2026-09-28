@@ -1,10 +1,7 @@
 import Link from "next/link";
 
-import { siteTagline } from "@/lib/site";
-
 const ACCENT = "#48A8D0";
 const INK = "#140206";
-const MUTED = "#6B6B6B";
 const LINE = "rgba(20,2,6,0.12)";
 const CREAM = "#F5F4F1";
 const FRAME = "border-[2.5px] border-[#140206] shadow-[5px_5px_0_0_#140206]";
@@ -14,11 +11,13 @@ const PLANS = [
     name: "Beta",
     eyebrow: "Starter",
     tone: "accent" as const,
-    summary: "A seat in the private beta. No payment method. You train the mesh and run agents in paper.",
-    cta: "Join the waitlist",
-    href: "#cta",
-    includesLabel: "Includes",
+    summary: "Open with $100 in credits, then $20 every month.",
+    cta: "Get started",
+    href: "/#cta",
+    includesLabel: "Includes:",
     includes: [
+      "$100 in credits to start",
+      "$20 each month after that",
       "Mind mesh for your reasoning",
       "Agent Studio, no code",
       "Paper simulator on live data",
@@ -26,43 +25,21 @@ const PLANS = [
       "Voice, text, or manual mesh",
       "Library of tools and triggers",
     ],
-    extraLabel: "Runtime",
-    extra: ["Event to awake in about 850 ms", "User-scoped memory", "Guardrails you author"],
   },
   {
-    name: "Founder access",
-    eyebrow: "Operator",
+    name: "Pay as you go",
+    eyebrow: "Usage",
     tone: "plain" as const,
-    summary: "A working session with the founder to wire a real workflow, from thesis to paper to live.",
-    cta: "Talk to the founder",
+    summary: "Billed for what you run, with a direct line when the book needs it.",
+    cta: "Book an onboarding call",
     href: "/talk-to-founder",
-    includesLabel: "Everything in beta, plus",
+    includesLabel: "Everything in beta, plus:",
     includes: [
-      "30-minute founder call",
-      "Loadout review for your book",
-      "Telegram or Discord approvals",
-      "Priority on the early runtime",
+      "Usage-based billing",
+      "Telegram or Discord",
+      "One-on-one onboarding",
+      "Priority support",
     ],
-    extraLabel: "Support",
-    extra: ["Help shaping the first agents", "A path from paper to live"],
-  },
-  {
-    name: "Custom",
-    eyebrow: "Enterprise",
-    tone: "plain" as const,
-    shimmer: true,
-    summary: "For a desk that needs its own bounds, connectors, and a runtime shaped around the book.",
-    cta: "Talk to us",
-    href: "/talk-to-founder",
-    includesLabel: "Everything in founder access, plus",
-    includes: [
-      "Org-level authority and approvals",
-      "Custom connectors",
-      "Dedicated onboarding",
-      "Runtime shaped to your constraints",
-    ],
-    extraLabel: "Controls",
-    extra: ["Your data stays in your scope", "A single place to audit the path"],
   },
 ] as const;
 
@@ -94,33 +71,25 @@ export function PricingPage() {
   return (
     <main className="bg-white text-black">
       <div className="mx-auto w-full max-w-7xl px-6 pb-8 pt-28 md:pt-36 lg:px-8">
-        <h1 className="m-0 text-center text-[2.45rem] font-normal leading-[0.98] tracking-[-0.02em] [font-family:var(--font-display),Georgia,serif] md:text-left md:text-[3rem]">
-          Agents that trade like you
+        <h1 className="m-0 text-center text-[2.45rem] font-normal leading-[0.98] tracking-[-0.02em] [font-family:var(--font-display),Georgia,serif] md:text-[3rem]">
+          Pay as you Go
         </h1>
-        <p className="m-0 mt-4 max-w-2xl text-center text-[1.15rem] leading-[1.35] md:text-left" style={{ color: MUTED }}>
-          {siteTagline}
+        <p className="m-0 mx-auto mt-4 max-w-4xl text-balance text-center text-[1.15rem] leading-[1.35] text-[#6B6B6B] [font-family:var(--font-display),Georgia,serif] md:text-[1.35rem]">
+          Start creating your Second Brain running on the fastest agentic Trading Operating System for Agents
         </p>
-        <Link
-          href="#cta"
-          className={`mt-6 inline-flex min-w-[12rem] items-center justify-center px-7 py-2.5 text-[0.92rem] font-medium transition-colors hover:bg-[#3b96bc] [font-family:var(--font-ui),system-ui,sans-serif] ${FRAME}`}
-          style={{ background: ACCENT, color: INK }}
-        >
-          Get started
-        </Link>
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-6 pb-20 lg:px-8">
+      <div className="mx-auto w-full max-w-5xl px-6 pb-20 lg:px-8">
         <section id="plans" className="scroll-mt-28">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2">
             {PLANS.map((plan) => (
-              <article key={plan.name} className={`flex flex-col bg-white p-4 ${FRAME}`}>
+              <article key={plan.name} className={`flex h-full flex-col bg-white p-4 ${FRAME}`}>
                 <div
                   className="relative min-h-[12rem] overflow-hidden p-5 md:px-6 md:py-7"
                   style={{
                     background: plan.tone === "accent" ? "linear-gradient(165deg, #d7f0f8 0%, #48A8D0 100%)" : CREAM,
                   }}
                 >
-                  {"shimmer" in plan && plan.shimmer ? <Shimmer /> : null}
                   <p className="relative m-0 mb-2 text-[0.8rem] font-medium uppercase tracking-[0.08em] text-black/55 [font-family:var(--font-ui),system-ui,sans-serif]">
                     {plan.eyebrow}
                   </p>
@@ -139,43 +108,11 @@ export function PricingPage() {
                   {plan.cta}
                 </Link>
                 <FeatureList label={plan.includesLabel} items={plan.includes} />
-                <FeatureList label={plan.extraLabel} items={plan.extra} />
               </article>
             ))}
           </div>
         </section>
       </div>
     </main>
-  );
-}
-
-function Shimmer() {
-  return (
-    <span
-      aria-hidden
-      className="pointer-events-none absolute inset-0"
-      style={{
-        padding: 2,
-        background: CREAM,
-        WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-        WebkitMaskComposite: "xor",
-        maskComposite: "exclude",
-        overflow: "hidden",
-      }}
-    >
-      <span
-        className="absolute -left-1/2 -top-1/2 h-[200%] w-[200%] motion-reduce:hidden"
-        style={{
-          background: "linear-gradient(135deg, transparent 40%, rgba(72,168,208,0.85) 58%, transparent 74%)",
-          animation: "cdn-price-shimmer 5.2s ease-in-out infinite",
-        }}
-      />
-      <style>{`
-        @keyframes cdn-price-shimmer {
-          0%, 8% { transform: translate(-58%, -58%); }
-          92%, 100% { transform: translate(58%, 58%); }
-        }
-      `}</style>
-    </span>
   );
 }

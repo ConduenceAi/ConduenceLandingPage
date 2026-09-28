@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { Nav } from "@/components/landing/Nav";
-import { CTA } from "@/components/landing/Sections";
 import { PricingPage } from "@/components/pricing/PricingPage";
 import { absoluteUrl, siteTagline } from "@/lib/site";
 
@@ -23,7 +22,6 @@ export default function PricingRoute() {
     <>
       <Nav />
       <PricingPage />
-      <CTA />
     </>
   );
 }
