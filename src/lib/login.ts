@@ -1,2 +1,2 @@
-/** Where login sends people until account auth exists. */
-export const POST_LOGIN_PATH = "/pricing";
+/** App auth. Login and Get Started send people here. */
+export const APP_LOGIN_URL = "https://app.conduence.xyz/auth/login";

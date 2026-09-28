@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
+import { APP_LOGIN_URL } from "./src/lib/login";
+
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/login",
+        destination: APP_LOGIN_URL,
+        permanent: false,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

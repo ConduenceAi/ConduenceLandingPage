@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 
 import { logoBlackSrc } from "@/lib/assets";
+import { APP_LOGIN_URL } from "@/lib/login";
 
 const demoLinks = [
   { label: "Docs", href: "#docs", marker: true, live: false },
@@ -57,13 +58,13 @@ export function Nav() {
 
       <div className="pointer-events-auto relative ml-auto inline-flex w-fit items-stretch border-[2.5px] border-[#140206] bg-white text-[#140206] shadow-[5px_5px_0_0_#140206] min-[720px]:absolute min-[720px]:right-4 min-[720px]:top-0 min-[720px]:ml-0 min-[960px]:right-[20vw]">
         <a
-          href="/login"
+          href={APP_LOGIN_URL}
           className="flex h-12 items-center px-4 text-[11px] font-medium uppercase tracking-[0.12em] transition-colors hover:bg-[#f4f1ea] focus-visible:bg-[#f4f1ea] focus-visible:outline-none sm:px-5 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]"
         >
           Login
         </a>
         <a
-          href="/login"
+          href={APP_LOGIN_URL}
           className="flex h-12 items-center border-l-[2.5px] border-[#140206] bg-[#48A8D0] px-4 text-[11px] font-medium uppercase tracking-[0.12em] text-[#140206] transition-colors hover:bg-[#3b96bc] focus-visible:bg-[#3b96bc] focus-visible:outline-none sm:px-5 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]"
         >
           Get Started
