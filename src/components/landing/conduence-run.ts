@@ -282,7 +282,7 @@ export function orderCount(n: number) {
 
 export const RUN_COPY: Record<Side, string> = {
   elsewhere:
-    "Elsewhere, a retail trader and an institution send orders into the same market, each order with $100 of potential profit. The institution's orders go straight in, often in bursts, two or three for every retail order, and each keeps $99, so its profit climbs steadily. Each retail order passes an app, a broker and a router, sees only the best price, waits in line, pays the top fee tier, is sold on and acts on a late price, so its profit goes up and down.",
+    "Elsewhere, a retail trader sends orders into the market, each order with $100 of potential profit. Each order passes an app, a broker and a router, sees only the best price, waits in line, pays the top fee tier, is sold on and acts on a late price, so its profit goes up and down.",
   conduence:
     "On Conduence, five steps run in order. You state the thesis, set the trigger, and own the agent. On trigger it decides against your rules, then the trade fires live or in demo.",
 };

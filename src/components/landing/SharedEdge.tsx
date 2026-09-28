@@ -7,12 +7,12 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const CONTRAST = [
   {
-    title: "Coding lifts all.",
-    body: "A better coding model makes everyone ship faster. There is no counterparty absorbing the gain. Progress scales because the work is not a fight over a fixed pie.",
+    title: "Attention runs out.",
+    body: "Markets move across hundreds of venues and thousands of opportunities, most vanishing in seconds. You track a handful. Institutions watch everything, always, so the gap keeps widening. Code your own agents? Most can't. Rent the stack? Ten screens, ten subscriptions, one pair of eyes.",
   },
   {
-    title: "Market zeros out.",
-    body: "Every profitable trade has someone on the other side. Edge is relative. When the same intelligence is available to everyone, the advantage is not amplified. It is competed away.",
+    title: "Shared alpha decays.",
+    body: "Every profitable trade has someone on the other side. Edge is relative. The moment a strategy is public, a crowd trades the same signal and the advantage is competed away before it compounds. A strategy that trades for everyone trades for no one.",
   },
 ] as const;
 
@@ -25,28 +25,23 @@ export function SharedEdge() {
       ref={sectionRef}
       id="shared-edge"
       className="relative overflow-hidden bg-white px-[5%] py-section text-black"
-      aria-label="Why a public trading strategy cannot succeed at scale"
+      aria-label="Why retail edge erodes: attention limits and crowded trades"
     >
       <div className="mx-auto max-w-[1480px]">
         <div className="text-left xl:mx-auto xl:max-w-[58rem] xl:text-center">
-          <motion.p
-            className="text-kicker mb-[clamp(1rem,2vw,1.5rem)] font-mono uppercase tracking-[0.34em] text-black/45"
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-            transition={{ duration: 0.7, ease: EASE }}
-          >
-            The shared edge trap
-          </motion.p>
 
           <motion.h2
             className="text-display-lede max-w-[min(36rem,100%)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] md:max-w-[48rem] xl:mx-auto xl:max-w-none"
-            aria-label="A strategy that trades for everyone trades for no one."
+            aria-label="You don't lose to better traders. You lose to the trades you never saw."
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            A <span className="italic text-black/55">strategy</span> that trades for everyone trades
-            for no one.
+            You don't lose to better traders.{" "}
+            <span className="block">
+              You lose to the{" "}
+              <span className="italic text-black/55">trades you never saw</span>.
+            </span>
           </motion.h2>
 
           <motion.p
@@ -55,8 +50,8 @@ export function SharedEdge() {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
-            The approaches that work for coding agents struggle at the market. Trading is not a
-            skill you can simply distribute. The moment a strategy is public, a growing userbase crowds the alpha.
+            The gap between institutions and retail traders is not talent. It is structural. Human
+            attention caps what you can catch. Shared strategies cap what you can keep.
           </motion.p>
         </div>
 

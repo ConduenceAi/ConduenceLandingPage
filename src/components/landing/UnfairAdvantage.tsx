@@ -7,16 +7,18 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const METRICS = [
   {
-    value: "70.5%",
-    label: "less token usage for sustained operation",
-  },
-  {
     value: "850 ms",
-    label: "to wake an agent after a dedicated event trigger",
+    label: "from market event to agent awake",
+    note: "before the move is priced in",
   },
   {
     value: "1.3%",
-    label: "divergence for immediate contextual awareness",
+    label: "divergence",
+    note: "it decides like you, not like a proxy",
+  },
+  {
+    value: "70.5%",
+    label: "lower cost to run",
   },
 ] as const;
 
@@ -31,7 +33,7 @@ export function UnfairAdvantage() {
       className="relative overflow-hidden bg-white px-[5%] py-[clamp(4rem,9vw,8rem)] text-black"
     >
       <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] [background-size:clamp(3.75rem,7vw,7rem)_clamp(3.75rem,7vw,7rem)]" />
-      <div className="relative mx-auto grid max-w-[1480px] gap-[clamp(2.5rem,6vw,6rem)] lg:-translate-x-[clamp(1rem,5vw,5rem)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
+      <div className="relative mx-auto flex max-w-[1100px] flex-col items-center gap-[clamp(2.25rem,5vw,3.5rem)]">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
@@ -47,21 +49,25 @@ export function UnfairAdvantage() {
           initial={{ opacity: 0, y: 22 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
           transition={{ duration: 0.8, delay: 0.08, ease: EASE }}
+          className="w-full"
         >
-          <div className="grid gap-px overflow-hidden border border-black/10 bg-black/10 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-px overflow-hidden border border-black/10 bg-black/10 lg:grid-cols-3">
             {METRICS.map((metric, index) => (
               <motion.article
                 key={metric.value}
                 initial={{ opacity: 0, y: 16 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 transition={{ duration: 0.65, delay: 0.18 + index * 0.1, ease: EASE }}
-                className="bg-white px-[clamp(1rem,2vw,1.5rem)] py-[clamp(1.25rem,2.5vw,1.8rem)] text-center"
+                className="flex h-full flex-col items-center bg-white px-[clamp(1rem,2vw,1.75rem)] py-[clamp(1.5rem,3vw,2.25rem)] text-center"
               >
-                <p className="font-display text-[clamp(2rem,4vw,3.5rem)] font-normal leading-none tracking-[-0.05em] text-black">
+                <p className="font-display text-[clamp(2.15rem,3.4vw,3.15rem)] font-normal leading-none tracking-[-0.05em] text-black">
                   {metric.value}
                 </p>
-                <p className="mx-auto mt-3 max-w-[18ch] text-[clamp(0.75rem,0.25vw+0.7rem,0.875rem)] leading-relaxed text-black/55 [font-family:var(--font-ui),system-ui,sans-serif]">
-                  {metric.label}
+                <p className="mt-4 flex min-h-[2.75em] items-center text-[clamp(0.8rem,0.2vw+0.74rem,0.92rem)] leading-snug text-black/55 [font-family:var(--font-ui),system-ui,sans-serif]">
+                  <span>
+                    <span className="block">{metric.label}</span>
+                    {"note" in metric ? <span className="block">{metric.note}</span> : null}
+                  </span>
                 </p>
               </motion.article>
             ))}

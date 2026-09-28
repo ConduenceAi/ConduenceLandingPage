@@ -1,5 +1,4 @@
-// Temporarily hidden; retain the component for a future re-enable.
-// import { ConduenceProblem } from "@/components/landing/ConduenceProblem";
+import { ConduenceProblem } from "@/components/landing/ConduenceProblem";
 import { Pillars } from "@/components/landing/Pillars";
 import { Reasoning } from "@/components/landing/Sections";
 import { SharedEdge } from "@/components/landing/SharedEdge";
@@ -13,7 +12,7 @@ export function PlatformSections() {
       <SharedEdge />
       <Reasoning />
       <UnfairAdvantage />
-      {/* <ConduenceProblem /> */}
+      <ConduenceProblem />
       {/* <TheProblem /> */}
       <Pillars />
     </div>

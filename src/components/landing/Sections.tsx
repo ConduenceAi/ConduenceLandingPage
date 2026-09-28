@@ -33,7 +33,7 @@ export function Reasoning() {
         {/* Left half — title + cube */}
         <div>
           <h2 className="max-w-3xl text-display-lede font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]">
-            The OS Layer for Agents
+            Trading Layer for Agents
           </h2>
 
           <div className="relative mx-auto mt-[clamp(1.5rem,3vw,2rem)] w-full max-w-[min(34rem,100%)] lg:mx-0">
