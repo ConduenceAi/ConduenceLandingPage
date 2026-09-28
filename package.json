@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "email:reply": "node scripts/reply-to-email.mjs"
+  },
+  "allowScripts": {
+    "sharp": true,
+    "unrs-resolver": true
   },
 
   "dependencies": {

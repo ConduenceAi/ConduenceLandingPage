@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
+import { CTA } from "@/components/landing/Sections";
+import { Nav } from "@/components/landing/Nav";
 import { TalkToFounderPage } from "@/components/landing/TalkToFounderPage";
 import { absoluteUrl } from "@/lib/site";
 
@@ -30,7 +32,9 @@ export default function TalkToFounderRoute() {
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="afterInteractive"
       />
+      <Nav />
       <TalkToFounderPage />
+      <CTA />
     </>
   );
 }
