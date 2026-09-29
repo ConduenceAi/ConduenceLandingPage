@@ -96,6 +96,11 @@
   }
   html {
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
   }
   body {
     background-color: var(--color-background);

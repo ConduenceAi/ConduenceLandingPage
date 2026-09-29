@@ -7,7 +7,7 @@ Canonical site: https://conduence.xyz
 Contact: contact@conduence.xyz
 
 ## Pages
-- [Home](https://conduence.xyz/): Product overview — agents that trade like you
+- [Home](https://conduence.xyz/): Product overview — your edge, running on agents.
 - [Talk to the founder](https://conduence.xyz/talk-to-founder): Book a 30-minute call about orchestration, private beta, or early access
 - [Product features](https://conduence.xyz/#pillars): Feature overview on the homepage (Shape, Brainstorm, Library, Agent Studio, Retrace, Connectors, Simulator)
 

@@ -137,7 +137,7 @@ export function CTA() {
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="flex-1 rounded-full border border-white/30 bg-transparent px-[clamp(1rem,2vw,1.25rem)] py-[clamp(0.65rem,1.2vw,0.75rem)] text-[clamp(0.8rem,0.3vw+0.7rem,0.875rem)] text-white/88 placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white/60"
+            className="flex-1 border-2 border-white bg-transparent px-[clamp(1rem,2vw,1.25rem)] py-[clamp(0.65rem,1.2vw,0.75rem)] text-[clamp(0.8rem,0.3vw+0.7rem,0.875rem)] text-white/88 placeholder:text-white/40 focus:outline-none"
           />
           <button
             type="submit"

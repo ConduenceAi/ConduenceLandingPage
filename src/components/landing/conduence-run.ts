@@ -18,7 +18,7 @@ export type RunOrder = {
   at: Pt;
   local: number;
   alpha: number;
-  label: "B" | "S";
+  label: "A" | "S";
 };
 
 export type RunResult = {
@@ -163,8 +163,8 @@ function orderProfit(mode: Side, lane: number, index: number) {
   return mode === "conduence" || lane === 1 ? 99 : Math.round(-50 + 120 * hash(index, 0, 1));
 }
 
-function orderLabel(mode: Side, lane: number, index: number): "B" | "S" {
-  return hash(index, lane, mode === "conduence" ? 3 : 2) < 0.5 ? "B" : "S";
+function orderLabel(mode: Side, lane: number, index: number): "A" | "S" {
+  return hash(index, lane, mode === "conduence" ? 3 : 2) < 0.5 ? "A" : "S";
 }
 
 function stepDuration(step: Step) {
