@@ -12,6 +12,12 @@ export function getSiteUrl(): string {
 
 export const siteUrl = getSiteUrl();
 
+export const socialProfiles = [
+  { label: "Telegram", href: "https://t.me/conduencehq" },
+  { label: "Discord", href: "https://discord.gg/BK7x57P5r" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/conduenceai" },
+] as const;
+
 export function absoluteUrl(path = "/"): string {
   if (/^https?:\/\//i.test(path)) return path;
   const normalized = path.startsWith("/") ? path : `/${path}`;

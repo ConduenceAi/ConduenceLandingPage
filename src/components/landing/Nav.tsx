@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { logoBlackSrc } from "@/lib/assets";
-import { APP_LOGIN_URL } from "@/lib/login";
+import { APP_LOGIN_URL, APP_SIGNUP_URL } from "@/lib/login";
 
 const demoLinks = [
   { label: "Docs", href: "#docs", marker: true, live: false },
@@ -75,7 +75,7 @@ export function Nav() {
           Login
         </a>
         <a
-          href={APP_LOGIN_URL}
+          href={APP_SIGNUP_URL}
           className="flex h-12 items-center border-l-[2.5px] border-[#140206] bg-[#48A8D0] px-4 text-[11px] font-medium uppercase tracking-[0.12em] text-[#140206] transition-colors hover:bg-[#3b96bc] focus-visible:bg-[#3b96bc] focus-visible:outline-none sm:px-5 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]"
         >
           Get Started

@@ -1,4 +1,4 @@
-import { absoluteUrl, siteTagline, siteUrl } from "@/lib/site";
+import { absoluteUrl, siteTagline, siteUrl, socialProfiles } from "@/lib/site";
 
 const SITE_NAME = "CONDUENCE";
 const SITE_DESCRIPTION = siteTagline;
@@ -13,8 +13,7 @@ export function JsonLd() {
     logo: absoluteUrl("/images/brand_logo.png"),
     email: "contact@conduence.xyz",
     description: SITE_DESCRIPTION,
-    // Add official profile URLs here when available, e.g.:
-    // sameAs: ["https://x.com/…", "https://www.linkedin.com/company/…"],
+    sameAs: socialProfiles.map((profile) => profile.href),
   };
 
   const website = {

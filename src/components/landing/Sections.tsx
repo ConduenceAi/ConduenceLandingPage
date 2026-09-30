@@ -4,6 +4,7 @@ import type { FormEvent } from "react";
 import { useState } from "react";
 import { logoWhiteSrc } from "@/lib/assets";
 import { CubeAssembly } from "@/components/landing/CubeAssembly";
+import { SocialLinks } from "@/components/landing/SocialLinks";
 
 /* ============================================================
    REASONING  — platform overview
@@ -113,7 +114,7 @@ export function CTA() {
   return (
     <section
       id="cta"
-      className="relative flex flex-col overflow-hidden bg-black px-[clamp(1rem,4vw,1.5rem)] pb-[clamp(2rem,4vw,2.5rem)] pt-[clamp(3.5rem,8vw,8rem)] text-white/88 sm:min-h-svh sm:pb-0"
+      className="relative flex flex-col overflow-hidden bg-black px-[clamp(1rem,4vw,1.5rem)] pb-0 pt-[clamp(3.5rem,8vw,8rem)] text-white/88 sm:min-h-svh"
     >
       <div className="mx-auto w-full max-w-4xl shrink-0 text-center">
         <h2 className="text-display-cta font-display tracking-tight text-balance">
@@ -156,12 +157,13 @@ export function CTA() {
         ) : null}
       </div>
 
-      <div className="mt-[clamp(2rem,5vw,3rem)] w-full leading-none sm:mt-auto sm:px-section sm:pb-0">
-        <div className="mx-auto max-w-[1600px]">
+      <div className="mt-[clamp(2.5rem,6vw,4rem)] w-full leading-none sm:mt-auto sm:px-section sm:pb-0">
+        <SocialLinks className="mb-[clamp(1.75rem,5vw,3.25rem)] pt-[clamp(2rem,5vw,3.5rem)]" />
+        <div className="mx-auto w-full max-w-[clamp(10rem,40vw,15rem)] overflow-hidden pb-[30px] sm:max-w-[min(1400px,92vw)]">
           <img
             src={logoWhiteSrc}
             alt="CONDUENCE"
-            className="mx-auto block h-auto w-full max-w-[clamp(10rem,40vw,15rem)] select-none sm:max-w-[min(1400px,92vw)]"
+            className="mb-[-9%] block h-auto w-full select-none"
             draggable={false}
           />
         </div>
