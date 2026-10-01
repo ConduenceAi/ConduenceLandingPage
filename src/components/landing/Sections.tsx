@@ -16,7 +16,7 @@ const REASONING_ITEMS = [
   },
   {
     title: "Capability Registry",
-    body: "Conduence is the aggregation layer for your agent, bringing the best tools together, combining their strengths, and delivering richer, more actionable context. Tools are only as useful as the instructions behind them. Conduence helps agents choose and combine the right capabilities for every decision.",
+    body: "Conduence is the aggregation layer for your agent, bringing the best tools together, combining their strengths, and delivering richer, more actionable context. Tools are only as useful as the instructions behind them. Agent just chooses and combines the right tools for each trade.",
   },
   {
     title: "Execution Runtime",
