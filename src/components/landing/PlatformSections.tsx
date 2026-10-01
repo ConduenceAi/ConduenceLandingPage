@@ -4,7 +4,7 @@ import { Reasoning } from "@/components/landing/Sections";
 import { SharedEdge } from "@/components/landing/SharedEdge";
 // Temporarily hidden; retain the component for a future re-enable.
 // import { TheProblem } from "@/components/landing/TheProblem";
-import { MarketBrief } from "@/components/landing/MarketBrief";
+// import { MarketBrief } from "@/components/landing/MarketBrief";
 import { UnfairAdvantage } from "@/components/landing/UnfairAdvantage";
 
 export function PlatformSections() {
@@ -14,7 +14,7 @@ export function PlatformSections() {
       <ConduenceProblem />
       <Reasoning />
       <UnfairAdvantage />
-      <MarketBrief />
+      {/* <MarketBrief /> */}
       {/* <TheProblem /> */}
       <Pillars />
     </div>
