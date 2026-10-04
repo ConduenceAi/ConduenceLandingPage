@@ -30,7 +30,7 @@ export function UnfairAdvantage() {
     <section
       ref={sectionRef}
       aria-label="Your unfair advantage"
-      className="relative bg-white px-[5%] pt-[clamp(4rem,9vw,8rem)] pb-section text-black"
+      className="relative bg-white px-[5%] pt-[clamp(4rem,9vw,8rem)] pb-[clamp(3rem,6vw,8rem)] text-black"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60 [background-image:linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] [background-size:clamp(3.75rem,7vw,7rem)_clamp(3.75rem,7vw,7rem)]" />
       <div className="relative mx-auto w-full max-w-[1100px]">
