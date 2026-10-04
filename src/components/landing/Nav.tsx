@@ -6,11 +6,6 @@ import { usePathname } from "next/navigation";
 import { logoBlackSrc } from "@/lib/assets";
 import { APP_LOGIN_URL, APP_SIGNUP_URL } from "@/lib/login";
 
-const demoLinks = [
-  { label: "Docs", href: "#docs", marker: true, live: false },
-  { label: "Pricing", href: "/pricing", marker: false, live: true },
-] as const;
-
 export function Nav() {
   const pathname = usePathname();
 
@@ -44,27 +39,12 @@ export function Nav() {
           </span>
         </Link>
 
-        {demoLinks.map((link) =>
-          link.live ? (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="flex items-center gap-2.5 border-l-[2.5px] border-[#140206] px-3.5 text-[11px] font-medium uppercase tracking-[0.12em] transition-colors hover:bg-[#f4f1ea] focus-visible:bg-[#f4f1ea] focus-visible:outline-none sm:px-4 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]"
-            >
-              {link.label}
-            </Link>
-          ) : (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(event) => event.preventDefault()}
-              className="flex items-center gap-2.5 border-l-[2.5px] border-[#140206] px-3.5 text-[11px] font-medium uppercase tracking-[0.12em] transition-colors hover:bg-[#f4f1ea] focus-visible:bg-[#f4f1ea] focus-visible:outline-none sm:px-4 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]"
-            >
-              {link.marker ? <span aria-hidden className="size-[6px] shrink-0 bg-[#140206]" /> : null}
-              {link.label}
-            </a>
-          ),
-        )}
+        <Link
+          href="/pricing"
+          className="flex items-center gap-2.5 border-l-[2.5px] border-[#140206] px-3.5 text-[11px] font-medium uppercase tracking-[0.12em] transition-colors hover:bg-[#f4f1ea] focus-visible:bg-[#f4f1ea] focus-visible:outline-none sm:px-4 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]"
+        >
+          Pricing
+        </Link>
       </nav>
 
       <div className="pointer-events-auto relative ml-auto inline-flex w-fit items-stretch border-[2.5px] border-[#140206] bg-white text-[#140206] shadow-[5px_5px_0_0_#140206] min-[720px]:absolute min-[720px]:right-4 min-[720px]:top-0 min-[720px]:ml-0 min-[960px]:right-[20vw]">
