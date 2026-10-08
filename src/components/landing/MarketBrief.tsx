@@ -610,8 +610,8 @@ export function MarketBrief() {
           className="mb-[clamp(1.5rem,3vw,2.25rem)] max-w-[38rem] text-center"
         >
           <h2 className="text-display-lede font-normal leading-[1.05] tracking-[-0.04em] [font-family:var(--font-display),Georgia,serif]">
-            The whole market.
-            <span className="mt-1 block italic text-black/55">One brief.</span>
+            The whole market
+            <span className="mt-1 block italic text-black/55">One brief</span>
           </h2>
         </motion.div>
 

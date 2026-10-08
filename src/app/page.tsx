@@ -9,13 +9,13 @@ import { WeMoveAsOne } from "@/components/landing/WeMoveAsOne";
 import { absoluteUrl, siteTagline } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "CONDUENCE. Your edge, running on agents.",
+  title: "CONDUENCE. Your edge, running on agents",
   description: siteTagline,
   alternates: {
     canonical: absoluteUrl("/"),
   },
   openGraph: {
-    title: "CONDUENCE. Your edge, running on agents.",
+    title: "CONDUENCE. Your edge, running on agents",
     description: siteTagline,
     url: absoluteUrl("/"),
   },

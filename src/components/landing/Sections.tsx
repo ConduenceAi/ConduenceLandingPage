@@ -118,9 +118,9 @@ export function CTA() {
     >
       <div className="mx-auto w-full max-w-4xl shrink-0 text-center">
         <h2 className="text-display-cta font-display tracking-tight text-balance">
-          Trade with the agents.
+          Trade with the agents
           <br />
-          <span className="text-[#48A8D0]">Not against them.</span>
+          <span className="text-[#48A8D0]">Not against them</span>
         </h2>
         <p className="text-body-large mx-auto mt-[clamp(1.25rem,3vw,2rem)] max-w-xl text-white/72">
           CONDUENCE is in private beta. Join the waitlist for early access to the Agent Studio and

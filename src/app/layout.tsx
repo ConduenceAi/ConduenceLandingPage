@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "CONDUENCE. Your edge, running on agents.",
+    title: "CONDUENCE. Your edge, running on agents",
     description: siteTagline,
     type: "website",
     url: siteUrl,
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CONDUENCE. Your edge, running on agents.",
+    title: "CONDUENCE. Your edge, running on agents",
     description: siteTagline,
     images: [ogImage.url],
   },

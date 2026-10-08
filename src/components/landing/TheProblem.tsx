@@ -7,7 +7,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const BLOCKS = [
   {
-    title: "Say what stays off limits.",
+    title: "Say what stays off limits",
     body: "Tell an agent what it must not do: markets to avoid, actions to freeze, lines it cannot cross. Speak the constraint once. It locks until you release it.",
     callout: (
       <>
@@ -18,7 +18,7 @@ const BLOCKS = [
     ),
   },
   {
-    title: "Say what to check first.",
+    title: "Say what to check first",
     body: "Tell an agent what must be true before it enters: liquidity, size, confirmation, or any check you care about. Speak it once. It applies on every run or for specific markets.",
     callout: (
       <>
@@ -45,13 +45,13 @@ export function TheProblem() {
         <div className="max-w-xl pt-[clamp(1rem,3vw,2rem)] lg:sticky lg:top-[clamp(5rem,12vw,7rem)] lg:pt-[clamp(2rem,5vw,4rem)]">
           <motion.h2
             className="text-display-lede max-w-[18ch] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
-            aria-label="Dedicated power. Rules you speak."
+            aria-label="Dedicated power. Rules you speak"
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            <span className="block">Dedicated power.</span>
-            <span className="block">Rules you speak.</span>
+            <span className="block">Dedicated power</span>
+            <span className="block">Rules you speak</span>
           </motion.h2>
         </div>
 

@@ -202,9 +202,9 @@ export function ComputationalConviction() {
                 transform: `translateY(${headlineY}px) scale(${headlineScale})`,
               }}
             >
-              Many strategies.
+              Many strategies
               <br />
-              <span className="text-white/40">One Judgment.</span>
+              <span className="text-white/40">One Judgment</span>
             </h2>
             <ScatteringTraderLine scatter={traderScatter} />
           </EditorialType>

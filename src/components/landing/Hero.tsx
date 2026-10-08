@@ -37,7 +37,7 @@ export function Hero() {
           className="text-display-hero max-w-4xl bg-transparent text-balance font-display leading-[0.95] tracking-[-0.02em] text-black"
         >
           <span className="sr-only">CONDUENCE — </span>
-          Your edge.
+          Your edge
           <br />
           <span className="font-display">Running on</span>
           <br />

@@ -71,7 +71,7 @@ type Round = {
 const ROUNDS: Round[] = [
   {
     // strongest ▲
-    title: "Buy momentum.",
+    title: "Buy momentum",
     task: "Pick the market with the strongest upward move",
     winner: 6,
     markets: [
@@ -91,7 +91,7 @@ const ROUNDS: Round[] = [
   },
   {
     // strongest ▼
-    title: "Spot the sell-off.",
+    title: "Spot the sell-off",
     task: "Pick the market with the sharpest drop",
     winner: 2,
     markets: [
@@ -111,7 +111,7 @@ const ROUNDS: Round[] = [
   },
   {
     // highest Bull %
-    title: "Follow the crowd.",
+    title: "Follow the crowd",
     task: "Pick the market with the highest Bull odds",
     winner: 9,
     markets: [
@@ -131,7 +131,7 @@ const ROUNDS: Round[] = [
   },
   {
     // lowest Bull %
-    title: "Find the long shot.",
+    title: "Find the long shot",
     task: "Pick the market with the lowest Bull odds",
     winner: 4,
     markets: [
@@ -151,7 +151,7 @@ const ROUNDS: Round[] = [
   },
   {
     // Bull % nearest 50
-    title: "Call the coin flip.",
+    title: "Call the coin flip",
     task: "Pick the market closest to a 50/50 split",
     winner: 7,
     markets: [
@@ -171,7 +171,7 @@ const ROUNDS: Round[] = [
   },
   {
     // strongest ▼ among BTC markets
-    title: "Buy the BTC dip.",
+    title: "Buy the BTC dip",
     task: "Pick the Bitcoin market that fell the most",
     winner: 3,
     markets: [
@@ -191,7 +191,7 @@ const ROUNDS: Round[] = [
   },
   {
     // the only ▲
-    title: "Against the tide.",
+    title: "Against the tide",
     task: "Everything is falling. Pick the only market still rising",
     winner: 10,
     markets: [
@@ -211,7 +211,7 @@ const ROUNDS: Round[] = [
   },
   {
     // ▲ from under 50% to over 50%
-    title: "Catch the flip.",
+    title: "Catch the flip",
     task: "Pick the market that just crossed above 50% Bull",
     winner: 1,
     markets: [
@@ -231,7 +231,7 @@ const ROUNDS: Round[] = [
   },
   {
     // smallest move
-    title: "Find the calm.",
+    title: "Find the calm",
     task: "Pick the market that barely moved",
     winner: 5,
     markets: [
@@ -251,7 +251,7 @@ const ROUNDS: Round[] = [
   },
   {
     // strongest ▲ among memecoins
-    title: "Meme season.",
+    title: "Meme season",
     task: "Pick the memecoin market with the biggest jump",
     winner: 8,
     markets: [
@@ -323,12 +323,12 @@ function resultCopy(round: Round, outcome: Outcome, reaction: number | null) {
   const winner = round.markets[round.winner].name;
   if (outcome === "caught")
     return {
-      title: "You caught it.",
+      title: "You caught it",
       sub: `In ${seconds(reaction ?? 0)} seconds, with only twelve markets to watch.`,
     };
   if (outcome === "wrong")
-    return { title: "Not that one.", sub: `The edge was in ${winner}.` };
-  return { title: "You missed it.", sub: `The edge lasted ${SELECT_S} seconds.` };
+    return { title: "Not that one", sub: `The edge was in ${winner}.` };
+  return { title: "You missed it", sub: `The edge lasted ${SELECT_S} seconds.` };
 }
 
 /* ------------------------------------------------------------------ */
@@ -764,8 +764,8 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
           <div className="cdn-panel" data-on={showProblem ? "true" : undefined}>
             <p className="cdn-eyebrow">The problem</p>
             <h2 className="cdn-heading">
-              <span className="cdn-h-a">Markets move simultaneously.</span>
-              <span className="cdn-h-b">Human attention doesn&rsquo;t.</span>
+              <span className="cdn-h-a">Markets move simultaneously</span>
+              <span className="cdn-h-b">Human attention doesn&rsquo;t</span>
             </h2>
             <p className="cdn-support">
               Edges expire in seconds. One trader can only watch so many markets at once.
@@ -882,8 +882,8 @@ export function ProblemSection({ forceActive = false }: { forceActive?: boolean 
       <div className="cdn-finale" data-on={showFinale ? "true" : undefined} aria-live="polite">
         <p className="cdn-eyebrow">The problem</p>
         <h2 className="cdn-heading">
-          <span className="cdn-h-a">Markets move simultaneously.</span>
-          <span className="cdn-h-b">Human attention doesn&rsquo;t.</span>
+          <span className="cdn-h-a">Markets move simultaneously</span>
+          <span className="cdn-h-b">Human attention doesn&rsquo;t</span>
         </h2>
         <p className="cdn-support">
           Edges expire in seconds. One trader can only watch so many markets at once.

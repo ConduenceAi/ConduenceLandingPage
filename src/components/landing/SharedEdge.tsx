@@ -7,11 +7,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const CONTRAST = [
   {
-    title: "Attention runs out.",
+    title: "Attention runs out",
     body: "Markets move across hundreds of venues and thousands of opportunities, most vanishing in seconds. You track a handful. Institutions watch everything, always, so the gap keeps widening. Code your own agents? Most can't. Rent the stack? Ten screens, ten subscriptions, one pair of eyes.",
   },
   {
-    title: "Shared alpha decays.",
+    title: "Shared alpha decays",
     body: "Every profitable trade has someone on the other side. Edge is relative. The moment a strategy is public, a crowd trades the same signal and the advantage is competed away before it compounds. A strategy that trades for everyone trades for no one.",
   },
 ] as const;
@@ -32,15 +32,15 @@ export function SharedEdge() {
 
           <motion.h2
             className="text-display-lede max-w-[min(36rem,100%)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] md:max-w-[48rem] xl:mx-auto xl:max-w-none"
-            aria-label="You don't lose to better traders. You lose to the trades you never saw."
+            aria-label="You don't lose to better traders. You lose to the trades you never saw"
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            You don't lose to better traders.{" "}
+            You don't lose to better traders
             <span className="block">
               You lose to the{" "}
-              <span className="italic text-black/55">trades you never saw</span>.
+              <span className="italic text-black/55">trades you never saw</span>
             </span>
           </motion.h2>
 
@@ -51,7 +51,7 @@ export function SharedEdge() {
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
           >
             The gap between institutions and retail traders is not talent. It is structural. Human
-            attention caps what you can catch. Shared strategies cap what you can keep.
+            attention caps what you can catch. 
           </motion.p>
         </div>
 

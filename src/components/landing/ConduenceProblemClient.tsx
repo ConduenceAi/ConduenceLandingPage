@@ -34,7 +34,7 @@ const TABS: Record<Side, string> = {
   conduence: "On Conduence",
 };
 
-const TITLE = "Your experience depends on where you are.";
+const TITLE = "Your experience depends on where you are";
 
 const MAP = {
   h: (x: number, y: number): [number, number] => [x, y],

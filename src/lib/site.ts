@@ -2,7 +2,7 @@ const DEFAULT_SITE_URL = "https://conduence.xyz";
 
 /** Primary marketing / SEO tagline used in metadata, JSON-LD, and discovery files. */
 export const siteTagline =
-  "Fastest agentic Operating System for traders and agents, from event to execution.";
+  "Personal agent for traders, a second brain to trade when you can’t, from events to execution.";
 
 export function getSiteUrl(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();

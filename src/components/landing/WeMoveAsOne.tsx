@@ -39,7 +39,7 @@ export function WeMoveAsOne() {
           <div className="mx-auto max-w-full text-center">
             <motion.h2
               className="text-display-lede font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
-              aria-label="I am your reasoning and your perception, scaled past every limit."
+              aria-label="I am your reasoning and your perception, scaled past every limit"
               initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
               transition={{ duration: 0.85, ease: EASE }}
@@ -51,7 +51,7 @@ export function WeMoveAsOne() {
                 I am your <span className="italic text-black/55">reasoning</span> and your{" "}
               </span>
               <span className="block">
-                <span className="italic text-black/55">perception</span>, scaled past every limit.
+                <span className="italic text-black/55">perception</span>, scaled past every limit
                 <span className="text-black/35" aria-hidden="true">
                   ”
                 </span>

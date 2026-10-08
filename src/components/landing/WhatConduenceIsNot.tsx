@@ -9,19 +9,19 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const ITEMS = [
   {
-    label: "Not another workflow.",
+    label: "Not another workflow",
     body: "Conduence is not a rigid sequence of manually connected steps. It adapts to your changing perspectives and strategies, coordinating the right action at the right time.",
   },
   {
-    label: "Not another rules automation.",
+    label: "Not another rules automation",
     body: "Conduence is not a collection of fixed triggers that execute the same action whenever a condition is met. It gives agents the context, memory, and tools to evaluate your trading rules together, and act within the limits you set.",
   },
   {
-    label: "Not another orchestration of agents.",
+    label: "Not another orchestration of agents",
     body: "Conduence does more than coordinate agents. It gives them shared context, memory, rules, and access to the right tools so they can work together toward one outcome.",
   },
   {
-    label: "Not another disconnected system.",
+    label: "Not another disconnected system",
     body: "The best tools and data sources are often disconnected, leaving agents to work across fragmented systems. Conduence brings them together in one connected layer, so your agents can draw on their combined capabilities.",
   },
 ] as const;
@@ -118,13 +118,13 @@ export function WhatConduenceIsNot() {
         <div className="max-w-md">
           <motion.h2
             className="text-display-lede max-w-[14ch] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
-            aria-label="What Conduence is not."
+            aria-label="What Conduence is not"
             initial={reducedMotion ? false : { opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: EASE }}
           >
             What Conduence is{" "}
-            <span className="italic text-black/55">not</span>.
+            <span className="italic text-black/55">not</span>
           </motion.h2>
 
           <motion.p

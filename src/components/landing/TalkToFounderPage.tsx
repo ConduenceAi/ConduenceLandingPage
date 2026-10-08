@@ -33,7 +33,7 @@ export function TalkToFounderPage() {
     <main className="relative flex min-h-svh flex-col bg-white text-black">
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-[clamp(1.25rem,4vw,2rem)] py-[clamp(7rem,14vw,9rem)] text-center">
         <h1 className="text-[clamp(2.25rem,5vw+0.5rem,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-black [font-family:var(--font-display),Georgia,serif]">
-          Talk to the founder.
+          Talk to the founder
         </h1>
 
         <p className="mt-[clamp(1rem,2.5vw,1.35rem)] max-w-md text-[clamp(0.9375rem,0.35vw+0.85rem,1.0625rem)] leading-relaxed text-black/55 [font-family:var(--font-ui),system-ui,sans-serif]">

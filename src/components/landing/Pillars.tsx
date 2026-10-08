@@ -149,11 +149,11 @@ export function Pillars() {
           </p>
           <h2
             className="w-full min-w-0 text-[clamp(1.2rem,7.2cqw,2.55rem)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
-            aria-label="Everything you need to ship agents that trade."
+            aria-label="Everything you need to ship agents that trade"
           >
             <span className="block whitespace-nowrap">Everything you need to</span>
             <span className="block whitespace-nowrap">
-              ship agents that <span className="italic text-black/55">trade</span>.
+              ship agents that <span className="italic text-black/55">trade</span>
             </span>
           </h2>
 
