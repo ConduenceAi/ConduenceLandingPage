@@ -38,19 +38,19 @@ export function WeMoveAsOne() {
         <div className="flex w-full flex-col gap-[clamp(1.75rem,4vh,2.75rem)]">
           <div className="mx-auto max-w-full text-center">
             <motion.h2
-              className="text-display-lede font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
+              className="w-full text-center text-[clamp(0.95rem,6vw,1.7rem)] font-normal leading-[1.15] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:text-display-lede min-[720px]:leading-[1.12]"
               aria-label="I am your reasoning and your perception, scaled past every limit"
               initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
               transition={{ duration: 0.85, ease: EASE }}
             >
-              <span className="block">
+              <span className="block whitespace-nowrap text-center min-[720px]:whitespace-normal">
                 <span className="text-black/35" aria-hidden="true">
                   “
                 </span>
                 I am your <span className="italic text-black/55">reasoning</span> and your{" "}
               </span>
-              <span className="block">
+              <span className="block whitespace-nowrap text-center min-[720px]:whitespace-normal">
                 <span className="italic text-black/55">perception</span>, scaled past every limit
                 <span className="text-black/35" aria-hidden="true">
                   ”

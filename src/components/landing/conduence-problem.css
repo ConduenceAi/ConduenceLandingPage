@@ -534,6 +534,57 @@
   }
 }
 
+@media (max-width: 719px) {
+  .ob-problem {
+    --ob-band-pad: 10px;
+    --ob-nav-h: 74px;
+    min-height: 0;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+  }
+
+  .ob-problem .lede {
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .ob-problem .run-cells {
+    margin-top: 8px;
+  }
+
+  .ob-problem .run-stage {
+    padding-bottom: 0;
+  }
+
+  .ob-problem .run-toolbar {
+    margin-bottom: 6px;
+  }
+
+  .ob-problem .try-it {
+    display: none;
+  }
+
+  .ob-problem .problem-head,
+  .ob-problem .run-toolbar {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ob-problem .h2,
+  .ob-problem .lede {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .ob-problem .h2 {
+    max-width: none;
+    font-size: clamp(0.95rem, 6vw, 1.7rem);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+}
+
 @media (max-width: 640px) {
   .ob-problem .run .run-cards {
     grid-template-columns: minmax(0, 1fr);

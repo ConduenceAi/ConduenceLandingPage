@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 
+import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteTagline, siteUrl } from "@/lib/site";
 
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${sans.variable} ${display.variable}`}>
         <JsonLd />
+        <GoogleAnalytics />
         <Providers>{children}</Providers>
       </body>
     </html>

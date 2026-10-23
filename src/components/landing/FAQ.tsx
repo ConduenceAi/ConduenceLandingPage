@@ -150,7 +150,7 @@ export function FAQ() {
       <div className="relative mx-auto max-w-[1480px] px-section py-[clamp(5rem,12vw,9rem)]">
         <div className="mx-auto grid max-w-[1320px] gap-14 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-[5.25rem] xl:gap-[6rem]">
           {/* Left — editorial column */}
-          <div className="relative flex min-h-[22rem] flex-col lg:min-h-[28rem]">
+          <div className="relative flex min-h-[22rem] flex-col text-center min-[720px]:text-left lg:min-h-[28rem]">
             <motion.div
               initial={reducedMotion ? false : { opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -162,7 +162,7 @@ export function FAQ() {
             </motion.div>
 
             <motion.h2
-              className="mt-8 max-w-md text-[clamp(2.35rem,4.8vw,4.25rem)] leading-[0.98] tracking-[-0.04em]"
+              className="mx-auto mt-8 max-w-md text-[clamp(2.35rem,4.8vw,4.25rem)] leading-[0.98] tracking-[-0.04em] min-[720px]:mx-0"
               initial={reducedMotion ? false : { opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.75, delay: 0.08, ease: EASE }}
@@ -177,7 +177,7 @@ export function FAQ() {
             </motion.h2>
 
             <motion.p
-              className="mt-8 max-w-sm text-body-fluid leading-[1.8] text-white/42"
+              className="mx-auto mt-8 max-w-sm text-body-fluid leading-[1.8] text-white/42 min-[720px]:mx-0"
               initial={reducedMotion ? false : { opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.16, ease: EASE }}

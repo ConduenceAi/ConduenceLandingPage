@@ -115,9 +115,9 @@ export function WhatConduenceIsNot() {
       aria-label="What Conduence is not"
     >
       <div className="mx-auto grid w-full max-w-[1480px] gap-[clamp(2rem,4vw,3rem)] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-[clamp(2rem,4vw,4rem)]">
-        <div className="max-w-md">
+        <div className="mx-auto max-w-md text-center min-[720px]:mx-0 min-[720px]:text-left">
           <motion.h2
-            className="text-display-lede max-w-[14ch] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
+            className="mx-auto text-display-lede max-w-[14ch] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0"
             aria-label="What Conduence is not"
             initial={reducedMotion ? false : { opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -128,7 +128,7 @@ export function WhatConduenceIsNot() {
           </motion.h2>
 
           <motion.p
-            className="text-body-large mt-[clamp(1rem,2vw,1.5rem)] max-w-[30rem] leading-relaxed text-black/85"
+            className="text-body-large mx-auto mt-[clamp(1rem,2vw,1.5rem)] max-w-[30rem] leading-relaxed text-black/85 min-[720px]:mx-0"
             initial={reducedMotion ? false : { opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.08, ease: EASE }}

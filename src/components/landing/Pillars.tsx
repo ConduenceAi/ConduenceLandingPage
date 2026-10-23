@@ -142,13 +142,13 @@ export function Pillars() {
       className="relative w-full bg-white px-[5%] pt-[clamp(2rem,4vw,4rem)] pb-[clamp(2rem,4vw,4rem)] text-black"
     >
       <div className="relative z-10 mx-auto grid w-full min-w-0 max-w-[1480px] grid-cols-12 gap-x-0 gap-y-[clamp(1.25rem,3vw,2rem)] md:gap-x-[clamp(1.25rem,3vw,3.5rem)]">
-        <div className="@container col-span-12 flex min-w-0 flex-col overflow-hidden md:col-span-5">
-          <p className="text-kicker mb-[clamp(1.1rem,2.5vw,2rem)] flex items-center gap-2.5 uppercase tracking-[0.34em] text-black">
+        <div className="@container col-span-12 flex min-w-0 flex-col overflow-visible md:col-span-5 md:overflow-hidden">
+          <p className="text-kicker mb-[clamp(1.1rem,2.5vw,2rem)] flex items-center justify-center gap-2.5 uppercase tracking-[0.34em] text-black md:justify-start">
             <span aria-hidden className="h-px w-[clamp(1rem,2vw,1.5rem)] shrink-0 bg-black" />
             Product Features
           </p>
           <h2
-            className="w-full min-w-0 text-[clamp(1.2rem,7.2cqw,2.55rem)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]"
+            className="w-full min-w-0 text-center text-[clamp(0.95rem,6vw,1.7rem)] font-normal leading-[1.15] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] md:text-left md:text-[clamp(1.2rem,7.2cqw,2.55rem)] md:leading-[1.12]"
             aria-label="Everything you need to ship agents that trade"
           >
             <span className="block whitespace-nowrap">Everything you need to</span>
@@ -220,7 +220,7 @@ export function Pillars() {
 
           {/* Mobile — numbered bubble nav */}
           <div className="mt-[clamp(1.5rem,4vw,2rem)] md:hidden">
-            <div className="flex w-full flex-nowrap items-center justify-center gap-[clamp(0.3rem,1vw,0.5rem)]">
+            <div className="relative left-1/2 flex w-screen -translate-x-1/2 flex-nowrap items-center justify-between px-4">
               {pillars.map((p, i) => {
                 const isActive = i === active;
                 return (
@@ -230,7 +230,7 @@ export function Pillars() {
                     onClick={() => setActive(i)}
                     aria-label={`${String(i + 1).padStart(2, "0")} ${p.title}`}
                     aria-current={isActive ? "true" : undefined}
-                    className={`flex h-[clamp(2rem,7vw,2.5rem)] w-[clamp(2rem,7vw,2.5rem)] shrink-0 items-center justify-center rounded-full border font-mono text-[clamp(0.5rem,1.8vw,0.625rem)] tracking-[0.12em] transition-all duration-300 ${
+                    className={`flex h-[calc(clamp(2rem,7vw,2.5rem)+4px)] w-[calc(clamp(2rem,7vw,2.5rem)+4px)] shrink-0 items-center justify-center rounded-full border p-0 font-mono text-[clamp(0.5rem,1.8vw,0.625rem)] tracking-[0.12em] transition-all duration-300 ${
                       isActive
                         ? "border-black bg-black text-white shadow-[0_0_0_3px_rgba(0,0,0,0.06)]"
                         : "border-black/14 bg-white text-black/38 hover:border-black/28 hover:text-black/55"

@@ -33,11 +33,11 @@ export function Reasoning() {
       <div className="mx-auto grid max-w-[1480px] gap-[clamp(2rem,4vw,4rem)] lg:grid-cols-2 lg:items-start">
         {/* Left half — title + cube */}
         <div>
-          <h2 className="max-w-3xl text-display-lede font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]">
-            Trading Layer for Agents
+          <h2 className="mx-auto max-w-3xl text-center text-display-lede font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0 min-[720px]:text-left">
+            Trading OS for Agents
           </h2>
 
-          <div className="relative mx-auto mt-[clamp(1.5rem,3vw,2rem)] w-full max-w-[min(34rem,100%)] lg:mx-0">
+          <div className="relative mx-auto mt-[clamp(1.5rem,3vw,2rem)] w-full max-w-[min(34rem,100%)] max-lg:-mb-[52%] lg:mx-0">
             <CubeAssembly className="aspect-[13/16] w-full min-h-[clamp(16rem,55vw,28rem)]" />
           </div>
         </div>
@@ -157,15 +157,41 @@ export function CTA() {
         ) : null}
       </div>
 
-      <div className="mt-[clamp(2.5rem,6vw,4rem)] w-full leading-none sm:mt-auto sm:px-section sm:pb-0">
+      <div className="mt-[clamp(2.5rem,6vw,4rem)] w-full leading-none sm:mt-auto">
         <SocialLinks className="mb-[clamp(1.75rem,5vw,3.25rem)] pt-[clamp(2rem,5vw,3.5rem)]" />
-        <div className="mx-auto w-full max-w-[clamp(10rem,40vw,15rem)] overflow-hidden pb-[30px] sm:max-w-[min(1400px,92vw)]">
-          <img
-            src={logoWhiteSrc}
-            alt="CONDUENCE"
-            className="mb-[-9%] block h-auto w-full select-none"
-            draggable={false}
-          />
+        <div className="-mx-[clamp(1rem,4vw,1.5rem)] w-[calc(100%+2*clamp(1rem,4vw,1.5rem))]">
+          <div className="overflow-hidden p-[5px] min-[720px]:hidden">
+            <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1886 / 166" }}>
+              <img
+                src={logoWhiteSrc}
+                alt="CONDUENCE"
+                draggable={false}
+                className="absolute max-w-none select-none"
+                style={{
+                  width: "127.2534%",
+                  height: "auto",
+                  left: "-13.6267%",
+                  top: "-130.7229%",
+                }}
+              />
+            </div>
+          </div>
+          <div className="hidden pb-[clamp(1.25rem,2.5vw,2rem)] min-[720px]:block">
+            <div className="relative w-full overflow-hidden" style={{ aspectRatio: "6.936 / 1" }}>
+              <img
+                src={logoWhiteSrc}
+                alt="CONDUENCE"
+                draggable={false}
+                className="absolute max-w-none select-none"
+                style={{
+                  width: "92.95%",
+                  height: "auto",
+                  left: "3.52%",
+                  top: "-8.3%",
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

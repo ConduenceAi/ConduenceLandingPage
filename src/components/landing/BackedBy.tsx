@@ -64,21 +64,23 @@ export function BackedBy() {
       animate={inView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.7, ease: EASE }}
     >
-      <div className="mx-auto flex max-w-[1480px] flex-wrap items-center justify-center gap-x-[clamp(0.75rem,2vw,1.25rem)] gap-y-2 text-center">
+      <div className="mx-auto flex max-w-[1480px] flex-col items-center justify-center gap-y-2.5 text-center sm:flex-row sm:flex-wrap sm:gap-x-[clamp(0.75rem,2vw,1.25rem)] sm:gap-y-2">
         <span className="text-[clamp(0.680625rem,0.1815vw+0.605rem,0.75625rem)] font-mono font-semibold uppercase tracking-[0.34em] text-black">
           Supported by
         </span>
-        {BACKERS.map(({ name, Logo, labelClassName, sizeClassName }, index) => (
-          <span key={name} className="flex items-center gap-x-[clamp(0.75rem,2vw,1.25rem)]">
-            {index !== 0 ? <span className="text-black/25" aria-hidden="true">·</span> : null}
-            <span className={`flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-black/80 ${sizeClassName || "text-[clamp(1.1rem,2.4vw,1.4rem)]"}`}>
-              <Logo />
-              <span className={`uppercase tracking-[-0.01em] text-black/70 [font-family:var(--font-display),Georgia,serif] ${labelClassName}`}>
-                {name}
+        <div className="flex items-center justify-center gap-x-[clamp(1rem,4vw,1.5rem)] sm:contents">
+          {BACKERS.map(({ name, Logo, labelClassName, sizeClassName }, index) => (
+            <span key={name} className="flex items-center gap-x-[clamp(0.75rem,2vw,1.25rem)]">
+              {index !== 0 ? <span className="text-black/25" aria-hidden="true">·</span> : null}
+              <span className={`flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-black/80 ${sizeClassName || "text-[clamp(1.1rem,2.4vw,1.4rem)]"}`}>
+                <Logo />
+                <span className={`uppercase tracking-[-0.01em] text-black/70 [font-family:var(--font-display),Georgia,serif] ${labelClassName}`}>
+                  {name}
+                </span>
               </span>
             </span>
-          </span>
-        ))}
+          ))}
+        </div>
       </div>
     </motion.section>
   );

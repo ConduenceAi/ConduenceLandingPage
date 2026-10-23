@@ -39,7 +39,7 @@ export function UnfairAdvantage() {
             transition={{ duration: 0.8, ease: EASE }}
             className="lg:shrink-0"
           >
-            <h2 className="text-display-lede max-w-[11ch] font-normal leading-[1.04] tracking-[-0.04em] [font-family:var(--font-display),Georgia,serif]">
+            <h2 className="mx-auto max-w-full text-center text-[clamp(0.95rem,6vw,1.7rem)] font-normal leading-[1.15] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0 min-[720px]:max-w-[11ch] min-[720px]:text-left min-[720px]:text-display-lede min-[720px]:leading-[1.04] min-[720px]:tracking-[-0.04em]">
               Your Unfair Advantage
             </h2>
           </motion.div>

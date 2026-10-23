@@ -36,14 +36,56 @@ const TABS: Record<Side, string> = {
 
 const TITLE = "Your experience depends on where you are";
 
+/**
+ * Mobile stage heights, in SVG units. Opportunity and Fill are mostly empty,
+ * so they stay short. Thesis and Size keep room for their nodes and the book.
+ */
+const V_BOX_H = [60, 98, 40, 90, 50] as const;
+const V_GAP = 12;
+
+type VSeg = { u0: number; u1: number; y0: number; y1: number };
+
+function verticalAxis() {
+  const segs: VSeg[] = [{ u0: 0, u1: 170, y0: 16, y1: 28 }];
+  segs.push({ u0: 170, u1: GATES[0].u0, y0: 28, y1: 48 });
+  let y = 48;
+  GATES.forEach((gate, index) => {
+    const next = GATES[index + 1];
+    segs.push({ u0: gate.u0, u1: gate.u1, y0: y, y1: y + V_BOX_H[index] });
+    y += V_BOX_H[index];
+    if (next) {
+      segs.push({ u0: gate.u1, u1: next.u0, y0: y, y1: y + V_GAP });
+      y += V_GAP;
+    }
+  });
+  const last = GATES[GATES.length - 1].u1;
+  segs.push({ u0: last, u1: 1400, y0: y, y1: y + 16 });
+  return { segs, profitTop: y + 14, viewH: Math.ceil(y + 14 + 68) };
+}
+
+const V_AXIS = verticalAxis();
+
+function verticalY(u: number) {
+  const segs = V_AXIS.segs;
+  if (u <= segs[0].u0) return segs[0].y0;
+  for (const seg of segs) {
+    if (u <= seg.u1) {
+      const span = seg.u1 - seg.u0;
+      const t = span === 0 ? 0 : (u - seg.u0) / span;
+      return seg.y0 + t * (seg.y1 - seg.y0);
+    }
+  }
+  return segs[segs.length - 1].y1;
+}
+
 const MAP = {
   h: (x: number, y: number): [number, number] => [x, y],
-  v: (x: number, y: number): [number, number] => [y + 110, (x - 130) * 0.8],
+  v: (x: number, y: number): [number, number] => [y + 110, verticalY(x)],
 };
 
 const VIEW = {
   h: "0 0 1200 260",
-  v: "0 0 380 830",
+  v: `0 0 380 ${V_AXIS.viewH}`,
 };
 
 const GATE_TOP = 40;
@@ -316,22 +358,22 @@ function RunDiagram({
               <>
                 <rect
                   x={ox - 60}
-                  y={716}
+                  y={V_AXIS.profitTop}
                   width={120}
-                  height={50}
+                  height={42}
                   data-lane="retail"
                   className="run-profit-box"
                 />
                 <text
                   x={ox}
-                  y={748}
+                  y={V_AXIS.profitTop + 27}
                   textAnchor="middle"
                   data-lane="retail"
                   className={`run-profit ${lane.profit < 0 ? "run-profit--loss" : "run-profit--gain"}`}
                 >
                   {money(lane.profit)}
                 </text>
-                <text x={ox} y={784} textAnchor="middle" className="run-text run-tag">
+                <text x={ox} y={V_AXIS.profitTop + 54} textAnchor="middle" className="run-text run-tag">
                   Profit{orderCount(lane.count)}
                 </text>
               </>

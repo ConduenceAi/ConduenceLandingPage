@@ -28,10 +28,10 @@ export function SharedEdge() {
       aria-label="Why retail edge erodes: attention limits and crowded trades"
     >
       <div className="mx-auto max-w-[1480px]">
-        <div className="text-left xl:mx-auto xl:max-w-[58rem] xl:text-center">
+        <div className="text-center min-[720px]:text-left xl:mx-auto xl:max-w-[58rem] xl:text-center">
 
           <motion.h2
-            className="text-display-lede max-w-[min(36rem,100%)] font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] md:max-w-[48rem] xl:mx-auto xl:max-w-none"
+            className="mx-auto max-w-[min(36rem,100%)] text-[clamp(0.95rem,6vw,1.7rem)] font-normal leading-[1.15] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0 min-[720px]:text-display-lede min-[720px]:leading-[1.12] md:max-w-[48rem] xl:mx-auto xl:max-w-none"
             aria-label="You don't lose to better traders. You lose to the trades you never saw"
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
@@ -45,7 +45,7 @@ export function SharedEdge() {
           </motion.h2>
 
           <motion.p
-            className="text-body-large mt-[clamp(1rem,2vw,1.5rem)] max-w-[min(42rem,100%)] leading-relaxed text-black/85 xl:mx-auto xl:max-w-[46rem]"
+            className="text-body-large mx-auto mt-[clamp(1rem,2vw,1.5rem)] max-w-[min(42rem,100%)] leading-relaxed text-black/85 min-[720px]:mx-0 xl:mx-auto xl:max-w-[46rem]"
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
@@ -74,7 +74,7 @@ export function SharedEdge() {
                 <div className="pointer-events-none absolute left-0 top-0 h-[clamp(0.4rem,0.8vw,0.5rem)] w-[clamp(0.4rem,0.8vw,0.5rem)] -translate-x-1/2 -translate-y-1/2 bg-black/18" />
                 <div className="pointer-events-none absolute right-0 bottom-0 h-[clamp(0.4rem,0.8vw,0.5rem)] w-[clamp(0.4rem,0.8vw,0.5rem)] translate-x-1/2 translate-y-1/2 bg-black/18" />
 
-                <div className="relative mx-auto w-full max-w-lg text-left">
+                <div className="relative mx-auto w-full max-w-lg text-center min-[720px]:text-left">
                   <h3 className="text-heading-block font-normal leading-tight tracking-[-0.035em] text-black [font-family:var(--font-display),Georgia,serif]">
                     {block.title}
                   </h3>
