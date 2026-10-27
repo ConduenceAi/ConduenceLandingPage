@@ -66,6 +66,43 @@ const pillars: Pillar[] = [
 ];
 
 const DURATION = 7000;
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const CORNERS = [
+  "top-[clamp(0.4rem,1vw,0.625rem)] left-[clamp(0.4rem,1vw,0.625rem)]",
+  "top-[clamp(0.4rem,1vw,0.625rem)] right-[clamp(0.4rem,1vw,0.625rem)]",
+  "bottom-[clamp(0.4rem,1vw,0.625rem)] left-[clamp(0.4rem,1vw,0.625rem)]",
+  "bottom-[clamp(0.4rem,1vw,0.625rem)] right-[clamp(0.4rem,1vw,0.625rem)]",
+];
+
+function PillarImage({ pillar, className }: { pillar: Pillar; className: string }) {
+  return (
+    <div className={`relative w-full min-w-0 overflow-hidden rounded-sm border border-black/10 bg-white ${className}`}>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.4]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
+          backgroundSize: "clamp(1.25rem,3vw,2rem) clamp(1.25rem,3vw,2rem)",
+        }}
+      />
+      <img
+        src={pillar.image}
+        alt={pillar.alt}
+        loading="lazy"
+        width={1280}
+        height={720}
+        className="absolute inset-0 h-full w-full max-w-full object-contain p-[clamp(0.6rem,1.5vw,1rem)]"
+      />
+      {CORNERS.map((pos) => (
+        <span
+          key={pos}
+          className={`absolute ${pos} h-[clamp(0.2rem,0.4vw,0.25rem)] w-[clamp(0.2rem,0.4vw,0.25rem)] bg-black/40`}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function Pillars() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -76,6 +113,8 @@ export function Pillars() {
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
   const [carouselActive, setCarouselActive] = useState(false);
+  // The carousel only exists at md+; mobile shows every pillar as a stacked card.
+  const [isDesktop, setIsDesktop] = useState(false);
   const isPausedRef = useRef(false);
   const isActiveRowHoveredRef = useRef(false);
 
@@ -95,12 +134,20 @@ export function Pillars() {
   }, [isInView]);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
     isActiveRowHoveredRef.current = false;
     syncPause();
   }, [active]);
 
   useEffect(() => {
-    if (!carouselActive || !isInView) return;
+    if (!carouselActive || !isInView || !isDesktop) return;
 
     setProgress(0);
     let accumulatedPause = 0;
@@ -133,7 +180,7 @@ export function Pillars() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [active, carouselActive, isInView]);
+  }, [active, carouselActive, isInView, isDesktop]);
 
   return (
     <section
@@ -143,7 +190,7 @@ export function Pillars() {
     >
       <div className="relative z-10 mx-auto grid w-full min-w-0 max-w-[1480px] grid-cols-12 gap-x-0 gap-y-[clamp(1.25rem,3vw,2rem)] md:gap-x-[clamp(1.25rem,3vw,3.5rem)]">
         <div className="@container col-span-12 flex min-w-0 flex-col overflow-visible md:col-span-5 md:overflow-hidden">
-          <p className="text-kicker mb-[clamp(1.1rem,2.5vw,2rem)] flex items-center justify-center gap-2.5 uppercase tracking-[0.34em] text-black md:justify-start">
+          <p className="text-kicker mb-[clamp(1.1rem,2.5vw,2rem)] hidden items-center gap-2.5 uppercase tracking-[0.34em] text-black md:flex">
             <span aria-hidden className="h-px w-[clamp(1rem,2vw,1.5rem)] shrink-0 bg-black" />
             Product Features
           </p>
@@ -218,42 +265,32 @@ export function Pillars() {
             })}
           </ul>
 
-          {/* Mobile — numbered bubble nav */}
-          <div className="mt-[clamp(1.5rem,4vw,2rem)] md:hidden">
-            <div className="relative left-1/2 flex w-screen -translate-x-1/2 flex-nowrap items-center justify-between px-4">
-              {pillars.map((p, i) => {
-                const isActive = i === active;
-                return (
-                  <button
-                    key={p.title}
-                    type="button"
-                    onClick={() => setActive(i)}
-                    aria-label={`${String(i + 1).padStart(2, "0")} ${p.title}`}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`flex h-[calc(clamp(2rem,7vw,2.5rem)+4px)] w-[calc(clamp(2rem,7vw,2.5rem)+4px)] shrink-0 items-center justify-center rounded-full border p-0 font-mono text-[clamp(0.5rem,1.8vw,0.625rem)] tracking-[0.12em] transition-all duration-300 ${
-                      isActive
-                        ? "border-black bg-black text-white shadow-[0_0_0_3px_rgba(0,0,0,0.06)]"
-                        : "border-black/14 bg-white text-black/38 hover:border-black/28 hover:text-black/55"
-                    }`}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="mt-[clamp(1rem,3vw,1.25rem)] text-center">
-              <p className="text-body-fluid font-semibold tracking-[-0.02em] text-black">
-                {pillars[active].title}
-              </p>
-              <div className="mx-auto mt-3 h-px max-w-[min(12rem,40vw)] overflow-hidden bg-black/10">
-                <div className="h-full bg-black" style={{ width: `${progress * 100}%` }} />
-              </div>
-            </div>
+          {/* Mobile — stacked feature cards */}
+          <div className="mt-[clamp(1.75rem,6vw,2.5rem)] flex flex-col gap-[clamp(1.25rem,5vw,1.75rem)] md:hidden">
+            {pillars.map((pillar) => (
+              <motion.article
+                key={pillar.title}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.65, ease: EASE }}
+                className="mr-[5px] mb-[5px] border-[2.5px] border-[#140206] bg-white text-[#140206] shadow-[5px_5px_0_0_#140206]"
+              >
+                <div className="px-[clamp(1rem,4.5vw,1.375rem)] pt-[clamp(1.1rem,4.5vw,1.5rem)] pb-[clamp(1.25rem,5vw,1.75rem)]">
+                  <h3 className="text-center text-heading-block font-bold leading-[1.1] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif]">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-body-fluid mt-3 break-words leading-relaxed text-black/85">
+                    {pillar.body}
+                  </p>
+                  <PillarImage pillar={pillar} className="mt-[clamp(1.1rem,4.5vw,1.5rem)] aspect-[16/11]" />
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
 
-        <div className="col-span-12 flex min-w-0 flex-col md:col-span-7 md:mt-[clamp(1.5rem,3vw,2.5rem)] md:min-h-full">
+        <div className="col-span-12 hidden min-w-0 flex-col md:col-span-7 md:mt-[clamp(1.5rem,3vw,2.5rem)] md:flex md:min-h-full">
           <div className="relative w-full min-w-0 overflow-hidden">
             {pillars.map((pillar, i) => {
               const isActive = i === active;
@@ -265,47 +302,22 @@ export function Pillars() {
                     opacity: isActive ? 1 : 0,
                     y: isActive ? 0 : 12,
                   }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.45, ease: EASE }}
                   aria-hidden={!isActive}
                   className={`w-full min-w-0 ${
                     isActive ? "relative z-10" : "pointer-events-none absolute inset-x-0 top-0"
                   }`}
                 >
-                  <div className="relative aspect-[16/11] w-full max-w-[min(100%,clamp(18rem,52vw,46rem))] min-w-0 overflow-hidden rounded-sm border border-black/10 bg-white sm:aspect-[16/8.55]">
-                    <div
-                      className="pointer-events-none absolute inset-0 opacity-[0.4]"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
-                        backgroundSize: "clamp(1.25rem,3vw,2rem) clamp(1.25rem,3vw,2rem)",
-                      }}
-                    />
-                    <img
-                      src={pillar.image}
-                      alt={pillar.alt}
-                      loading="lazy"
-                      width={1280}
-                      height={720}
-                      className="absolute inset-0 h-full w-full max-w-full object-contain p-[clamp(0.6rem,1.5vw,1rem)]"
-                    />
-                    {[
-                      "top-[clamp(0.4rem,1vw,0.625rem)] left-[clamp(0.4rem,1vw,0.625rem)]",
-                      "top-[clamp(0.4rem,1vw,0.625rem)] right-[clamp(0.4rem,1vw,0.625rem)]",
-                      "bottom-[clamp(0.4rem,1vw,0.625rem)] left-[clamp(0.4rem,1vw,0.625rem)]",
-                      "bottom-[clamp(0.4rem,1vw,0.625rem)] right-[clamp(0.4rem,1vw,0.625rem)]",
-                    ].map((pos) => (
-                      <span
-                        key={pos}
-                        className={`absolute ${pos} h-[clamp(0.2rem,0.4vw,0.25rem)] w-[clamp(0.2rem,0.4vw,0.25rem)] bg-black/40`}
-                      />
-                    ))}
-                  </div>
+                  <PillarImage
+                    pillar={pillar}
+                    className="aspect-[16/11] max-w-[min(100%,clamp(18rem,52vw,46rem))] sm:aspect-[16/8.55]"
+                  />
 
                   <div className="mt-[clamp(1rem,2.5vw,1.5rem)]">
-                    <h3 className="hidden text-display-pillar font-normal tracking-tight [font-family:var(--font-display),Georgia,serif] md:block">
+                    <h3 className="text-display-pillar font-normal tracking-tight [font-family:var(--font-display),Georgia,serif]">
                       {pillar.title}
                     </h3>
-                    <p className="text-body-fluid mt-0 max-w-full break-words leading-relaxed text-black/85 md:mt-[clamp(0.75rem,1.5vw,1rem)] md:max-w-[60ch]">
+                    <p className="text-body-fluid mt-[clamp(0.75rem,1.5vw,1rem)] max-w-[60ch] break-words leading-relaxed text-black/85">
                       {pillar.body}
                     </p>
                   </div>

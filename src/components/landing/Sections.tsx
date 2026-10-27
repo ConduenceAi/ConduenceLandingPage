@@ -33,7 +33,7 @@ export function Reasoning() {
       <div className="mx-auto grid max-w-[1480px] gap-[clamp(2rem,4vw,4rem)] lg:grid-cols-2 lg:items-start">
         {/* Left half — title + cube */}
         <div>
-          <h2 className="mx-auto max-w-3xl text-center text-display-lede font-normal leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0 min-[720px]:text-left">
+          <h2 className="mx-auto max-w-3xl text-center text-display-lede font-bold leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0 min-[720px]:text-left">
             Trading OS for Agents
           </h2>
 
