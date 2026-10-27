@@ -74,7 +74,7 @@ export function WeMoveAsOne() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
                 transition={{ duration: 0.7, delay: 0.2 + index * 0.1, ease: EASE }}
-                className="rounded-xl border border-black/8 bg-white px-[clamp(0.95rem,1.8vw,1.35rem)] py-[clamp(1.1rem,2.2vw,1.65rem)] text-center"
+                className="border border-black/8 bg-white px-[clamp(0.95rem,1.8vw,1.35rem)] py-[clamp(1.1rem,2.2vw,1.65rem)] text-center"
               >
                 <h3 className="font-display text-[clamp(1.35rem,2.6vw,2rem)] font-normal leading-none tracking-[-0.04em] text-black">
                   {step.label}

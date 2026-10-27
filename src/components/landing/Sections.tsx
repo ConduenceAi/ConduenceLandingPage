@@ -34,7 +34,7 @@ export function Reasoning() {
         {/* Left half — title + cube */}
         <div>
           <h2 className="mx-auto max-w-3xl text-center text-display-lede font-bold leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0 min-[720px]:text-left">
-            Trading OS for Agents
+            Trading OS for Agents and Humans
           </h2>
 
           <div className="relative mx-auto mt-[clamp(1.5rem,3vw,2rem)] w-full max-w-[min(34rem,100%)] max-lg:-mb-[52%] lg:mx-0">
@@ -123,8 +123,7 @@ export function CTA() {
           <span className="text-[#48A8D0]">Not against them</span>
         </h2>
         <p className="text-body-large mx-auto mt-[clamp(1.25rem,3vw,2rem)] max-w-xl text-white/72">
-          CONDUENCE is in private beta. Join the waitlist for early access to the Agent Studio and
-          Mind Mesh.
+          CONDUENCE is in private beta. Join the waitlist for early access to the Agent Studio.
         </p>
         <form
           className="mx-auto mt-[clamp(1.5rem,3.5vw,2.5rem)] flex max-w-md flex-col gap-3 sm:flex-row"
