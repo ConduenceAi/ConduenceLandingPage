@@ -41,7 +41,7 @@ const BACKERS = [
     name: "NVIDIA",
     Logo: NvidiaLogo,
     labelClassName: "text-[0.91em]",
-    sizeClassName: "text-[clamp(1.25rem,2.65vw,1.55rem)]",
+    sizeClassName: "text-[0.75rem] sm:text-[clamp(1.25rem,2.65vw,1.55rem)]",
   },
   {
     name: "Microsoft",
@@ -59,20 +59,20 @@ export function BackedBy() {
     <motion.section
       ref={ref}
       aria-label="Backed by"
-      className="relative w-full border-y border-black/8 bg-white px-[5%] py-[clamp(0.9rem,2vw,1.25rem)] text-black"
+      className="relative w-full border-y border-black/8 bg-white px-[5%] py-[3px] text-black sm:py-[clamp(0.9rem,2vw,1.25rem)]"
       initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.7, ease: EASE }}
     >
-      <div className="mx-auto flex max-w-[1480px] flex-col items-center justify-center gap-y-2.5 text-center sm:flex-row sm:flex-wrap sm:gap-x-[clamp(0.75rem,2vw,1.25rem)] sm:gap-y-2">
-        <span className="text-[clamp(0.680625rem,0.1815vw+0.605rem,0.75625rem)] font-mono font-semibold uppercase tracking-[0.34em] text-black">
+      <div className="mx-auto flex max-w-[1480px] flex-nowrap items-center justify-center gap-x-3 text-center max-sm:leading-none sm:flex-wrap sm:gap-x-[clamp(0.75rem,2vw,1.25rem)] sm:gap-y-2">
+        <span className="shrink-0 whitespace-nowrap text-[0.48rem] font-mono font-semibold uppercase tracking-[0.3em] text-black sm:text-[clamp(0.680625rem,0.1815vw+0.605rem,0.75625rem)] sm:tracking-[0.34em]">
           Supported by
         </span>
-        <div className="flex items-center justify-center gap-x-[clamp(1rem,4vw,1.5rem)] sm:contents">
+        <div className="flex shrink-0 items-center justify-center gap-x-2 sm:contents">
           {BACKERS.map(({ name, Logo, labelClassName, sizeClassName }, index) => (
-            <span key={name} className="flex items-center gap-x-[clamp(0.75rem,2vw,1.25rem)]">
-              {index !== 0 ? <span className="text-black/25" aria-hidden="true">·</span> : null}
-              <span className={`flex items-center gap-x-[clamp(0.4rem,1vw,0.6rem)] text-black/80 ${sizeClassName || "text-[clamp(1.1rem,2.4vw,1.4rem)]"}`}>
+            <span key={name} className="flex items-center gap-x-2 sm:gap-x-[clamp(0.75rem,2vw,1.25rem)]">
+              {index !== 0 ? <span className="text-black/25 max-sm:text-[0.75rem]" aria-hidden="true">·</span> : null}
+              <span className={`flex items-center gap-x-1 text-black/80 sm:gap-x-[clamp(0.4rem,1vw,0.6rem)] ${sizeClassName || "text-[0.66rem] sm:text-[clamp(1.1rem,2.4vw,1.4rem)]"}`}>
                 <Logo />
                 <span className={`uppercase tracking-[-0.01em] text-black/70 [font-family:var(--font-display),Georgia,serif] ${labelClassName}`}>
                   {name}

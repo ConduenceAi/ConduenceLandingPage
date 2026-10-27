@@ -591,6 +591,13 @@
   }
 }
 
+/* Hidden on mobile; matches the md breakpoint where Pillars switches to stacked cards. */
+@media (max-width: 767px) {
+  .ob-problem {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ob-problem .run-copy > p {
     transition: none;

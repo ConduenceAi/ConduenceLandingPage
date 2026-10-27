@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative h-svh w-full overflow-hidden bg-white text-black sm:min-h-screen sm:h-auto"
+      className="relative w-full overflow-hidden bg-white text-black sm:min-h-screen"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 hidden sm:block">
         <div
@@ -29,7 +29,7 @@ export function Hero() {
           }}
         />
       </div>
-      <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center bg-transparent px-section pb-[clamp(1rem,2vw,1.5rem)] pt-[clamp(4.5rem,10vw,8rem)] text-center sm:min-h-screen sm:pb-0">
+      <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center bg-transparent px-section pb-[clamp(2.5rem,10vw,3.5rem)] pt-[clamp(7rem,30vw,8.5rem)] text-center sm:min-h-screen sm:pb-0 sm:pt-[clamp(4.5rem,10vw,8rem)]">
         <motion.h1
           initial={false}
           animate={{ opacity: 1, y: 0 }}

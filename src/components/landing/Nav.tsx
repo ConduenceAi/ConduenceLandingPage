@@ -9,12 +9,13 @@ import { APP_LOGIN_URL, APP_SIGNUP_URL } from "@/lib/login";
 import { cn } from "@/lib/utils";
 
 const mobileLinkClass =
-  "flex h-14 items-center border-b-[2.5px] border-[#140206] px-5 text-[12px] font-medium uppercase tracking-[0.12em] transition-colors hover:bg-[#f4f1ea] focus-visible:bg-[#f4f1ea] focus-visible:outline-none [font-family:var(--font-ui),system-ui,sans-serif]";
+  "flex h-11 items-center px-4 text-[12px] font-medium uppercase tracking-[0.12em] transition-colors hover:bg-black/[0.04] focus-visible:bg-black/[0.04] focus-visible:outline-none [font-family:var(--font-ui),system-ui,sans-serif]";
 
 export function Nav() {
   const pathname = usePathname();
   const panelId = useId();
-  const panelRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
 
   const onLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -28,43 +29,24 @@ export function Nav() {
     setOpen(false);
   }, [pathname]);
 
+  // Disclosure dropdown: closes on Escape (returning focus to the toggle) or on any outside press.
   useEffect(() => {
     if (!open) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    panelRef.current?.focus();
-
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
-        return;
-      }
-      if (event.key !== "Tab" || !panelRef.current) return;
-
-      const nodes = [
-        ...document.querySelectorAll<HTMLElement>("[data-mobile-nav-toggle]"),
-        ...panelRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"),
-      ];
-      if (nodes.length === 0) return;
-
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
-      const active = document.activeElement;
-
-      if (event.shiftKey && active === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && active === last) {
-        event.preventDefault();
-        first.focus();
-      }
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) setOpen(false);
     };
 
     window.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
     };
   }, [open]);
 
@@ -123,85 +105,56 @@ export function Nav() {
         </a>
       </div>
 
-      <button
-        type="button"
-        className="pointer-events-auto relative z-50 inline-flex h-[calc(3rem+5px)] w-[calc(3rem+5px)] items-center justify-center border-[2.5px] border-[#140206] bg-white text-[#140206] min-[720px]:hidden"
-        aria-expanded={open}
-        aria-controls={panelId}
-        data-mobile-nav-toggle=""
-        aria-label={open ? "Close menu" : "Open menu"}
-        onClick={() => setOpen((current) => !current)}
-      >
-        <span className="relative block h-[17px] w-[20px]" aria-hidden>
-          <span
-            className={cn(
-              "absolute left-0 top-0 h-[2.5px] w-full origin-center bg-[#140206] transition-transform duration-200 ease-out motion-reduce:transition-none",
-              open && "translate-y-[7.25px] rotate-45",
-            )}
-          />
-          <span
-            className={cn(
-              "absolute left-0 top-[7.25px] h-[2.5px] w-full bg-[#140206] transition-opacity duration-200 ease-out motion-reduce:transition-none",
-              open && "opacity-0",
-            )}
-          />
-          <span
-            className={cn(
-              "absolute left-0 top-[14.5px] h-[2.5px] w-full origin-center bg-[#140206] transition-transform duration-200 ease-out motion-reduce:transition-none",
-              open && "-translate-y-[7.25px] -rotate-45",
-            )}
-          />
-        </span>
-      </button>
-
-      <div
-        inert={open ? undefined : true}
-        aria-hidden={!open}
-        className={cn(
-          "fixed inset-0 z-40 min-[720px]:hidden",
-          open ? "pointer-events-auto" : "pointer-events-none",
-        )}
-      >
+      <div ref={menuRef} className="pointer-events-auto relative z-50 min-[720px]:hidden">
         <button
+          ref={toggleRef}
           type="button"
-          tabIndex={-1}
-          aria-label="Close menu"
-          className={cn(
-            "absolute inset-0 bg-[#140206]/30 transition-opacity duration-300 ease-out motion-reduce:transition-none",
-            open ? "opacity-100" : "opacity-0",
-          )}
-          onClick={() => setOpen(false)}
-        />
+          className="relative inline-flex h-[calc(3rem+5px)] w-[calc(3rem+5px)] items-center justify-center border-[2.5px] border-[#140206] bg-white text-[#140206]"
+          aria-expanded={open}
+          aria-controls={panelId}
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((current) => !current)}
+        >
+          <span className="relative block h-[17px] w-[20px]" aria-hidden>
+            <span
+              className={cn(
+                "absolute left-0 top-0 h-[2.5px] w-full origin-center bg-[#140206] transition-transform duration-200 ease-out motion-reduce:transition-none",
+                open && "translate-y-[7.25px] rotate-45",
+              )}
+            />
+            <span
+              className={cn(
+                "absolute left-0 top-[7.25px] h-[2.5px] w-full bg-[#140206] transition-opacity duration-200 ease-out motion-reduce:transition-none",
+                open && "opacity-0",
+              )}
+            />
+            <span
+              className={cn(
+                "absolute left-0 top-[14.5px] h-[2.5px] w-full origin-center bg-[#140206] transition-transform duration-200 ease-out motion-reduce:transition-none",
+                open && "-translate-y-[7.25px] -rotate-45",
+              )}
+            />
+          </span>
+        </button>
+
         <div
           id={panelId}
-          ref={panelRef}
-          tabIndex={-1}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu"
+          inert={open ? undefined : true}
+          aria-hidden={!open}
           className={cn(
-            "absolute inset-y-0 right-0 flex w-[min(19.5rem,88vw)] flex-col border-l-[2.5px] border-[#140206] bg-white text-[#140206] shadow-[-5px_5px_0_0_#140206] outline-none transition-transform duration-300 ease-out motion-reduce:transition-none",
-            open ? "translate-x-0" : "translate-x-full",
+            "absolute right-0 top-[calc(100%+0.5rem)] flex w-max origin-top-right flex-col border border-black/10 bg-white p-1.5 text-[#140206] shadow-[0_16px_40px_-16px_rgba(20,2,6,0.3)] transition duration-150 ease-out motion-reduce:transition-none",
+            open ? "translate-y-0 scale-100 opacity-100" : "pointer-events-none -translate-y-1 scale-[0.98] opacity-0",
           )}
         >
-          <div className="mt-[calc(clamp(0.85rem,2vw,1.25rem)+4.5rem)] border-y-[2.5px] border-[#140206]">
-            <Link href="/pricing" className={mobileLinkClass} onClick={() => setOpen(false)}>
-              Pricing
-            </Link>
-            <a href={APP_LOGIN_URL} className={mobileLinkClass} onClick={() => setOpen(false)}>
-              Login
-            </a>
-            <a
-              href={APP_SIGNUP_URL}
-              className={cn(
-                mobileLinkClass,
-                "bg-[#48A8D0] hover:bg-[#3b96bc] focus-visible:bg-[#3b96bc]",
-              )}
-              onClick={() => setOpen(false)}
-            >
-              Get Started
-            </a>
-          </div>
+          <Link href="/pricing" className={mobileLinkClass} onClick={() => setOpen(false)}>
+            Pricing
+          </Link>
+          <a href={APP_LOGIN_URL} className={mobileLinkClass} onClick={() => setOpen(false)}>
+            Login
+          </a>
+          <a href={APP_SIGNUP_URL} className={mobileLinkClass} onClick={() => setOpen(false)}>
+            Get Started
+          </a>
         </div>
       </div>
     </header>
