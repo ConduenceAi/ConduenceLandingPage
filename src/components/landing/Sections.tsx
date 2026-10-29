@@ -34,7 +34,9 @@ export function Reasoning() {
         {/* Left half — title + cube */}
         <div>
           <h2 className="mx-auto max-w-3xl text-center text-display-lede font-bold leading-[1.12] tracking-[-0.03em] [font-family:var(--font-display),Georgia,serif] min-[720px]:mx-0 min-[720px]:text-left">
-            Trading OS for Agents and Humans
+            Trading OS for
+            <br />
+            Agents and Humans
           </h2>
 
           <div className="relative mx-auto mt-[clamp(1.5rem,3vw,2rem)] w-full max-w-[min(34rem,100%)] max-lg:-mb-[52%] lg:mx-0">
