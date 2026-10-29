@@ -63,7 +63,7 @@ export function Nav() {
     <header className="pointer-events-none fixed inset-x-0 top-[clamp(0.85rem,2vw,1.25rem)] z-50 flex items-start justify-between px-4 min-[720px]:block min-[720px]:px-0">
       <nav
         aria-label="Primary"
-        className="pointer-events-auto relative z-50 inline-flex w-fit items-stretch border-[2.5px] border-[#140206] bg-white text-[#140206] shadow-[5px_5px_0_0_#140206] min-[720px]:absolute min-[720px]:left-[calc(100vw/6)] min-[720px]:top-0 min-[720px]:z-auto"
+        className="pointer-events-auto relative z-50 inline-flex w-fit items-stretch border-[2.5px] border-[#140206] bg-white text-[#140206] shadow-[5px_5px_0_0_#140206] min-[720px]:absolute min-[720px]:left-4 min-[720px]:top-0 min-[720px]:z-auto min-[1100px]:left-[calc(100vw/6)]"
       >
         <Link
           href="/"
@@ -80,6 +80,17 @@ export function Nav() {
               style={{ height: 46.7, width: 186.85, left: -20, top: -16.9 }}
             />
           </span>
+        </Link>
+
+        <Link
+          href="/docs"
+          aria-current={pathname === "/docs" ? "page" : undefined}
+          className={cn(
+            "hidden items-center border-l-[2.5px] border-[#140206] px-3.5 text-[11px] font-medium uppercase tracking-[0.12em] transition-colors hover:bg-[#f4f1ea] focus-visible:bg-[#f4f1ea] focus-visible:outline-none min-[720px]:flex sm:px-4 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]",
+            pathname === "/docs" && "bg-[#f4f1ea]",
+          )}
+        >
+          Docs
         </Link>
 
         <Link
@@ -146,6 +157,14 @@ export function Nav() {
             open ? "translate-y-0 scale-100 opacity-100" : "pointer-events-none -translate-y-1 scale-[0.98] opacity-0",
           )}
         >
+          <Link
+            href="/docs"
+            aria-current={pathname === "/docs" ? "page" : undefined}
+            className={mobileLinkClass}
+            onClick={() => setOpen(false)}
+          >
+            Docs
+          </Link>
           <Link href="/pricing" className={mobileLinkClass} onClick={() => setOpen(false)}>
             Pricing
           </Link>
