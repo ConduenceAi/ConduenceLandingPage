@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { logoBlackSrc } from "@/lib/assets";
-import { APP_LOGIN_URL, APP_SIGNUP_URL } from "@/lib/login";
+import { APP_LOGIN_URL, APP_GUEST_URL } from "@/lib/login";
 import { cn } from "@/lib/utils";
 
 const mobileLinkClass =
@@ -109,10 +109,10 @@ export function Nav() {
           Login
         </a>
         <a
-          href={APP_SIGNUP_URL}
+          href={APP_GUEST_URL}
           className="flex h-12 items-center border-l-[2.5px] border-[#140206] bg-[#48A8D0] px-4 text-[11px] font-medium uppercase tracking-[0.12em] text-[#140206] transition-colors hover:bg-[#3b96bc] focus-visible:bg-[#3b96bc] focus-visible:outline-none sm:px-5 sm:text-[12px] [font-family:var(--font-ui),system-ui,sans-serif]"
         >
-          Get Started
+          Launch app
         </a>
       </div>
 
@@ -171,8 +171,8 @@ export function Nav() {
           <a href={APP_LOGIN_URL} className={mobileLinkClass} onClick={() => setOpen(false)}>
             Login
           </a>
-          <a href={APP_SIGNUP_URL} className={mobileLinkClass} onClick={() => setOpen(false)}>
-            Get Started
+          <a href={APP_GUEST_URL} className={mobileLinkClass} onClick={() => setOpen(false)}>
+            Launch app
           </a>
         </div>
       </div>
